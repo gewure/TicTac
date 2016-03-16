@@ -4,6 +4,9 @@
       <root url="file://$PROJECT_DIR$/lib/opencv3.1" />
     </CLASSES>
     <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/lib/opencv3.1/opencv/build/java/x64" />
+    </NATIVE>
     <SOURCES />
   </library>
 </component>
