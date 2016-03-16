@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AR-Framework/AR-Framework.iml" filepath="$PROJECT_DIR$/AR-Framework/AR-Framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Domain/Domain.iml" filepath="$PROJECT_DIR$/Domain/Domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Examples/Examples.iml" filepath="$PROJECT_DIR$/Examples/Examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" filepath="$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" />
       <module fileurl="file://$PROJECT_DIR$/tictac.iml" filepath="$PROJECT_DIR$/tictac.iml" />
     </modules>
   </component>
