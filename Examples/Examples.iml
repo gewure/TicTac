@@ -21,5 +21,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" scope="TEST" name="NineMensMorris" level="project" />
   </component>
 </module>

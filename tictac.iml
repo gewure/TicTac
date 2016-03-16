@@ -24,6 +24,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="opencv3" level="project" />
-    <orderEntry type="library" name="NineMensMorris" level="project" />
   </component>
 </module>
