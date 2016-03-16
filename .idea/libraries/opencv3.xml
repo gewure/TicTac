@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="opencv3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/opencv3.1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

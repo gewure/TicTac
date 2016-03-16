@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="NineMensMorris">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/NineMensMorris" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/NineMensMorris/src" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/lib/NineMensMorris" recursive="false" />
+  </library>
+</component>
