@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/Examples/Examples.iml" filepath="$PROJECT_DIR$/Examples/Examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/Game/Game.iml" filepath="$PROJECT_DIR$/Game/Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" filepath="$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InputInterface.iml" filepath="$PROJECT_DIR$/InputInterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HarwareInterface/at.fhv.itb6.arp.inputinterface.iml" filepath="$PROJECT_DIR$/HarwareInterface/at.fhv.itb6.arp.inputinterface.iml" />
       <module fileurl="file://$PROJECT_DIR$/tictac.iml" filepath="$PROJECT_DIR$/tictac.iml" />
     </modules>
   </component>
