@@ -1,5 +1,9 @@
 package Logic;
 
+import org.opencv.core.Point;
+
+import java.util.ArrayList;
+
 /**
  * Created by f00 on 23.03.16.
  */
@@ -50,17 +54,17 @@ public class Game {
 
     public boolean validMove(int currentPositionIndex, int nextPositionIndex) throws GameException {
         Position currentPos = gameBoard.getPosition(currentPositionIndex);
-        if(currentPos.isAdjacentToThis(nextPositionIndex) && !gameBoard.getPosition(nextPositionIndex).isOccupied()) {
+        if (currentPos.isAdjacentToThis(nextPositionIndex) && !gameBoard.getPosition(nextPositionIndex).isOccupied()) {
             return true;
         }
         return false;
     }
 
     public int movePieceFromTo(int srcIndex, int destIndex, Token player) throws GameException {
-        if(positionHasPieceOfPlayer(srcIndex, player)) {
-            if(positionIsAvailable(destIndex)) {
+        if (positionHasPieceOfPlayer(srcIndex, player)) {
+            if (positionIsAvailable(destIndex)) {
                 //System.out.println("Number of pieces: "+gameBoard.getNumberOfPiecesOfPlayer(player));
-                if(validMove(srcIndex, destIndex) || (gameBoard.getNumberOfPiecesOfPlayer(player) == Game.MIN_NUM_PIECES + 1)) {
+                if (validMove(srcIndex, destIndex) || (gameBoard.getNumberOfPiecesOfPlayer(player) == Game.MIN_NUM_PIECES + 1)) {
                     gameBoard.getPosition(srcIndex).setAsUnoccupied();
                     gameBoard.getPosition(destIndex).setAsOccupied(player);
                     return Game.VALID_MOVE;
@@ -76,10 +80,10 @@ public class Game {
     }
 
     public boolean placePieceOfPlayer(int boardPosIndex, Token player) throws GameException {
-        if(gameBoard.positionIsAvailable(boardPosIndex)) {
+        if (gameBoard.positionIsAvailable(boardPosIndex)) {
             gameBoard.getPosition(boardPosIndex).setAsOccupied(player);
             gameBoard.incNumPiecesOfPlayer(player);
-            if(gameBoard.incNumTotalPiecesPlaced() == (NUM_PIECES_PER_PLAYER * 2)) {
+            if (gameBoard.incNumTotalPiecesPlaced() == (NUM_PIECES_PER_PLAYER * 2)) {
                 gamePhase = Game.MOVING_PHASE;
             }
             return true;
@@ -89,12 +93,12 @@ public class Game {
 
     public boolean madeAMill(int dest, Token player) throws GameException {
         int maxNumPlayerPiecesInRow = 0;
-        for(int i = 0; i < Board.NUM_MILL_COMBINATIONS; i++) {
+        for (int i = 0; i < Board.NUM_MILL_COMBINATIONS; i++) {
             Position[] row = gameBoard.getMillCombination(i);
-            for(int j = 0; j < Board.NUM_POSITIONS_IN_EACH_MILL; j++) {
-                if(row[j].getPositionIndex() == dest) {
+            for (int j = 0; j < Board.NUM_POSITIONS_IN_EACH_MILL; j++) {
+                if (row[j].getPositionIndex() == dest) {
                     int playerPiecesInThisRow = numPiecesFromPlayerInRow(row, player);
-                    if(playerPiecesInThisRow > maxNumPlayerPiecesInRow) {
+                    if (playerPiecesInThisRow > maxNumPlayerPiecesInRow) {
                         maxNumPlayerPiecesInRow = playerPiecesInThisRow;
                     }
                 }
@@ -105,8 +109,8 @@ public class Game {
 
     private int numPiecesFromPlayerInRow(Position[] pos, Token player) {
         int counter = 0;
-        for(int i = 0; i < pos.length; i++) {
-            if(pos[i].getPlayerOccupyingIt() == player) {
+        for (int i = 0; i < pos.length; i++) {
+            if (pos[i].getPlayerOccupyingIt() == player) {
                 counter++;
             }
         }
@@ -122,13 +126,13 @@ public class Game {
     }
 
     public boolean removePiece(int boardIndex, Token player) throws GameException {
-        if(!gameBoard.positionIsAvailable(boardIndex) && positionHasPieceOfPlayer(boardIndex, player)) {
+        if (!gameBoard.positionIsAvailable(boardIndex) && positionHasPieceOfPlayer(boardIndex, player)) {
             gameBoard.getPosition(boardIndex).setAsUnoccupied();
             gameBoard.decNumPiecesOfPlayer(player);
-            if(gamePhase == Game.MOVING_PHASE && gameBoard.getNumberOfPiecesOfPlayer(player) == (Game.MIN_NUM_PIECES+1)) {
+            if (gamePhase == Game.MOVING_PHASE && gameBoard.getNumberOfPiecesOfPlayer(player) == (Game.MIN_NUM_PIECES + 1)) {
                 gamePhase = Game.FLYING_PHASE;
                 //TODO LOGGING (the next line)
-              //  Log.info("New game phase is: "+gamePhase);
+                //  Log.info("New game phase is: "+gamePhase);
             }
             return true;
         }
@@ -141,7 +145,7 @@ public class Game {
 
     public boolean isTheGameOver() {
         try {
-            if(gameBoard.getNumberOfPiecesOfPlayer(Token.PLAYER_1) == Game.MIN_NUM_PIECES
+            if (gameBoard.getNumberOfPiecesOfPlayer(Token.PLAYER_1) == Game.MIN_NUM_PIECES
                     || gameBoard.getNumberOfPiecesOfPlayer(Token.PLAYER_2) == Game.MIN_NUM_PIECES) {
                 return true;
             } else {
@@ -149,24 +153,24 @@ public class Game {
                 Token player;
 
                 // check if each player has at least one valid move
-                for(int i = 0; i < Board.NUM_POSITIONS_OF_BOARD; i++) {
+                for (int i = 0; i < Board.NUM_POSITIONS_OF_BOARD; i++) {
                     Position position = gameBoard.getPosition(i);
-                    if((player = position.getPlayerOccupyingIt()) != Token.NO_PLAYER) {
+                    if ((player = position.getPlayerOccupyingIt()) != Token.NO_PLAYER) {
                         int[] adjacent = position.getAdjacentPositionsIndexes();
-                        for(int j = 0; j < adjacent.length; j++) {
+                        for (int j = 0; j < adjacent.length; j++) {
                             Position adjacentPos = gameBoard.getPosition(adjacent[j]);
-                            if(!adjacentPos.isOccupied()) {
-                                if(!p1HasValidMove) { // must only change if boolean is false
+                            if (!adjacentPos.isOccupied()) {
+                                if (!p1HasValidMove) { // must only change if boolean is false
                                     p1HasValidMove = (player == Token.PLAYER_1);
                                 }
-                                if(!p2HasValidMove) {
+                                if (!p2HasValidMove) {
                                     p2HasValidMove = (player == Token.PLAYER_2);
                                 }
                                 break;
                             }
                         }
                     }
-                    if(p1HasValidMove && p2HasValidMove) {
+                    if (p1HasValidMove && p2HasValidMove) {
                         return false;
                     }
                 }
@@ -176,5 +180,80 @@ public class Game {
             System.exit(-1);
         }
         return true;
+    }
+
+    /**
+     * Get a PositionIndex from a openCV-Point
+     *
+     * @param point
+     * @return int ...board position
+     */
+    public int getBoardPositionFromCoordinate(Point point) {
+
+        //TODO define the actual  regions
+        ArrayList<Region> regions = new ArrayList<>();
+
+        for (Region region : regions)
+            if (point.x <= region.getxMax() && point.x >= region.getxMin() && point.y <= region.getyMax() && point.y >= region.getyMin())
+                return region.getPosition();
+
+        return -1;
+    }
+
+    /**
+     * Inner class
+     */
+    private class Region {
+
+        //The mapped position
+        public int position;
+
+        public double xMin;
+        public double yMin;
+
+        public double xMax;
+        public double yMax;
+
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
+        /* GETTER AND SETTER */
+        public double getxMax() {
+            return xMax;
+        }
+
+        public void setxMax(double xMax) {
+            this.xMax = xMax;
+        }
+
+        public double getxMin() {
+            return xMin;
+        }
+
+        public void setxMin(double xMin) {
+            this.xMin = xMin;
+        }
+
+        public double getyMin() {
+            return yMin;
+        }
+
+        public void setyMin(double yMin) {
+            this.yMin = yMin;
+        }
+
+        public double getyMax() {
+            return yMax;
+        }
+
+        public void setyMax(double yMax) {
+            this.yMax = yMax;
+        }
     }
 }
