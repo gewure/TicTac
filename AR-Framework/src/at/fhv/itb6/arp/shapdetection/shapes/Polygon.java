@@ -8,13 +8,19 @@ import java.util.Arrays;
  */
 public class Polygon {
     private Point[] points;
+    private MatOfPoint approximation;
 
-    public Polygon(Point[] points) {
+    public Polygon(Point[] points, MatOfPoint approximation) {
         this.points = points;
+        this.approximation = approximation;
     }
 
     public Point[] getPoints() {
         return points;
+    }
+
+    protected MatOfPoint getApproximation() {
+        return approximation;
     }
 
     @Override
