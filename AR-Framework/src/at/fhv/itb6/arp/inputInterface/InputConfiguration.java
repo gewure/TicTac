@@ -6,6 +6,7 @@ package at.fhv.itb6.arp.inputInterface;
 public class InputConfiguration {
     private int _hardwareId = 0;
     private int _confirmationTime = 60;
+    private int _interruptionTolerance = 2;
     private double _sensivityX = 0.01;
     private double _sensivityY = 0.01;
 
@@ -23,6 +24,14 @@ public class InputConfiguration {
 
     public void setConfirmationTime(int confirmationTime) {
         _confirmationTime = confirmationTime;
+    }
+
+    public int getInterruptionTolerance() {
+        return _interruptionTolerance;
+    }
+
+    public void setInterruptionTolerance(int interruptionTolerance) {
+        _interruptionTolerance = interruptionTolerance;
     }
 
     public double getSensivityX() {

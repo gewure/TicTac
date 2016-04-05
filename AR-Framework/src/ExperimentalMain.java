@@ -20,7 +20,7 @@ public class ExperimentalMain {
 
     public static void main(String[] args) throws IOException {
 
-        CameraInterface cam = new CameraInterface(0);
+        CameraInterface cam = new CameraInterface(1);
         Imshow imshow = new Imshow("Current Frame");
 
         while(true) {

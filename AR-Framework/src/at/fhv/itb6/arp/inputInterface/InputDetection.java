@@ -7,11 +7,13 @@ import at.fhv.itb6.arp.shapdetection.ShapeDetection;
 import at.fhv.itb6.arp.shapdetection.shapes.Polygon;
 import at.fhv.itb6.arp.shapdetection.shapes.Rectangle;
 import at.fhv.itb6.arp.shapdetection.shapes.ShapeUtil;
+import at.fhv.itb6.arp.shapdetection.shapes.Triangle;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Zopo on 29.03.2016.
@@ -23,8 +25,15 @@ public class InputDetection {
         _inputConfiguration = inputConfiguration;
     }
 
+    /**
+     * Waits for user input
+     * @return The coordinates of the user interaction wrapped into a InputAction
+     * @throws GamebordersNotDetectedException
+     * @throws NoMarkerDetectedException
+     */
     public InputAction getUserInput() throws GamebordersNotDetectedException, NoMarkerDetectedException {
         int currentFrame = 0;
+        int interruptionCount = 0;
         Point setMarkerPos = new Point(0,0);
         CameraInterface cam = new CameraInterface(_inputConfiguration.getHardwareId());
 
@@ -35,24 +44,48 @@ public class InputDetection {
             Mat frame = cam.readImage();
 
             //Detect maker and border positions
-            List<Polygon> detectedPolygons = ShapeDetection.detect(frame);
+            Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
 
-            Point[] borderPoints = getBorderCoordinates(detectedPolygons);
-            Point markerPos = getMarkerPos(detectedPolygons);
+            Point[] borderPoints = getBorderCoordinates(detectedPolygons.get(Rectangle.class));
+            Point markerPos = getMarkerPos(detectedPolygons.get(Triangle.class));
 
             //Calculate relative marker position
             Point relativeMarkerPos = calculateRelativeMarkerPos(borderPoints, markerPos);
 
             //Check if the marker has moved
             if (isMarkerMoved(setMarkerPos, relativeMarkerPos)){
-                currentFrame = 0;
-                setMarkerPos = relativeMarkerPos;
+                interruptionCount++;
+                if (interruptionCount > _inputConfiguration.getInterruptionTolerance()){
+                    currentFrame = 0;
+                    setMarkerPos = relativeMarkerPos;
+                }
+
             }
         }
 
         return new InputAction(setMarkerPos);
     }
 
+
+    protected Point[] getBorderCoordinates(List<Polygon> polygons) throws GamebordersNotDetectedException {
+        Rectangle biggestRect = null;
+        double biggestRectSize = 0;
+        for (Polygon p : polygons){
+            if (p instanceof Rectangle){
+                double rectSize = ((Rectangle) p).getSurface();
+                if (rectSize > biggestRectSize){
+                    biggestRect = (Rectangle) p;
+                    biggestRectSize = rectSize;
+                }
+            }
+        }
+        if (biggestRect == null) {
+            throw new GamebordersNotDetectedException(polygons);
+        }
+        return biggestRect.getPoints();
+    }
+
+/*
     public Point[] getBorderCoordinates(List<Polygon> polygons) throws GamebordersNotDetectedException {
 
         //Get all detected rectangles and their center coordinates
@@ -91,9 +124,9 @@ public class InputDetection {
         }
 
         return new Point[]{bottomLeft, bottomRight, topLeft, topRight};
-    }
+    }*/
 
-    public Point getMarkerPos(List<Polygon> polygons) throws NoMarkerDetectedException {
+    protected Point getMarkerPos(List<Polygon> polygons) throws NoMarkerDetectedException {
         //get a Triangle
         Polygon triangle = null;
         for (Polygon p : polygons){
@@ -109,14 +142,18 @@ public class InputDetection {
         return ShapeUtil.getCenter(triangle);
     }
 
-    public Point calculateRelativeMarkerPos(Point[] borderPoints, Point markerPoint){
+    protected Point calculateRelativeMarkerPos(Point[] borderPoints, Point markerPoint){
         double relativeX = (markerPoint.x - borderPoints[0].x / borderPoints[1].x);
         double relativeY = (markerPoint.y - borderPoints[0].y / borderPoints[2].y);
 
         return new Point(relativeX, relativeY);
     }
 
-    public boolean isMarkerMoved(Point oldPos, Point newPos){
+    protected boolean isMarkerMoved(Point oldPos, Point newPos){
+        if (oldPos == null | newPos == null){
+            return true;
+        }
+
         double differenceX = Math.abs(oldPos.x - newPos.x);
         double differenceY = Math.abs(oldPos.y - newPos.y);
 
