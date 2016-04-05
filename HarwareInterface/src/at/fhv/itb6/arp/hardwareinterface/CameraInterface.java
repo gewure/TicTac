@@ -69,18 +69,4 @@ public class CameraInterface implements Closeable {
             isClosed = true;
         }
     }
-
-    public static void main(String[] args) throws IOException {
-
-        List<Integer> devices = CameraInterface.getAvailableDeviceIds(10);
-
-        System.out.println(Arrays.toString(devices.toArray()));
-
-        Imshow imshow = new Imshow("Frame");
-        CameraInterface cam = new CameraInterface(0);
-
-        imshow.showImage(cam.readImage());
-
-        System.in.read();
-    }
 }
