@@ -7,8 +7,8 @@ public class InputConfiguration {
     private int _hardwareId = 0;
     private int _confirmationTime = 60;
     private int _interruptionTolerance = 2;
-    private double _sensivityX = 0.01;
-    private double _sensivityY = 0.01;
+    private double _sensivityX = 0.015;
+    private double _sensivityY = 0.015;
 
     public int getHardwareId() {
         return _hardwareId;
