@@ -15,10 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 
-/**
- * Created by f00 on 23.03.16.
- */
-//TODO fix this class
 public class Main {
     public Game game;
     public BufferedReader input;
@@ -276,8 +272,8 @@ public class Main {
                 for (NetworkInterface netint : Collections.list(nets)) {
                     Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
                     for (InetAddress inetAddress : Collections.list(inetAddresses)) {
-                        //TODO
-                      //  Log.info(inetAddress.toString());
+
+                      Log.info(inetAddress.toString());
                     }
                 }
             } catch (SocketException e) { e.printStackTrace(); }

@@ -18,22 +18,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 
-/**
- * Created by f00 on 30.03.16.
- */
-
-
+//TODO we need interface-logic from here, probably
 public class UIGame extends JFrame {
     private static final long serialVersionUID = -5256114500541984237L;
-    private SLPanel panel;
     private final UIMainMenuPanel uiMainMenuPanel;
+    protected MenuState currentMenuState;
+    private SLPanel panel;
     private UISettingsPanel uiSettingsPanel;
     private UIAboutPanel uiAboutPanel;
     private UINewGamePanel uiNewGamePanel;
     private UIDevTeamPanel uiDevTeamPanel;
     private UIGamePanel uiGamePanel;
     private SLConfig mainCfg, SettingsCfg, AboutCfg, NewGameCfg, DevTeamCfg, GameCfg;
-    protected MenuState currentMenuState;
 
     public UIGame() {
         super("Nine Men's Morris - by Afonso Caldas & Miguel Oliveira");
@@ -109,17 +105,17 @@ public class UIGame extends JFrame {
         panel.initialize(mainCfg);
     }
 
+    /**
+     * INNER Class - Settings panel
+     */
     private class UISettingsPanel extends JPanel implements MouseListener, MouseMotionListener {
-        private static final long serialVersionUID = -2881193099945335066L;
-
-        private UIResourcesLoader uiResourcesLoader;
-
         static final public int VERY_EASY = 0;
         static final public int EASY = 1;
         static final public int NORMAL = 2;
         static final public int HARD = 3;
         static final public int VERY_HARD = 4;
-
+        private static final long serialVersionUID = -2881193099945335066L;
+        private UIResourcesLoader uiResourcesLoader;
         private Graphics graphics;
         private BufferedImage background;
         private Image gameLevelCheck;
@@ -394,12 +390,12 @@ public class UIGame extends JFrame {
     private class UINewGamePanel extends JPanel implements MouseListener, MouseMotionListener {
 
         private static final long serialVersionUID = 7380205004739956983L;
-        private UIResourcesLoader uiResourcesLoader;
-        private Graphics graphics;
-        private BufferedImage background;
         public int game_type = -1;
         public int players_type = -1;
         public int network_type = -1;
+        private UIResourcesLoader uiResourcesLoader;
+        private Graphics graphics;
+        private BufferedImage background;
         private boolean readyToPlayLocal = false;
         private boolean readyToPlayNetwork = false;
 
@@ -418,6 +414,10 @@ public class UIGame extends JFrame {
             return super.getPreferredSize();
         }
 
+
+        /**
+         * @param g
+         */
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(graphics = g); // clear off-screen bitmap
@@ -602,10 +602,10 @@ public class UIGame extends JFrame {
     private class UIGamePanel extends JPanel implements MouseListener {
 
         private static final long serialVersionUID = -7973208111694509132L;
+        public boolean hasGameRunning = false;
         private UIResourcesLoader uiResourcesLoader;
         private BufferedImage background;
         private Graphics graphics;
-        public boolean hasGameRunning = false;
         private boolean millWasMade = false;
         private boolean waitingForAI = false;
         private boolean gameIsOver = false;
@@ -625,65 +625,6 @@ public class UIGame extends JFrame {
         public UIGamePanel() {
             uiResourcesLoader = UIResourcesLoader.getInstanceLoader();
             background = uiResourcesLoader.game_bg;
-        }
-
-        private class LocalGameRunnable implements Runnable {
-            @Override
-            public void run() {
-                while (true) {
-                    if (waitingForAI) {
-                        makeAiMove();
-                    } else {
-                        try {
-                            Thread.sleep(50);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-
-        private class NetworkGameRunnable implements Runnable {
-            @Override
-            public void run() {
-                while (true) {
-                    if (!((NetworkGame) game).isThisPlayerTurn()) {
-                        //System.out.println("IT'S NOT MY TURN");
-                        if (gClient.isThisPlayerTurn()) {
-
-                            // update game with opponent moves
-                            try {
-                                Log.info("Updating game with opponent moves");
-                                ArrayList<Move> opponentMoves = gClient.getOpponentMoves();
-                                ((NetworkGame) game).updateGameWithOpponentMoves(opponentMoves);
-                                ((NetworkGame) game).setTurn(true);
-                                turnPlayer = uiResourcesLoader.getPlayerTurn(game.getPlayer().getPlayerToken());
-
-                                if (game.getCurrentGamePhase() != Game.PLACING_PHASE && game.isTheGameOver()) {
-                                    Token opp = (game.getPlayer().getPlayerToken() == Token.PLAYER_1 ? Token.PLAYER_2 : Token.PLAYER_1);
-                                    Log.info("Game Over! " + opp + " won!");
-                                    gameIsOver = true;
-                                    winner = (opp == Token.PLAYER_1) ? "p1" : "p2";
-                                    gClient.stop();
-                                    if (gServer != null) {
-                                        gServer.stop();
-                                    }
-                                }
-                                repaint();
-                            } catch (GameException e) {
-                                e.printStackTrace();
-                                System.exit(-1);
-                            }
-                        }
-                    }
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
         }
 
         public void startGame() {
@@ -788,6 +729,12 @@ public class UIGame extends JFrame {
             return null;
         }
 
+        /**
+         * Creates a new Network Game
+         *
+         * @throws GameException
+         * @throws IOException
+         */
         private void createNetworkGame() throws GameException, IOException {
             game = new NetworkGame();
             Player p = null;
@@ -897,6 +844,9 @@ public class UIGame extends JFrame {
             bgGameCheckThread.start();
         }
 
+        /**
+         * Makes a AI Move
+         */
         private void makeAiMove() {
             if (numberAImoves == 100) {
                 waitingForAI = false;
@@ -1087,6 +1037,13 @@ public class UIGame extends JFrame {
             }.run();
         }
 
+        /**
+         * method for the phase where the pieces are moved, not placed anymore
+         *
+         * @param boardIndex
+         * @param player
+         * @throws GameException
+         */
         private void movingPhase(int boardIndex, Player player) throws GameException {
             boolean invalidMove = false;
 
@@ -1148,6 +1105,9 @@ public class UIGame extends JFrame {
             }
         }
 
+        /**
+         * RESET game
+         */
         private void resetGame() {
             if (game_type == UIResourcesLoader.LOCAL_GAME) {
                 clearPossibleGame();
@@ -1305,8 +1265,73 @@ public class UIGame extends JFrame {
         @Override
         public void mouseExited(MouseEvent e) {
         }
+
+        private class LocalGameRunnable implements Runnable {
+            @Override
+            public void run() {
+                while (true) {
+                    if (waitingForAI) {
+                        makeAiMove();
+                    } else {
+                        try {
+                            Thread.sleep(50);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * Inner class - for Networkgame Runnable
+         */
+        private class NetworkGameRunnable implements Runnable {
+            @Override
+            public void run() {
+                while (true) {
+                    if (!((NetworkGame) game).isThisPlayerTurn()) {
+                        //System.out.println("IT'S NOT MY TURN");
+                        if (gClient.isThisPlayerTurn()) {
+
+                            // update game with opponent moves
+                            try {
+                                Log.info("Updating game with opponent moves");
+                                ArrayList<Move> opponentMoves = gClient.getOpponentMoves();
+                                ((NetworkGame) game).updateGameWithOpponentMoves(opponentMoves);
+                                ((NetworkGame) game).setTurn(true);
+                                turnPlayer = uiResourcesLoader.getPlayerTurn(game.getPlayer().getPlayerToken());
+
+                                if (game.getCurrentGamePhase() != Game.PLACING_PHASE && game.isTheGameOver()) {
+                                    Token opp = (game.getPlayer().getPlayerToken() == Token.PLAYER_1 ? Token.PLAYER_2 : Token.PLAYER_1);
+                                    Log.info("Game Over! " + opp + " won!");
+                                    gameIsOver = true;
+                                    winner = (opp == Token.PLAYER_1) ? "p1" : "p2";
+                                    gClient.stop();
+                                    if (gServer != null) {
+                                        gServer.stop();
+                                    }
+                                }
+                                repaint();
+                            } catch (GameException e) {
+                                e.printStackTrace();
+                                System.exit(-1);
+                            }
+                        }
+                    }
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
+    /**
+     * Inner Class - for the MenuPanel
+     */
     private class UIMainMenuPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
 
         private static final long serialVersionUID = -1237601154927560866L;

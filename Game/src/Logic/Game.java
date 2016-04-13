@@ -1,5 +1,6 @@
 package Logic;
 
+import com.esotericsoftware.minlog.Log;
 import org.opencv.core.Point;
 
 import java.util.ArrayList;
@@ -130,8 +131,7 @@ public class Game {
             gameBoard.decNumPiecesOfPlayer(player);
             if (gamePhase == Game.MOVING_PHASE && gameBoard.getNumberOfPiecesOfPlayer(player) == (Game.MIN_NUM_PIECES + 1)) {
                 gamePhase = Game.FLYING_PHASE;
-                //TODO LOGGING (the next line)
-                //  Log.info("New game phase is: "+gamePhase);
+                  Log.info("New game phase is: "+gamePhase);
             }
             return true;
         }

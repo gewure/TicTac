@@ -1,5 +1,7 @@
 package Logic;
 
+import com.esotericsoftware.minlog.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -101,8 +103,8 @@ public class MinimaxAIPlayer extends AIPlayer {
             e.printStackTrace();
             System.exit(-1);
         }
-        //TODO
-//        Log.error("Should not get here");
+
+        Log.error("Should not get here");
         return -1;
     }
 
@@ -146,8 +148,8 @@ public class MinimaxAIPlayer extends AIPlayer {
             System.exit(-1);
         }
 
-        //TODO
-        //Log.error("Should not get here");
+
+        Log.error("Should not get here");
         return null;
     }
 
@@ -202,8 +204,8 @@ public class MinimaxAIPlayer extends AIPlayer {
             e.printStackTrace();
             System.exit(-1);
         }
-        //TODO
-        //Log.error("SHOULD NOT GET HERE!");
+
+        Log.error("SHOULD NOT GET HERE!");
         return -1;
     }
 
