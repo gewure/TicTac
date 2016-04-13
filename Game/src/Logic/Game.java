@@ -7,7 +7,6 @@ import java.util.ArrayList;
 /**
  * Created by f00 on 23.03.16.
  */
-
 public class Game {
 
     static public final int NUM_PIECES_PER_PLAYER = 9;
@@ -185,18 +184,26 @@ public class Game {
     /**
      * Get a PositionIndex from a openCV-Point
      *
-     * @param point
+     * @param point OpenCV-Point
      * @return int ...board position
      */
     public int getBoardPositionFromCoordinate(Point point) {
 
+        // minimalizing errorproneness, fallback to last position
+        int lastposition = 0;
+
         //TODO define the actual  regions
         ArrayList<Region> regions = new ArrayList<>();
 
-        for (Region region : regions)
-            if (point.x <= region.getxMax() && point.x >= region.getxMin() && point.y <= region.getyMax() && point.y >= region.getyMin())
+        for (Region region : regions) {
+            if (point.x <= region.getxMax() && point.x >= region.getxMin() && point.y <= region.getyMax() && point.y >= region.getyMin()) {
+                lastposition = region.getPosition();
                 return region.getPosition();
-
+            } else {
+                //return the last good position, 0 if none
+                return lastposition;
+            }
+        }
         return -1;
     }
 

@@ -1,20 +1,10 @@
 package UserInterface;
 
+import Logic.*;
 import Network.GameClient;
 import Network.GameServer;
 import aurelienribon.slidinglayout.*;
 import com.esotericsoftware.minlog.Log;
-import pt.up.fe.ninemensmorris.logic.*;
-import pt.up.fe.ninemensmorris.logic.Board;
-import pt.up.fe.ninemensmorris.logic.Game;
-import pt.up.fe.ninemensmorris.logic.GameException;
-import pt.up.fe.ninemensmorris.logic.HumanPlayer;
-import pt.up.fe.ninemensmorris.logic.LocalGame;
-import pt.up.fe.ninemensmorris.logic.Move;
-import pt.up.fe.ninemensmorris.logic.NetworkGame;
-import pt.up.fe.ninemensmorris.logic.Player;
-import pt.up.fe.ninemensmorris.logic.Token;
-import pt.up.fe.ninemensmorris.userinterface.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -775,7 +765,7 @@ public class UIGame extends JFrame {
             bgGameCheckThread.start();
         }
 
-        private IAPlayer createAIPlayer(Token player, int playerLevel) {
+        private AIPlayer createAIPlayer(Token player, int playerLevel) {
 
             if (playerLevel == UISettingsPanel.EASY || playerLevel == UISettingsPanel.NORMAL) {
                 playerLevel++;
@@ -787,9 +777,9 @@ public class UIGame extends JFrame {
 
             try {
                 if (playerLevel == UISettingsPanel.VERY_EASY) {
-                    return new RandomIAPlayer(player, Game.NUM_PIECES_PER_PLAYER);
+                    return new RandomAIPlayer(player, Game.NUM_PIECES_PER_PLAYER);
                 } else {
-                    return new MinimaxIAPlayer(player, Game.NUM_PIECES_PER_PLAYER, playerLevel);
+                    return new MinimaxAIPlayer(player, Game.NUM_PIECES_PER_PLAYER, playerLevel);
                 }
             } catch (GameException e) {
                 e.printStackTrace();
@@ -919,7 +909,7 @@ public class UIGame extends JFrame {
 
                 try {
                     if (game.getCurrentGamePhase() == Game.PLACING_PHASE) {
-                        int boardIndex = indexToTest = ((IAPlayer) p).getIndexToPlacePiece(game.getGameBoard());
+                        int boardIndex = indexToTest = ((AIPlayer) p).getIndexToPlacePiece(game.getGameBoard());
                         if (game.placePieceOfPlayer(boardIndex, p.getPlayerToken())) {
                             p.raiseNumPiecesOnBoard();
                             boardPositions[boardIndex] = p.getPlayerToken();
@@ -927,7 +917,7 @@ public class UIGame extends JFrame {
                             Log.info(p.getName() + " placed piece on " + boardIndex);
                         }
                     } else {
-                        Move move = ((IAPlayer) p).getPieceMove(game.getGameBoard(), game.getCurrentGamePhase());
+                        Move move = ((AIPlayer) p).getPieceMove(game.getGameBoard(), game.getCurrentGamePhase());
                         if (game.movePieceFromTo(move.srcIndex, (indexToTest = move.destIndex), p.getPlayerToken()) == Game.VALID_MOVE) {
                             boardPositions[move.srcIndex] = Token.NO_PLAYER;
                             boardPositions[move.destIndex] = p.getPlayerToken();
@@ -937,7 +927,7 @@ public class UIGame extends JFrame {
 
                     if (game.madeAMill(indexToTest, p.getPlayerToken())) {
                         Token opponentPlayer = (p.getPlayerToken() == Token.PLAYER_1) ? Token.PLAYER_2 : Token.PLAYER_1;
-                        int boardIndex = ((IAPlayer) p).getIndexToRemovePieceOfOpponent(game.getGameBoard());
+                        int boardIndex = ((AIPlayer) p).getIndexToRemovePieceOfOpponent(game.getGameBoard());
                         if (game.removePiece(boardIndex, opponentPlayer)) {
                             boardPositions[boardIndex] = Token.NO_PLAYER;
                             Log.info(p.getPlayerToken() + " removes opponent piece on board index: " + boardIndex);
