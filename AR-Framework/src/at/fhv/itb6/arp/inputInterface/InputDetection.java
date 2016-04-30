@@ -9,6 +9,8 @@ import at.fhv.itb6.arp.shapdetection.shapes.Rectangle;
 import at.fhv.itb6.arp.shapdetection.shapes.ShapeUtil;
 import at.fhv.itb6.arp.shapdetection.shapes.Triangle;
 import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Moments;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -96,9 +98,10 @@ public class InputDetection {
         Mat colorOnly = new Mat();
         Core.inRange(frame, minCol, maxCol, colorOnly);
 
-        
+        Moments mu = Imgproc.moments(colorOnly);
+        Point center = new Point(mu.get_m10() / mu.get_m00(), mu.get_m01() / mu.get_m00());
 
-        return null;
+        return center;
     }
 
     protected Point calculateRelativeMarkerPos(Size border, Point markerPoint){
