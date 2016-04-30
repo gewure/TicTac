@@ -17,7 +17,7 @@ public class GameSetupController {
     }
 
     //Todo return game controller
-    public void start(Integer cameraID, GameType gameMode) {
-
+    public GameController start(Integer cameraID, GameType gameMode) {
+        return new GameController(cameraID, gameMode);
     }
 }

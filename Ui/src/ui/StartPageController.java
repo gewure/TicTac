@@ -2,16 +2,14 @@ package ui; /**
  * Created by simon_000 on 06/04/2016.
  */
 
+import app.GameController;
 import app.GameSetupController;
 import app.GameType;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
@@ -66,8 +64,8 @@ public class StartPageController implements IPanelClosable{
     void startGameEventHandler(ActionEvent event) throws IOException {
         System.out.println("Start meeeeeeeeeeeeeeee!");
 
-        _gameSetupController.start(_cameraID, _gameType);
-        _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), new GamePageController());
+        GameController gameController = _gameSetupController.start(_cameraID, _gameType);
+        _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), new GamePageController(gameController));
     }
 
     @Override
