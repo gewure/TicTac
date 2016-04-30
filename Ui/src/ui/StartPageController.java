@@ -5,14 +5,12 @@ package ui; /**
 import app.GameSetupController;
 import app.GameType;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -25,17 +23,12 @@ public class StartPageController implements IPanelClosable{
     private ToggleGroup GameMode;
 
     @FXML
-    private Label DetectedNotDetectedFlag;
+    private ComboBox<Integer> camDropDown;
 
-    @FXML
-    private ComboBox<?> camDropDown;
-
-    @FXML
-    private ImageView frame;
 
     private GameSetupController _gameSetupController;
     private GameType _gameType;
-    private IntegerProperty _cameraID;
+    private Integer _cameraID;
 
     public StartPageController() {
         _gameSetupController = new GameSetupController();
@@ -48,17 +41,33 @@ public class StartPageController implements IPanelClosable{
         GameMode.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
-                System.out.println(newValue);
+                RadioButton radioButton = (RadioButton) newValue;
+
+                if(radioButton.getText().equals("PVP")) {
+                    _gameType = GameType.vsPlayer;
+                } else  {
+                    _gameType = GameType.vsAI;
+                }
             }
         });
+
+        camDropDown.getItems().addAll(_gameSetupController.getCameraIDs());
+        camDropDown.valueProperty().addListener(new ChangeListener<Integer>() {
+            @Override
+            public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
+                _cameraID = newValue;
+            }
+        });
+
+        camDropDown.valueProperty().set(_gameSetupController.getCameraIDs().get(0));
     }
 
     @FXML
     void startGameEventHandler(ActionEvent event) throws IOException {
         System.out.println("Start meeeeeeeeeeeeeeee!");
 
-        _gameSetupController.start(_cameraID.getValue(), _gameType);
-        _panelCloseHandler.closeNext(getClass().getResource("ui/GamePage.fxml"), new GamePageController());
+        _gameSetupController.start(_cameraID, _gameType);
+        _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), new GamePageController());
     }
 
     @Override

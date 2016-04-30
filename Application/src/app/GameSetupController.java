@@ -1,17 +1,19 @@
 package app;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import at.fhv.itb6.arp.ARFacade;
+
+import java.util.List;
 
 /**
  * Created by simon_000 on 30/04/2016.
  */
 public class GameSetupController {
 
-    private IntegerProperty _cameraID;
-
     public GameSetupController() {
-        _cameraID = new SimpleIntegerProperty();
+    }
+
+    public List<Integer> getCameraIDs() {
+        return ARFacade.getCameraIDs();
     }
 
     //Todo return game controller
