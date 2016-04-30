@@ -1,6 +1,5 @@
 package at.fhv.itb6.arp.hardwareinterface;
 
-import com.atul.JavaOpenCV.Imshow.Imshow;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
@@ -8,7 +7,6 @@ import org.opencv.videoio.VideoCapture;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
