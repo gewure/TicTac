@@ -1,6 +1,6 @@
 package app;
 
-import Gateway.GameGateway;
+import Gateway.GameFacade;
 import Gateway.GameToken;
 import Gateway.PlayerIdentifier;
 import Logic.Token;
@@ -15,35 +15,35 @@ import java.util.Observer;
  */
 public class GameController extends Observable{
 
-    public GameGateway _gameGateway;
+    public GameFacade _gameFacade;
 
     public GameController(Integer cameraID, GameType gameType) {
-        ARFacade.getInstance().init(cameraID);
-
         if(gameType == GameType.vsAI) {
-            _gameGateway = new GameGateway(Token.PLAYER_1, Token.NO_PLAYER);
+            _gameFacade = new GameFacade(Token.PLAYER_1, Token.NO_PLAYER);
         } else {
-            _gameGateway = new GameGateway(Token.PLAYER_1, Token.PLAYER_2);
+            _gameFacade = new GameFacade(Token.PLAYER_1, Token.PLAYER_2);
         }
 
-        _gameGateway.addObserver(new Observer() {
+        _gameFacade.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
                 gameStateChanged();
             }
         });
+
+        ARFacade.getInstance().init(cameraID, _gameFacade);
     }
 
     public PlayerIdentifier getCurrentPlayer() {
-        return _gameGateway.getCurrentPlayer();
+        return _gameFacade.getCurrentPlayer();
     }
 
     public List<GameToken> getPlayer1GameTokens() {
-        return _gameGateway.getTokensPlayer1();
+        return _gameFacade.getTokensPlayer1();
     }
 
     public List<GameToken> getPlayer2GameTokens() {
-        return _gameGateway.getTokensPlayer2();
+        return _gameFacade.getTokensPlayer2();
     }
 
     private void gameStateChanged() {

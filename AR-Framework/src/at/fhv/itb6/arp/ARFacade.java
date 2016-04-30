@@ -1,5 +1,6 @@
 package at.fhv.itb6.arp;
 
+import Gateway.GameFacade;
 import at.fhv.itb6.arp.hardwareinterface.CameraInterface;
 
 import java.util.List;
@@ -26,8 +27,10 @@ public class ARFacade {
         return CameraInterface.getAvailableDeviceIds(10);
     }
 
+    private GameFacade _gameFacade;
+
     //Todo init with a gamewrapper that was initialized by the application layer
-    public void init(int cameraID) {
+    public void init(int cameraID, GameFacade _gameFacade) {
 
         //Todo start some thread that does the reading and parsing from camera
     }
