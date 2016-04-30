@@ -27,7 +27,7 @@ public class Main extends Application implements IPanelCloseHandler {
 			controller.setPanelCloseHandler(this);
 
 			loader.setController(controller);
-			loader.setLocation(getClass().getResource("ui/StartPage.fxml"));
+			loader.setLocation(getClass().getResource("StartPage.fxml"));
 
 			Scene scene = new Scene(loader.load(), 800,600);
 
