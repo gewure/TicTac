@@ -1,14 +1,21 @@
 package at.fhv.itb6.arp.inputInterface;
 
+import at.fhv.itb6.arp.shapdetection.shapes.Polygon;
+import at.fhv.itb6.arp.shapdetection.shapes.Triangle;
+import org.opencv.core.Scalar;
+
 /**
  * Created by Zopo on 29.03.2016.
  */
 public class InputConfiguration {
-    private int _hardwareId = 0;
-    private int _confirmationTime = 60;
-    private int _interruptionTolerance = 2;
+    private int _hardwareId = 1;
+    private int _confirmationTime = 120;
+    private int _interruptionTolerance = 3;
     private double _sensivityX = 0.015;
     private double _sensivityY = 0.015;
+    private Scalar _minCol = new Scalar(0, 180, 0);
+    private Scalar _maxCol = new Scalar(125, 255, 125);
+    private int _makerBufferSize = 30;
 
     public int getHardwareId() {
         return _hardwareId;
@@ -48,5 +55,29 @@ public class InputConfiguration {
 
     public void setSensivityY(double sensivityY) {
         _sensivityY = sensivityY;
+    }
+
+    public Scalar getMinCol() {
+        return _minCol;
+    }
+
+    public void setMinCol(Scalar minCol) {
+        _minCol = minCol;
+    }
+
+    public Scalar getMaxCol() {
+        return _maxCol;
+    }
+
+    public void setMaxCol(Scalar maxCol) {
+        _maxCol = maxCol;
+    }
+
+    public int getMakerBufferSize() {
+        return _makerBufferSize;
+    }
+
+    public void setMakerBufferSize(int makerBufferSize) {
+        _makerBufferSize = makerBufferSize;
     }
 }

@@ -19,6 +19,7 @@ public final class ShapeDetection {
 
     private static double thresholdA = 100;
     private static double thresholdB = 200;
+    private static double sensivity = 9;
 
     public static Map<Class, List<Polygon>> detect(Mat img) {
         //preprocess
@@ -38,12 +39,18 @@ public final class ShapeDetection {
 
 
         Map<Class, List<Polygon>> polygones = new HashMap<>();
+        polygones.put(Triangle.class, new LinkedList<>());
+        polygones.put(Rectangle.class, new LinkedList<>());
+        polygones.put(Polygon.class, new LinkedList<>());
+
         for(int i = 0; i < contours.size(); ++i) {
 
             MatOfPoint2f approximation = new MatOfPoint2f();
 
             //approximate contours
             Imgproc.approxPolyDP(new MatOfPoint2f((contours.get(i).toArray())), approximation, Imgproc.arcLength(new MatOfPoint2f(contours.get(i).toArray()), true) * 0.02, true);
+
+            approximation = removeDuplicatePoints(approximation);
 
             if(approximation.toList().size() == 4) {
 
@@ -68,6 +75,27 @@ public final class ShapeDetection {
         }
 
         return polygones;
+    }
+
+    private static MatOfPoint2f removeDuplicatePoints(MatOfPoint2f approximation){
+        List<Point> points = new LinkedList<>();
+
+        for (Point point : approximation.toList()){
+            boolean isDuplicate = false;
+            for (Point lPoint : points){
+                if (Math.abs(point.x - lPoint.x) < sensivity && Math.abs(point.y - lPoint.y) < sensivity){
+                    isDuplicate = true;
+                }
+            }
+            if (!isDuplicate){
+                points.add(point);
+            }
+        }
+
+        Point[] pointsArray = points.toArray(new Point[points.size()]);
+        MatOfPoint2f newApproximation = new MatOfPoint2f(pointsArray);
+
+        return newApproximation;
     }
 
 }

@@ -1,8 +1,6 @@
 package at.fhv.itb6.arp.shapdetection.shapes;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Size;
+import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.utils.Converters;
 
@@ -75,5 +73,14 @@ public class ShapeUtil {
         Imgproc.warpPerspective(distortedImage, processedImage, transformation, goalSize);
 
         return processedImage;
+    }
+
+    public static Scalar getAverageColor(Mat image, Polygon polygon){
+        Mat mask = new Mat(image.rows(), image.cols(), 0);
+        List<MatOfPoint> points = new LinkedList<>();
+        points.add(new MatOfPoint(polygon.getPoints()));
+        Imgproc.fillPoly(mask, points, new Scalar(255));
+
+        return Core.mean(image, mask);
     }
 }
