@@ -11,9 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
 
 /**
  * Created by simon_000 on 06/04/2016.
@@ -59,10 +58,8 @@ public class GamePageController {
         _gameGameController.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
-                //TODO: add logic that draws the game
                 GraphicsContext context = canvis.getGraphicsContext2D();
-
-                drawBackground(context);
+                drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
 
             }
         });
@@ -80,9 +77,13 @@ public class GamePageController {
     @FXML
     public void initialize() {
         GraphicsContext context=  canvis.getGraphicsContext2D();
+        drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
+    }
 
+    private void drawGameField(GraphicsContext context, List<GameToken> player1Token, List<GameToken> player2Token) {
         drawBackground(context);
-        _gameGameController.getPlayer1GameTokens().forEach((gameToken) -> drawGameToken(context, gameToken, 100));
+        player1Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
+        player2Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
     }
 
     private void drawGameToken(GraphicsContext context, GameToken gameToken, int xOffset) {

@@ -29,14 +29,14 @@ public class GameFacade extends Observable {
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out6));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out7));
 
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle0));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle1));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle2));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle3));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle4));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle5));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle6));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle7));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle0));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle1));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle2));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle3));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle4));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle5));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle6));
+        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle7));
 
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center0));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center1));
