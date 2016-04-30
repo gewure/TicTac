@@ -22,7 +22,5 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" scope="TEST" name="NineMensMorris" level="project" />
-    <orderEntry type="module" module-name="AR-Framework" />
-    <orderEntry type="module" module-name="HarwareInterface" />
   </component>
 </module>

@@ -16,7 +16,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="kryonet-2.18-all" level="application" />
     <orderEntry type="library" name="NineMensMorris" level="project" />
     <orderEntry type="module-library">
       <library>
