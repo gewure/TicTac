@@ -1,7 +1,7 @@
 package Logic;
 
 import com.esotericsoftware.minlog.Log;
-import org.opencv.core.Point;
+//import org.opencv.core.Point;
 
 import java.util.ArrayList;
 
@@ -187,7 +187,8 @@ public class Game {
      * @param point OpenCV-Point
      * @return int ...board position
      */
-    public int getBoardPositionFromCoordinate(Point point) {
+
+    /*public int getBoardPositionFromCoordinate(Point point) {
 
         // minimalizing errorproneness, fallback to last position
         int lastposition = 0;
@@ -205,7 +206,7 @@ public class Game {
             }
         }
         return -1;
-    }
+    }*/
 
     /**
      * Inner class
