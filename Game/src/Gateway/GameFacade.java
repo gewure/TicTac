@@ -17,8 +17,7 @@ public class GameFacade extends Observable {
     private Game game;
     private BiMap<GamePosition, Integer> positionMapping;
 
-
-    public GameFacade() {
+    public GameFacade(Token player1, Token player2) {
         initializePositionMapping();
         _tokensPlayer1 = new ArrayList<>();
         _tokensPlayer2 = new ArrayList<>();
