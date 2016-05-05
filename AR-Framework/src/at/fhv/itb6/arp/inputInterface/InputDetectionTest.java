@@ -28,7 +28,7 @@ public class InputDetectionTest {
     public static void main(String[] args) {
         InputConfiguration ic = new InputConfiguration();
         ic.setHardwareId(1);
-        ic.setCameraPosition(InputConfiguration.CameraPosition.TOP);
+        ic.setCameraPosition(InputConfiguration.CameraPosition.BOTTOM);
         InputDetection id = new InputDetection(ic);
         id.detectGameboard();
 

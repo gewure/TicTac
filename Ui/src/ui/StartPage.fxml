@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="277.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox HBox.hgrow="ALWAYS">
          <children>
@@ -22,7 +24,7 @@
       </VBox>
       <VBox HBox.hgrow="ALWAYS">
          <children>
-            <HBox VBox.vgrow="ALWAYS">
+            <HBox prefHeight="0.0" prefWidth="260.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label text="Detected Flag: " />
                   <Label fx:id="DetectedNotDetectedFlag" text="Detected/NotDetected" />
@@ -33,10 +35,18 @@
             </HBox>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <Pane HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" onAction="#startGameEventHandler" text="Start Game" />
+                  <Button mnemonicParsing="false" onAction="#detectBorder" prefHeight="31.0" prefWidth="138.0" text="DetectBorder">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#startGameEventHandler" prefHeight="31.0" prefWidth="131.0" text="Start Game">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
+            <Canvas fx:id="imageCanvas" height="254.0" width="336.0" />
          </children>
          <HBox.margin>
             <Insets />
