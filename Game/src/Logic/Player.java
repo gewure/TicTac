@@ -20,8 +20,8 @@ public abstract class Player {
 
     protected Player(Token player, int numPiecesPerPlayer) throws GameException {
         this();
-        if (player != Token.PLAYER_1 && player != Token.PLAYER_2) {
-            throw new GameException("" + getClass().getName() + " - Invalid Player Token: " + player);
+        if(player != Token.PLAYER_1 && player != Token.PLAYER_2) {
+            throw new GameException(""+getClass().getName()+" - Invalid Player Token: "+player);
         } else {
             numPieces = numPiecesPerPlayer;
             playerToken = player;
@@ -64,7 +64,7 @@ public abstract class Player {
     }
 
     public int lowerNumPiecesOnBoard() {
-        if (--numPiecesOnBoard == 3) {
+        if(--numPiecesOnBoard == 3) {
             canFly = true;
         }
         return numPiecesOnBoard;

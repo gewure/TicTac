@@ -48,6 +48,7 @@ public class GameFacade extends Observable {
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out5));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out6));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out7));
+
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle0));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle1));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle2));
@@ -56,6 +57,7 @@ public class GameFacade extends Observable {
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle5));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle6));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle7));
+
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center0));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center1));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center2));
@@ -183,41 +185,42 @@ public class GameFacade extends Observable {
     private void setNextPlayerPhase(int dest, Game game){
         try {
             if (game.madeAMill(dest, getCurrentPlayer())){
-                if(getCurrentPlayer().equals(Token.PLAYER_1)){
-                    setCurrentPhase(Phase.REMOVING_PLAYER1);
-                }else {
+				if(getCurrentPlayer().equals(Token.PLAYER_1)){
+					setCurrentPhase(Phase.REMOVING_PLAYER1);
+				}else {
                     setCurrentPhase(Phase.REMOVING_PLAYER2);
-                }
-            }else{
-                setPartOfNextPlayerPhase(game);
-            }
+				}
+			}else{
+	            setPartOfNextPlayerPhase(game);
+			}
         } catch (GameException e) {
             e.printStackTrace();
         }
     }
 
     private void setPartOfNextPlayerPhase(Game game) throws GameException{
-        if(getCurrentPlayer().equals(Token.PLAYER_1)){
-            if(game.getGameBoard().getUnplayedPiecesP1() > 0){
-                if(getCurrentPlayer().equals(Token.PLAYER_1)) {
-                    setCurrentPhase(Phase.PLACING_PLAYER2);
+            if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                if(game.getGameBoard().getUnplayedPiecesP1() > 0){
+                    if(getCurrentPlayer().equals(Token.PLAYER_1)) {
+                        setCurrentPhase(Phase.PLACING_PLAYER2);
+                    }
+                }else {
+                    if (getCurrentPlayer().equals(Token.PLAYER_1)) {
+                        setCurrentPhase(Phase.MOVING_PLAYER2);
+                    }
                 }
-            }else {
-                if (getCurrentPlayer().equals(Token.PLAYER_1)) {
-                    setCurrentPhase(Phase.MOVING_PLAYER2);
-                }
+            }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                    if(game.getGameBoard().getUnplayedPiecesP2() > 0){
+                        if(getCurrentPlayer().equals(Token.PLAYER_2)) {
+                            setCurrentPhase(Phase.PLACING_PLAYER1);
+                        }
+                    }else{
+                        if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                            setCurrentPhase(Phase.MOVING_PLAYER1);
+                        }
+                    }
             }
-        }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
-            if(game.getGameBoard().getUnplayedPiecesP2() > 0){
-                if(getCurrentPlayer().equals(Token.PLAYER_2)) {
-                    setCurrentPhase(Phase.PLACING_PLAYER1);
-                }
-            }else{
-                if(getCurrentPlayer().equals(Token.PLAYER_2)){
-                    setCurrentPhase(Phase.MOVING_PLAYER1);
-                }
-            }
-        }
+
         switchPlayer();
     }
 
@@ -281,4 +284,5 @@ public class GameFacade extends Observable {
         positionMapping.put(GamePosition.Center7,7);
 
     }
+
 }

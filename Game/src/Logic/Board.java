@@ -243,7 +243,6 @@ public class Board {
         return numberOfTotalPiecesPlaced;
     }
 
-
     /**
      * decrease unplayed pieces of a player
      *

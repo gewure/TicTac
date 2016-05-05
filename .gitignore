@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /.idea
 /LICENSE
 *.class
@@ -6,3 +7,14 @@
 # Package Files #
 *.war
 *.ear
+=======
+/.idea
+/LICENSE
+*.class
+/target
+
+# Package Files #
+*.war
+*.ear
+
+>>>>>>> why intellij why

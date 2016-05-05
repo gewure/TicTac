@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77e5e519-8292-4211-8325-7323b696b3dc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Gateway/BiMap.java" afterPath="$PROJECT_DIR$/Game/src/Gateway/BiMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Logic/Board.java" afterPath="$PROJECT_DIR$/Game/src/Logic/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Logic/Game.java" afterPath="$PROJECT_DIR$/Game/src/Logic/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/src/app/GameController.java" afterPath="$PROJECT_DIR$/Application/src/app/GameController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" afterPath="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" afterPath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Logic/Phase.java" afterPath="$PROJECT_DIR$/Game/src/Logic/Phase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Logic/Player.java" afterPath="$PROJECT_DIR$/Game/src/Logic/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tictac.iws" />
@@ -27,24 +37,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameFacade.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameFacade.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.4117647">
-              <caret line="184" column="58" selection-start-line="184" selection-start-column="58" selection-end-line="184" selection-end-column="58" />
+            <state vertical-scroll-proportion="-7.034483">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3441#3442#0" expanded="true" />
-                <element signature="e#3478#3479#0" expanded="true" />
-                <element signature="e#3527#3528#0" expanded="true" />
-                <element signature="e#3564#3565#0" expanded="true" />
-                <element signature="e#4154#4155#0" expanded="true" />
-                <element signature="e#4191#4192#0" expanded="true" />
-                <element signature="e#8977#8978#0" expanded="true" />
-                <element signature="e#9012#9013#0" expanded="true" />
-                <element signature="e#9066#9067#0" expanded="true" />
-                <element signature="e#9114#9115#0" expanded="true" />
+                <element signature="e#3443#3444#0" expanded="true" />
+                <element signature="e#3480#3481#0" expanded="true" />
+                <element signature="e#3529#3530#0" expanded="true" />
+                <element signature="e#3566#3567#0" expanded="true" />
+                <element signature="e#4156#4157#0" expanded="true" />
+                <element signature="e#4193#4194#0" expanded="true" />
+                <element signature="e#9028#9029#0" expanded="true" />
+                <element signature="e#9063#9064#0" expanded="true" />
+                <element signature="e#9117#9118#0" expanded="true" />
+                <element signature="e#9165#9166#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameToken.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Logic/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,33 +82,33 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Game/src/Logic/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.7586207">
+              <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
               <folding>
                 <element signature="e#2265#2266#0" expanded="true" />
                 <element signature="e#2315#2316#0" expanded="true" />
                 <element signature="e#10154#10155#0" expanded="true" />
                 <element signature="e#10202#10203#0" expanded="true" />
-                <element signature="e#10963#10964#0" expanded="true" />
-                <element signature="e#11002#11003#0" expanded="true" />
-                <element signature="e#11063#11064#0" expanded="true" />
-                <element signature="e#11119#11120#0" expanded="true" />
-                <element signature="e#11159#11160#0" expanded="true" />
-                <element signature="e#11198#11199#0" expanded="true" />
-                <element signature="e#11259#11260#0" expanded="true" />
-                <element signature="e#11315#11316#0" expanded="true" />
-                <element signature="e#11360#11361#0" expanded="true" />
-                <element signature="e#11397#11398#0" expanded="true" />
+                <element signature="e#10962#10963#0" expanded="true" />
+                <element signature="e#11001#11002#0" expanded="true" />
+                <element signature="e#11062#11063#0" expanded="true" />
+                <element signature="e#11118#11119#0" expanded="true" />
+                <element signature="e#11158#11159#0" expanded="true" />
+                <element signature="e#11197#11198#0" expanded="true" />
+                <element signature="e#11258#11259#0" expanded="true" />
+                <element signature="e#11314#11315#0" expanded="true" />
+                <element signature="e#11359#11360#0" expanded="true" />
+                <element signature="e#11396#11397#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Application/src/app/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.9159802">
+              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#666#667#0" expanded="true" />
@@ -149,13 +179,13 @@
         <option value="$PROJECT_DIR$/Game/src/Logic/Game.java" />
         <option value="$PROJECT_DIR$/Game/src/Logic/Phase.java" />
         <option value="$PROJECT_DIR$/Game/src/Gateway/PlayerIdentifier.java" />
-        <option value="$PROJECT_DIR$/Game/src/Logic/Player.java" />
         <option value="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
-        <option value="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" />
         <option value="$PROJECT_DIR$/Game/src/Gateway/BiMap.java" />
+        <option value="$PROJECT_DIR$/Game/src/Logic/Player.java" />
         <option value="$PROJECT_DIR$/Game/src/Logic/Board.java" />
-        <option value="$PROJECT_DIR$/Application/src/app/GameController.java" />
+        <option value="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" />
         <option value="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" />
+        <option value="$PROJECT_DIR$/Application/src/app/GameController.java" />
       </list>
     </option>
   </component>
@@ -416,142 +446,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Gateway" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shapdetection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shapdetection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shapes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tictac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AR-Framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inputInterface" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -918,7 +812,7 @@
       <workItem from="1462193423343" duration="9000" />
       <workItem from="1462429528286" duration="15919000" />
       <workItem from="1462454968528" duration="19000" />
-      <workItem from="1462455552392" duration="3274000" />
+      <workItem from="1462455552392" duration="3453000" />
     </task>
     <task id="LOCAL-00001" summary="fixed project structure">
       <created>1462000891923</created>
@@ -996,7 +890,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35888000" />
+    <option name="totallyTimeSpent" value="36067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1069,16 +963,16 @@
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3441#3442#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3527#3528#0" expanded="true" />
-            <element signature="e#3564#3565#0" expanded="true" />
-            <element signature="e#4154#4155#0" expanded="true" />
-            <element signature="e#4191#4192#0" expanded="true" />
-            <element signature="e#8977#8978#0" expanded="true" />
-            <element signature="e#9012#9013#0" expanded="true" />
-            <element signature="e#9066#9067#0" expanded="true" />
-            <element signature="e#9114#9115#0" expanded="true" />
+            <element signature="e#3443#3444#0" expanded="true" />
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3566#3567#0" expanded="true" />
+            <element signature="e#4156#4157#0" expanded="true" />
+            <element signature="e#4193#4194#0" expanded="true" />
+            <element signature="e#9028#9029#0" expanded="true" />
+            <element signature="e#9063#9064#0" expanded="true" />
+            <element signature="e#9117#9118#0" expanded="true" />
+            <element signature="e#9165#9166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1163,16 +1057,16 @@
             <element signature="e#2315#2316#0" expanded="true" />
             <element signature="e#10154#10155#0" expanded="true" />
             <element signature="e#10202#10203#0" expanded="true" />
-            <element signature="e#10963#10964#0" expanded="true" />
-            <element signature="e#11002#11003#0" expanded="true" />
-            <element signature="e#11063#11064#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
-            <element signature="e#11159#11160#0" expanded="true" />
-            <element signature="e#11198#11199#0" expanded="true" />
-            <element signature="e#11259#11260#0" expanded="true" />
-            <element signature="e#11315#11316#0" expanded="true" />
-            <element signature="e#11360#11361#0" expanded="true" />
-            <element signature="e#11397#11398#0" expanded="true" />
+            <element signature="e#10962#10963#0" expanded="true" />
+            <element signature="e#11001#11002#0" expanded="true" />
+            <element signature="e#11062#11063#0" expanded="true" />
+            <element signature="e#11118#11119#0" expanded="true" />
+            <element signature="e#11158#11159#0" expanded="true" />
+            <element signature="e#11197#11198#0" expanded="true" />
+            <element signature="e#11258#11259#0" expanded="true" />
+            <element signature="e#11314#11315#0" expanded="true" />
+            <element signature="e#11359#11360#0" expanded="true" />
+            <element signature="e#11396#11397#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1206,16 +1100,16 @@
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3441#3442#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3527#3528#0" expanded="true" />
-            <element signature="e#3564#3565#0" expanded="true" />
-            <element signature="e#4154#4155#0" expanded="true" />
-            <element signature="e#4191#4192#0" expanded="true" />
-            <element signature="e#8977#8978#0" expanded="true" />
-            <element signature="e#9012#9013#0" expanded="true" />
-            <element signature="e#9066#9067#0" expanded="true" />
-            <element signature="e#9114#9115#0" expanded="true" />
+            <element signature="e#3443#3444#0" expanded="true" />
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3566#3567#0" expanded="true" />
+            <element signature="e#4156#4157#0" expanded="true" />
+            <element signature="e#4193#4194#0" expanded="true" />
+            <element signature="e#9028#9029#0" expanded="true" />
+            <element signature="e#9063#9064#0" expanded="true" />
+            <element signature="e#9117#9118#0" expanded="true" />
+            <element signature="e#9165#9166#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1300,16 +1194,16 @@
             <element signature="e#2315#2316#0" expanded="true" />
             <element signature="e#10154#10155#0" expanded="true" />
             <element signature="e#10202#10203#0" expanded="true" />
-            <element signature="e#10963#10964#0" expanded="true" />
-            <element signature="e#11002#11003#0" expanded="true" />
-            <element signature="e#11063#11064#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
-            <element signature="e#11159#11160#0" expanded="true" />
-            <element signature="e#11198#11199#0" expanded="true" />
-            <element signature="e#11259#11260#0" expanded="true" />
-            <element signature="e#11315#11316#0" expanded="true" />
-            <element signature="e#11360#11361#0" expanded="true" />
-            <element signature="e#11397#11398#0" expanded="true" />
+            <element signature="e#10962#10963#0" expanded="true" />
+            <element signature="e#11001#11002#0" expanded="true" />
+            <element signature="e#11062#11063#0" expanded="true" />
+            <element signature="e#11118#11119#0" expanded="true" />
+            <element signature="e#11158#11159#0" expanded="true" />
+            <element signature="e#11197#11198#0" expanded="true" />
+            <element signature="e#11258#11259#0" expanded="true" />
+            <element signature="e#11314#11315#0" expanded="true" />
+            <element signature="e#11359#11360#0" expanded="true" />
+            <element signature="e#11396#11397#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1547,20 +1441,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game/src/Logic/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="60" selection-start-line="97" selection-start-column="60" selection-end-line="97" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1577,14 +1463,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/src/Gateway/BiMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1593,33 +1471,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game/src/Logic/Board.java">
+    <entry file="file://$PROJECT_DIR$/Game/src/Logic/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Logic/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.7586207">
+          <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
           <folding>
             <element signature="e#2265#2266#0" expanded="true" />
             <element signature="e#2315#2316#0" expanded="true" />
             <element signature="e#10154#10155#0" expanded="true" />
             <element signature="e#10202#10203#0" expanded="true" />
-            <element signature="e#10963#10964#0" expanded="true" />
-            <element signature="e#11002#11003#0" expanded="true" />
-            <element signature="e#11063#11064#0" expanded="true" />
-            <element signature="e#11119#11120#0" expanded="true" />
-            <element signature="e#11159#11160#0" expanded="true" />
-            <element signature="e#11198#11199#0" expanded="true" />
-            <element signature="e#11259#11260#0" expanded="true" />
-            <element signature="e#11315#11316#0" expanded="true" />
-            <element signature="e#11360#11361#0" expanded="true" />
-            <element signature="e#11397#11398#0" expanded="true" />
+            <element signature="e#10962#10963#0" expanded="true" />
+            <element signature="e#11001#11002#0" expanded="true" />
+            <element signature="e#11062#11063#0" expanded="true" />
+            <element signature="e#11118#11119#0" expanded="true" />
+            <element signature="e#11158#11159#0" expanded="true" />
+            <element signature="e#11197#11198#0" expanded="true" />
+            <element signature="e#11258#11259#0" expanded="true" />
+            <element signature="e#11314#11315#0" expanded="true" />
+            <element signature="e#11359#11360#0" expanded="true" />
+            <element signature="e#11396#11397#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.034483">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3443#3444#0" expanded="true" />
+            <element signature="e#3480#3481#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3566#3567#0" expanded="true" />
+            <element signature="e#4156#4157#0" expanded="true" />
+            <element signature="e#4193#4194#0" expanded="true" />
+            <element signature="e#9028#9029#0" expanded="true" />
+            <element signature="e#9063#9064#0" expanded="true" />
+            <element signature="e#9117#9118#0" expanded="true" />
+            <element signature="e#9165#9166#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Application/src/app/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.9159802">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#666#667#0" expanded="true" />
@@ -1634,26 +1548,6 @@
             <element signature="e#2143#2144#0" expanded="true" />
             <element signature="e#2196#2197#0" expanded="true" />
             <element signature="e#2249#2250#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4117647">
-          <caret line="184" column="58" selection-start-line="184" selection-start-column="58" selection-end-line="184" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3441#3442#0" expanded="true" />
-            <element signature="e#3478#3479#0" expanded="true" />
-            <element signature="e#3527#3528#0" expanded="true" />
-            <element signature="e#3564#3565#0" expanded="true" />
-            <element signature="e#4154#4155#0" expanded="true" />
-            <element signature="e#4191#4192#0" expanded="true" />
-            <element signature="e#8977#8978#0" expanded="true" />
-            <element signature="e#9012#9013#0" expanded="true" />
-            <element signature="e#9066#9067#0" expanded="true" />
-            <element signature="e#9114#9115#0" expanded="true" />
           </folding>
         </state>
       </provider>
