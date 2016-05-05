@@ -1,8 +1,8 @@
 package Gateway;
 
 import Logic.*;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 
@@ -37,8 +37,6 @@ public class GameFacade extends Observable {
         }
         _currentPlayer = Token.PLAYER_1;
 
-        _currentPlayer = Token.PLAYER_1;
-
         localGame.setPlayers(humanPlayer1, humanPlayer2);
 
         //Todo: dummy values remove
@@ -50,7 +48,6 @@ public class GameFacade extends Observable {
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out5));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out6));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out7));
-
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle0));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle1));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle2));
@@ -59,7 +56,6 @@ public class GameFacade extends Observable {
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle5));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle6));
         _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle7));
-
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center0));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center1));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center2));
@@ -102,6 +98,7 @@ public class GameFacade extends Observable {
     public Token getCurrentPlayer() {
         return _currentPlayer;
     }
+
 
     public boolean removeGameToken(GamePosition position){
         int pos = positionMapping.get(position);
@@ -157,94 +154,13 @@ public class GameFacade extends Observable {
         return true;
     }
 
-    private void switchPlayer() {
-        if(getCurrentPlayer() == Token.PLAYER_1) {
-            setCurrentPlayer(Token.PLAYER_2);
-        } else {
-            setCurrentPlayer(Token.PLAYER_1);
-        }
-    }
-
-    private void setNextPlayerPhase(int dest, Game game){
-        try {
-            if (game.madeAMill(dest, getCurrentPlayer())){
-				if(getCurrentPlayer().equals(Token.PLAYER_1)){
-					setCurrentPhase(Phase.REMOVING_PLAYER1);
-				}else {
-                    setCurrentPhase(Phase.REMOVING_PLAYER2);
-				}
-			}else{
-	            setPartOfNextPlayerPhase(game);
-			}
-        } catch (GameException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void setPartOfNextPlayerPhase(Game game) throws GameException{
-            if(getCurrentPlayer().equals(Token.PLAYER_1)){
-                if(game.getGameBoard().getUnplayedPiecesP1() > 0){
-                    if(getCurrentPlayer().equals(Token.PLAYER_1)) {
-                        setCurrentPhase(Phase.PLACING_PLAYER2);
-                    }
-                }else {
-                    if (getCurrentPlayer().equals(Token.PLAYER_1)) {
-                        setCurrentPhase(Phase.MOVING_PLAYER2);
-                    }
-                }
-            }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
-                    if(game.getGameBoard().getUnplayedPiecesP2() > 0){
-                        if(getCurrentPlayer().equals(Token.PLAYER_2)) {
-                            setCurrentPhase(Phase.PLACING_PLAYER1);
-                        }
-                    }else{
-                        if(getCurrentPlayer().equals(Token.PLAYER_2)){
-                            setCurrentPhase(Phase.MOVING_PLAYER1);
-                        }
-                    }
-            }
-
-        switchPlayer();
-    }
-
     //return false if the move was not legal
-
-    /**
-     * placing phase of the game
-     *
-     * @param origion
-     * @param desitination
-     * @return boolean if worked or not
-     */
-    public boolean placeGameToken(GamePosition origion, GamePosition desitination) {
+    public boolean placeGameToken( GamePosition desitination) {
         try {
             int dest = positionMapping.get(desitination);
             if(game.positionIsAvailable(dest)) {
                 game.placePieceOfPlayer(dest, getCurrentPlayer());
-                if(game.madeAMill(dest, getCurrentPlayer())){
-                    if(getCurrentPlayer().equals(Token.PLAYER_1)){
-                        setCurrentPhase(Phase.REMOVING_PLAYER1);
-                    }else{
-                        setCurrentPhase(Phase.REMOVING_PLAYER2);
-                    }
-                }else{
-                    //TODO getNumberOfPiecesOfPlayer
-                    if(game.getGameBoard().getNumberOfPiecesOfPlayer(getCurrentPlayer())< 9){
-                        if(getCurrentPlayer().equals(Token.PLAYER_1)){
-                            setCurrentPhase(Phase.PLACING_PLAYER2);
-                        }else{
-                            setCurrentPhase(Phase.PLACING_PLAYER1);
-                        }
-                    }else{
-                        if(getCurrentPlayer().equals(Token.PLAYER_1)){
-                            setCurrentPhase(Phase.MOVING_PLAYER2);
-                        }else{
-                            setCurrentPhase(Phase.MOVING_PLAYER1);
-                        }
-                    }
-                    switchPlayer();
-
-                }
+                setNextPlayerPhase(dest, game);
             }else{
                 return false;
             }
@@ -256,29 +172,54 @@ public class GameFacade extends Observable {
         return true;
     }
 
-    /**
-     * get the real number of pieces left per player
-     *
-     * TODO is this correct? logic?
-     * @param player
-     * @return
-     */
-    public int getNumPiecesLeftPerPlayer(Token player) throws GameException {
+    private void switchPlayer() {
+        if(getCurrentPlayer() == Token.PLAYER_1) {
+            setCurrentPlayer(Token.PLAYER_2);
+        } else {
+            setCurrentPlayer(Token.PLAYER_1);
+        }
+    }
 
-        // moving phase
-        if (currentPhase ==Phase.MOVING_PLAYER1 || currentPhase== Phase.MOVING_PLAYER2 ) {
-            return game.getGameBoard().getNumberOfPiecesOfPlayer(player);
+    private void setNextPlayerPhase(int dest, Game game){
+        try {
+            if (game.madeAMill(dest, getCurrentPlayer())){
+                if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                    setCurrentPhase(Phase.REMOVING_PLAYER1);
+                }else {
+                    setCurrentPhase(Phase.REMOVING_PLAYER2);
+                }
+            }else{
+                setPartOfNextPlayerPhase(game);
+            }
+        } catch (GameException e) {
+            e.printStackTrace();
         }
-        //placingphase TODO
-        if (currentPhase == Phase.PLACING_PLAYER1 || currentPhase== Phase.PLACING_PLAYER2) {
-            return game.getPlayer().getNumPiecesLeftToPlace();
-        }
-        // removing phase
-        if (currentPhase == Phase.REMOVING_PLAYER1 || currentPhase == Phase.REMOVING_PLAYER2) {
-            return game.getGameBoard().getNumberOfPiecesOfPlayer(player);
+    }
 
+    private void setPartOfNextPlayerPhase(Game game) throws GameException{
+        if(getCurrentPlayer().equals(Token.PLAYER_1)){
+            if(game.getGameBoard().getUnplayedPiecesP1() > 0){
+                if(getCurrentPlayer().equals(Token.PLAYER_1)) {
+                    setCurrentPhase(Phase.PLACING_PLAYER2);
+                }
+            }else {
+                if (getCurrentPlayer().equals(Token.PLAYER_1)) {
+                    setCurrentPhase(Phase.MOVING_PLAYER2);
+                }
+            }
+        }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
+            if(game.getGameBoard().getUnplayedPiecesP2() > 0){
+                if(getCurrentPlayer().equals(Token.PLAYER_2)) {
+                    setCurrentPhase(Phase.PLACING_PLAYER1);
+                }
+            }else{
+                if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                    setCurrentPhase(Phase.MOVING_PLAYER1);
+                }
+            }
         }
-        return -1;
+
+        switchPlayer();
     }
 
     public void gameStateChanged() {
