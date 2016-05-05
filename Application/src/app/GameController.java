@@ -56,7 +56,7 @@ public class GameController extends Observable implements Runnable{
         }
     }
 
-    public PlayerIdentifier getCurrentPlayer() {
+    public Token getCurrentPlayer() {
         return _gameFacade.getCurrentPlayer();
     }
 
