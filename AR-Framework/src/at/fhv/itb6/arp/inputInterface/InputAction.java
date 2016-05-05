@@ -27,7 +27,7 @@ public class InputAction {
         return _point;
     }
 
-    public void setPoint(Point point) {
+    protected void setPoint(Point point) {
         _point = point;
     }
 }

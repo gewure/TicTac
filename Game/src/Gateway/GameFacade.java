@@ -141,6 +141,7 @@ public class GameFacade extends Observable {
             if(game.positionHasPieceOfPlayer(orig, getCurrentPlayer())) {
                 if (game.positionIsAvailable(dest)) {
                     game.movePieceFromTo(orig, dest, getCurrentPlayer());
+                    setPartOfNextPlayerPhase(game);
                 } else {
                     return false;
                 }
@@ -183,11 +184,11 @@ public class GameFacade extends Observable {
 
     private void setNextPlayerPhase(int dest, Game game){
         try {
-            if(game.madeAMill(dest, getCurrentPlayer())){
+            if (game.madeAMill(dest, getCurrentPlayer())){
 				if(getCurrentPlayer().equals(Token.PLAYER_1)){
 					setCurrentPhase(Phase.REMOVING_PLAYER1);
-				}else{
-					setCurrentPhase(Phase.REMOVING_PLAYER2);
+				}else {
+                    setCurrentPhase(Phase.REMOVING_PLAYER2);
 				}
 			}else{
 	            setPartOfNextPlayerPhase(game);
