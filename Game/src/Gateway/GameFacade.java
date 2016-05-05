@@ -20,7 +20,7 @@ public class GameFacade extends Observable {
         _tokensPlayer2 = new ArrayList<>();
 
         //Todo: dummy values remove
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out0));
+       /* _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out0));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out1));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out2));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out3));
@@ -46,7 +46,7 @@ public class GameFacade extends Observable {
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center4));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center5));
         _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center6));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center7));
+        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center7));*/
     }
 
     public List<GameToken> getTokensPlayer1() {
@@ -62,7 +62,7 @@ public class GameFacade extends Observable {
         return PlayerIdentifier.Non;
     }
 
-    public void setCurrentPlayer(PlayerIdentifier currentPlayer) {
+    private void setCurrentPlayer(PlayerIdentifier currentPlayer) {
         _currentPlayer = currentPlayer;
         gameStateChanged();
     }
@@ -76,6 +76,7 @@ public class GameFacade extends Observable {
         //Todo add logic that communications with the ninemorisfiles
 
         //Todo: invoke gameStateChanged after the token was set
+        gameStateChanged();
         return false;
     }
 
@@ -84,6 +85,7 @@ public class GameFacade extends Observable {
         //Todo add logic that communications with the ninemorisfiles
 
         //Todo: invoke gameStateChanged after the move was made
+        gameStateChanged();
         return false;
     }
 
