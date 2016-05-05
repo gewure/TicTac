@@ -2,6 +2,7 @@ package Gateway;
 
 import Logic.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 
@@ -207,7 +208,15 @@ public class GameFacade extends Observable {
     }
 
     //return false if the move was not legal
-    public boolean placeGameToken( GamePosition desitination) {
+
+    /**
+     * placing phase of the game
+     *
+     * @param origion
+     * @param desitination
+     * @return boolean if worked or not
+     */
+    public boolean placeGameToken(GamePosition origion, GamePosition desitination) {
         try {
             int dest = positionMapping.get(desitination);
             if(game.positionIsAvailable(dest)) {
@@ -245,6 +254,31 @@ public class GameFacade extends Observable {
 
         gameStateChanged();
         return true;
+    }
+
+    /**
+     * get the real number of pieces left per player
+     *
+     * TODO is this correct? logic?
+     * @param player
+     * @return
+     */
+    public int getNumPiecesLeftPerPlayer(Token player) throws GameException {
+
+        // moving phase
+        if (currentPhase ==Phase.MOVING_PLAYER1 || currentPhase== Phase.MOVING_PLAYER2 ) {
+            return game.getGameBoard().getNumberOfPiecesOfPlayer(player);
+        }
+        //placingphase TODO
+        if (currentPhase == Phase.PLACING_PLAYER1 || currentPhase== Phase.PLACING_PLAYER2) {
+            return game.getPlayer().getNumPiecesLeftToPlace();
+        }
+        // removing phase
+        if (currentPhase == Phase.REMOVING_PLAYER1 || currentPhase == Phase.REMOVING_PLAYER2) {
+            return game.getGameBoard().getNumberOfPiecesOfPlayer(player);
+
+        }
+        return -1;
     }
 
     public void gameStateChanged() {
