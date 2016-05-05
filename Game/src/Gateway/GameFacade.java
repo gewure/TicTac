@@ -218,7 +218,6 @@ public class GameFacade extends Observable {
                 }
             }
         }
-
         switchPlayer();
     }
 
