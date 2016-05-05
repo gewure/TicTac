@@ -8,10 +8,12 @@ import at.fhv.itb6.arp.shapdetection.shapes.Polygon;
 import at.fhv.itb6.arp.shapdetection.shapes.Rectangle;
 import at.fhv.itb6.arp.shapdetection.shapes.ShapeUtil;
 import at.fhv.itb6.arp.shapdetection.shapes.Triangle;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Size;
+import org.opencv.core.*;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Moments;
 
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 public class InputDetection {
     private InputConfiguration _inputConfiguration;
+    private List<Mat> _markerFrameBuffer = new LinkedList<>();
 
     public InputDetection(InputConfiguration inputConfiguration){
         _inputConfiguration = inputConfiguration;
@@ -31,7 +34,7 @@ public class InputDetection {
      * @throws GamebordersNotDetectedException
      * @throws NoMarkerDetectedException
      */
-    public InputAction getUserInput() throws GamebordersNotDetectedException, NoMarkerDetectedException {
+    public InputAction getUserInput(CursorStatusListener callback) throws GamebordersNotDetectedException, NoMarkerDetectedException {
         int currentFrame = 0;
         int interruptionCount = 0;
         Point setMarkerPos = new Point(0,0);
@@ -50,7 +53,7 @@ public class InputDetection {
 
             //Detect marker position
             Map<Class, List<Polygon>> detectedPolygonsPostCorection = ShapeDetection.detect(correctedImage);
-            Point markerPos = getMarkerPos(detectedPolygonsPostCorection.get(Triangle.class));
+            Point markerPos = getMarkerPos(detectedPolygonsPostCorection.get(Triangle.class), correctedImage);
 
             //Calculate relative marker position
             Point relativeMarkerPos = calculateRelativeMarkerPos(correctedImage.size(), markerPos);
@@ -62,8 +65,8 @@ public class InputDetection {
                     currentFrame = 0;
                     setMarkerPos = relativeMarkerPos;
                 }
-
             }
+            callback.cursorChangedEvent(setMarkerPos.x, setMarkerPos.y, (double) currentFrame / (double) _inputConfiguration.getConfirmationTime());
         }
 
         return new InputAction(setMarkerPos);
@@ -71,10 +74,6 @@ public class InputDetection {
 
 
     protected Rectangle getBorderRect(List<Polygon> polygons) throws GamebordersNotDetectedException {
-        if (polygons == null){
-            throw new GamebordersNotDetectedException();
-        }
-
         Rectangle biggestRect = null;
         double biggestRectSize = 0;
         for (Polygon p : polygons){
@@ -92,24 +91,17 @@ public class InputDetection {
         return biggestRect;
     }
 
-    protected Point getMarkerPos(List<Polygon> polygons) throws NoMarkerDetectedException {
-        //get a Triangle
-        if (polygons == null){
-            throw new NoMarkerDetectedException();
-        }
+    protected Point getMarkerPos(List<Polygon> polygons, Mat frame) throws NoMarkerDetectedException {
+        Scalar minCol = _inputConfiguration.getMinCol();
+        Scalar maxCol = _inputConfiguration.getMaxCol();
 
-        Polygon triangle = null;
-        for (Polygon p : polygons){
-            if (p.getPoints().length == 3){
-                triangle = p;
-            }
-        }
+        Mat colorOnly = new Mat();
+        Core.inRange(frame, minCol, maxCol, colorOnly);
 
-        if (triangle == null){
-            throw new NoMarkerDetectedException();
-        }
+        Moments mu = Imgproc.moments(colorOnly);
+        Point center = new Point(mu.get_m10() / mu.get_m00(), mu.get_m01() / mu.get_m00());
 
-        return ShapeUtil.getCenter(triangle);
+        return center;
     }
 
     protected Point calculateRelativeMarkerPos(Size border, Point markerPoint){
