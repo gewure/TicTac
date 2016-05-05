@@ -32,7 +32,7 @@ public class ARFacade {
     //Todo init with a gamewrapper that was initialized by the application layer
     public void init(int cameraID, GameFacade _gameFacade) {
 
-        //Todo start some thread that does the reading and parsing from camera
+
     }
 
 
