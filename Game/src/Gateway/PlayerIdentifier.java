@@ -5,5 +5,6 @@ package Gateway;
  */
 public enum PlayerIdentifier {
     Player1,
-    Player2
+    Player2,
+    Non
 }

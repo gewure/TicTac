@@ -29,7 +29,6 @@ public class ARFacade {
 
     private GameFacade _gameFacade;
 
-    //Todo init with a gamewrapper that was initialized by the application layer
     public void init(int cameraID, GameFacade _gameFacade) {
 
 
