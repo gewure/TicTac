@@ -2,6 +2,7 @@ package ui;
 
 import Gateway.GamePosition;
 import Gateway.GameToken;
+import Logic.Token;
 import app.GameController;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -94,7 +95,7 @@ public class GamePageController {
             return; //Todo: remove use for debugging so that the applications does not crash
         }
 
-        if(gameToken.getPlayerIdentifier() == PlayerIdentifier.Player1) {
+        if(gameToken.getPlayerIdentifier() == Token.PLAYER_1) {
             drawCircle(context, Color.RED, radius, point.x + xOffset, point.y);
         }
         else {
