@@ -1,9 +1,8 @@
 package Logic;
 
 import com.esotericsoftware.minlog.Log;
-//import org.opencv.core.Point;
 
-import java.util.ArrayList;
+//import org.opencv.core.Point;
 
 /**
  * Created by f00 on 23.03.16.
@@ -83,6 +82,10 @@ public class Game {
         if (gameBoard.positionIsAvailable(boardPosIndex)) {
             gameBoard.getPosition(boardPosIndex).setAsOccupied(player);
             gameBoard.incNumPiecesOfPlayer(player);
+
+            //TODO this is new
+            gameBoard.decNumUnplayedPiecesOfPlayer(player);
+
             if (gameBoard.incNumTotalPiecesPlaced() == (NUM_PIECES_PER_PLAYER * 2)) {
                 gamePhase = Game.MOVING_PHASE;
             }
@@ -125,13 +128,14 @@ public class Game {
         gameBoard.printBoard();
     }
 
+
     public boolean removePiece(int boardIndex, Token player) throws GameException {
         if (!gameBoard.positionIsAvailable(boardIndex) && positionHasPieceOfPlayer(boardIndex, player)) {
             gameBoard.getPosition(boardIndex).setAsUnoccupied();
             gameBoard.decNumPiecesOfPlayer(player);
             if (gamePhase == Game.MOVING_PHASE && gameBoard.getNumberOfPiecesOfPlayer(player) == (Game.MIN_NUM_PIECES + 1)) {
                 gamePhase = Game.FLYING_PHASE;
-                  Log.info("New game phase is: "+gamePhase);
+                Log.info("New game phase is: " + gamePhase);
             }
             return true;
         }
@@ -264,4 +268,5 @@ public class Game {
             this.yMax = yMax;
         }
     }
+
 }

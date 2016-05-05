@@ -49,6 +49,11 @@ public abstract class Player {
         return numPiecesOnBoard;
     }
 
+    /**
+     * strange method which is never called
+     *
+     * @return
+     */
     public int getNumPiecesLeftToPlace() {
         return (numPieces - numPiecesOnBoard);
     }

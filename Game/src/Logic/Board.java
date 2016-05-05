@@ -1,7 +1,5 @@
 package Logic;
 
-import javafx.geometry.Pos;
-
 /**
  * Created by f00 on 23.03.16.
  */
@@ -17,6 +15,10 @@ public class Board {
     private int numOfPiecesP1;
     private int numOfPiecesP2;
     private int numberOfTotalPiecesPlaced;
+
+    //TODO new vars for unplayed pieces of player
+    private int unplayedPiecesP1 = 9;
+    private int unplayedPiecesP2 = 9;
 
     public Board() {
         boardPositions = new Position[Board.NUM_POSITIONS_OF_BOARD];
@@ -35,6 +37,13 @@ public class Board {
         }
     }
 
+    /**
+     * return true or false wheter position is legal
+     *
+     * @param posIndex
+     * @return
+     * @throws GameException
+     */
     public boolean positionIsAvailable(int posIndex) throws GameException {
         if (posIndex >= 0 && posIndex < Board.NUM_POSITIONS_OF_BOARD) {
             return !boardPositions[posIndex].isOccupied();
@@ -59,6 +68,13 @@ public class Board {
         return ++numberOfTotalPiecesPlaced;
     }
 
+    /**
+     * increments the number of pieces a player has set so far
+     *
+     * @param player
+     * @return
+     * @throws GameException
+     */
     public int incNumPiecesOfPlayer(Token player) throws GameException {
         if (player == Token.PLAYER_1) {
             return ++numOfPiecesP1;
@@ -69,6 +85,13 @@ public class Board {
         }
     }
 
+    /**
+     * decrease # of pieces played
+     *
+     * @param player
+     * @return
+     * @throws GameException
+     */
     public int decNumPiecesOfPlayer(Token player) throws GameException {
         if (player == Token.PLAYER_1) {
             return --numOfPiecesP1;
@@ -220,4 +243,50 @@ public class Board {
         return numberOfTotalPiecesPlaced;
     }
 
+
+    /**
+     * decrease unplayed pieces of a player
+     *
+     * @param player
+     */
+    public void decNumUnplayedPiecesOfPlayer(Token player) {
+        if (player.equals(Token.PLAYER_1)) {
+            this.unplayedPiecesP1--;
+        }
+        if (player.equals(Token.PLAYER_2)) {
+            this.unplayedPiecesP2--;
+        }
+    }
+
+    /**
+     * get the number of unplayed pieces of player
+     *
+     * @param player
+     * @return
+     */
+    public int getNumUnplayedPiecesOfPlayer(Token player) {
+        if (player.equals(Token.PLAYER_1)) {
+            return unplayedPiecesP1;
+        }
+        if (player.equals(Token.PLAYER_2)) {
+            return unplayedPiecesP2;
+        }
+        return -1;
+    }
+
+    public int getUnplayedPiecesP1() {
+        return unplayedPiecesP1;
+    }
+
+    public void setUnplayedPiecesP1(int unplayedPiecesP1) {
+        this.unplayedPiecesP1 = unplayedPiecesP1;
+    }
+
+    public int getUnplayedPiecesP2() {
+        return unplayedPiecesP2;
+    }
+
+    public void setUnplayedPiecesP2(int unplayedPiecesP2) {
+        this.unplayedPiecesP2 = unplayedPiecesP2;
+    }
 }
