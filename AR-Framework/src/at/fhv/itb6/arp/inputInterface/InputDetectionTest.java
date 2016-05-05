@@ -20,47 +20,59 @@ import java.util.Map;
 /**
  * Created by Zopo on 29.03.2016.
  */
-public class InputDetectionTest{
+public class InputDetectionTest {
 
-    static Scalar textColor = new Scalar(0,100,0);
-    static Scalar pointColor = new Scalar(150,255,150);
-    static Size displaySize = new Size(800, 600);
+    static Scalar textColor = new Scalar(0, 100, 0);
+    static Scalar pointColor = new Scalar(255, 150, 150);
 
     public static void main(String[] args) {
-        InputDetectionTest idt = new InputDetectionTest();
-
         InputConfiguration ic = new InputConfiguration();
-        ic.setHardwareId(0);
+        ic.setHardwareId(1);
+        ic.setCameraPosition(InputConfiguration.CameraPosition.TOP);
         InputDetection id = new InputDetection(ic);
-        CameraInterface ci = new CameraInterface(0);
+        id.detectGameboard();
+
+        CameraInterface ci = new CameraInterface(ic.getHardwareId());
         Imshow imshow = new Imshow("Current Frame");
 
         while (true) {
+
+            //Get camera image
             Mat frame = ci.readImage();
+            Mat correctedImage = new Mat(1, 1, 0);
+            Mat colorOnly = new Mat(1,1,0);
 
             //Detect board borders and correct perspective view
             Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
             Rectangle borderRect = null;
             try {
-                borderRect = id.getBorderRect(detectedPolygons.get(Rectangle.class));
-                frame = ShapeUtil.perspectiveCorrection(frame, borderRect, new Size(800, 500));
+                correctedImage = ShapeUtil.perspectiveCorrection(frame, ic.getGameboardRectangle(), new Size(1000, 1000));
+                for (int i = 0; i < ic.getCameraPosition(); i++) {
+                    correctedImage = id.rotateRight(correctedImage);
+                }
 
+                /*Scalar minCol = ic.getMinCol();
+                Scalar maxCol = ic.getMaxCol();
+
+                colorOnly = new Mat();
+                Core.inRange(correctedImage, minCol, maxCol, colorOnly);
+                Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(7,7)));
+                //Imgproc.erode(colorOnly, colorOnly, Imgproc.getGaussianKernel(10, 1));
+                */
 
                 //Detect marker position
-                Map<Class, List<Polygon>> detectedPolygonsPostCorection = ShapeDetection.detect(frame);
-                Point markerPos = id.getMarkerPos(detectedPolygonsPostCorection.get(Triangle.class), frame);
+                Point markerPos = id.getMarkerPos(correctedImage);
 
                 //Calculate relative marker position
-                Point relativeMarkerPos = id.calculateRelativeMarkerPos(frame.size(), markerPos);
+                Point relativeMarkerPos = id.calculateRelativeMarkerPos(correctedImage.size(), markerPos);
 
-                Imgproc.circle(frame, markerPos, 2, pointColor);
-            } catch (GamebordersNotDetectedException e) {
-
+                Point correctedMarkerPos = new Point(relativeMarkerPos.x * correctedImage.width(), relativeMarkerPos.y * correctedImage.height());
+                Imgproc.circle(correctedImage, correctedMarkerPos, 3, pointColor);
             } catch (NoMarkerDetectedException e) {
-
             }
 
-            imshow.showImage(frame);
+            imshow.showImage(correctedImage);
         }
+
     }
 }

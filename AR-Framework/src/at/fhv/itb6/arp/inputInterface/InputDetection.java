@@ -12,6 +12,7 @@ import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgproc.Moments;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,10 +32,13 @@ public class InputDetection {
     /**
      * Waits for user input
      * @return The coordinates of the user interaction wrapped into a InputAction
-     * @throws GamebordersNotDetectedException
      * @throws NoMarkerDetectedException
      */
-    public InputAction getUserInput(CursorStatusListener callback) throws GamebordersNotDetectedException, NoMarkerDetectedException {
+    public InputAction getUserInput(CursorStatusListener callback) {
+        if (_inputConfiguration.isGameboardDetected()){
+            detectGameboard();
+        }
+
         int currentFrame = 0;
         int interruptionCount = 0;
         Point setMarkerPos = new Point(0,0);
@@ -46,29 +50,34 @@ public class InputDetection {
             //Get camera image
             Mat frame = cam.readImage();
 
-            //Detect board borders and correct perspective view
-            Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
-            Rectangle borderRect = getBorderRect(detectedPolygons.get(Rectangle.class));
-            Mat correctedImage = ShapeUtil.perspectiveCorrection(frame, borderRect, new Size(800, 500));
+            try {
+                Mat correctedImage = ShapeUtil.perspectiveCorrection(frame, _inputConfiguration.getGameboardRectangle(), new Size(1000, 1000));
+                for (int i = 0; i < _inputConfiguration.getCameraPosition(); i++){
+                    correctedImage = rotateRight(correctedImage);
+                }
 
-            //Detect marker position
-            Map<Class, List<Polygon>> detectedPolygonsPostCorection = ShapeDetection.detect(correctedImage);
-            Point markerPos = getMarkerPos(detectedPolygonsPostCorection.get(Triangle.class), correctedImage);
+                //Detect marker position
+                Point markerPos = getMarkerPos(correctedImage);
 
-            //Calculate relative marker position
-            Point relativeMarkerPos = calculateRelativeMarkerPos(correctedImage.size(), markerPos);
-
-            //Check if the marker has moved
-            if (isMarkerMoved(setMarkerPos, relativeMarkerPos)){
+                //Calculate relative marker position
+                Point relativeMarkerPos = calculateRelativeMarkerPos(correctedImage.size(), markerPos);
+                //Check if the marker has moved
+                if (isMarkerMoved(setMarkerPos, relativeMarkerPos)){
+                    interruptionCount++;
+                    if (interruptionCount > _inputConfiguration.getInterruptionTolerance()){
+                        currentFrame = 0;
+                        setMarkerPos = relativeMarkerPos;
+                    }
+                }
+                callback.cursorChangedEvent(setMarkerPos.x, setMarkerPos.y, (double) currentFrame / (double) _inputConfiguration.getConfirmationTime());
+            } catch (NoMarkerDetectedException e) {
+                System.out.println("Marker not detected");
                 interruptionCount++;
                 if (interruptionCount > _inputConfiguration.getInterruptionTolerance()){
                     currentFrame = 0;
-                    setMarkerPos = relativeMarkerPos;
                 }
             }
-            callback.cursorChangedEvent(setMarkerPos.x, setMarkerPos.y, (double) currentFrame / (double) _inputConfiguration.getConfirmationTime());
         }
-
         return new InputAction(setMarkerPos);
     }
 
@@ -91,15 +100,20 @@ public class InputDetection {
         return biggestRect;
     }
 
-    protected Point getMarkerPos(List<Polygon> polygons, Mat frame) throws NoMarkerDetectedException {
+    protected Point getMarkerPos(Mat frame) throws NoMarkerDetectedException {
         Scalar minCol = _inputConfiguration.getMinCol();
         Scalar maxCol = _inputConfiguration.getMaxCol();
 
         Mat colorOnly = new Mat();
         Core.inRange(frame, minCol, maxCol, colorOnly);
+        Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(7,7)));
 
         Moments mu = Imgproc.moments(colorOnly);
         Point center = new Point(mu.get_m10() / mu.get_m00(), mu.get_m01() / mu.get_m00());
+
+        if (Double.isNaN(center.x) || Double.isNaN(center.y)){
+            throw new NoMarkerDetectedException();
+        }
 
         return center;
     }
@@ -120,5 +134,38 @@ public class InputDetection {
         double differenceY = Math.abs(oldPos.y - newPos.y);
 
         return (differenceX > _inputConfiguration.getSensivityX() || differenceY > _inputConfiguration.getSensivityY());
+    }
+
+    protected Mat rotateRight(Mat src){
+        Mat dst = new Mat();
+        Point midPoint = new Point(src.cols()/2, src.rows()/2);
+        Mat rotationM = Imgproc.getRotationMatrix2D(midPoint, 90, 1);
+        Imgproc.warpAffine(src, dst, rotationM, new Size(src.rows(), src.cols()));
+        return dst;
+    }
+
+    public void detectGameboard(){
+        CameraInterface cam = new CameraInterface(_inputConfiguration.getHardwareId());
+        Mat frame = cam.readImage();
+        _inputConfiguration.setGameboardDetected(false);
+
+        Rectangle borderRect = null;
+
+        while (!_inputConfiguration.isGameboardDetected()){
+            try {
+                ShapeDetection.detect(frame);
+                Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
+                borderRect = getBorderRect(detectedPolygons.get(Rectangle.class));
+
+                _inputConfiguration.setGameboardRectangle(borderRect);
+                _inputConfiguration.setGameboardDetected(true);
+            } catch (GamebordersNotDetectedException e) {
+            }
+        }
+        try {
+            cam.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
