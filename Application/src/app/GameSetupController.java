@@ -13,11 +13,13 @@ public class GameSetupController {
     }
 
     public List<Integer> getCameraIDs() {
+
         return ARFacade.getCameraIDs();
     }
 
     //Todo return game controller
     public GameController start(Integer cameraID, GameType gameMode) {
+
         return new GameController(cameraID, gameMode);
     }
 }
