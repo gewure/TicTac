@@ -57,6 +57,11 @@ public class GameFacade extends Observable {
         return _tokensPlayer2;
     }
 
+    public PlayerIdentifier getWonPlayer() {
+        //TODO: returns the player that hase won if the game ends
+        return PlayerIdentifier.Non;
+    }
+
     public void setCurrentPlayer(PlayerIdentifier currentPlayer) {
         _currentPlayer = currentPlayer;
         gameStateChanged();

@@ -13,7 +13,7 @@ import java.util.Observer;
 /**
  * Created by simon_000 on 30/04/2016.
  */
-public class GameController extends Observable{
+public class GameController extends Observable implements Runnable{
 
     public GameFacade _gameFacade;
 
@@ -32,6 +32,29 @@ public class GameController extends Observable{
         });
 
         ARFacade.getInstance().init(cameraID, _gameFacade);
+
+        start();
+    }
+
+    private void start() {
+        //start thread that runs the game
+        Thread gameLoopThread = new Thread(this);
+
+        gameLoopThread.start();
+    }
+
+    private boolean _running;
+    @Override
+    public void run() {
+        while(_running) {
+            //read cursor input
+
+            //write it into the gamegateway
+
+            gameStateChanged();
+
+            // if player won stop loop
+        }
     }
 
     public PlayerIdentifier getCurrentPlayer() {
