@@ -156,24 +156,6 @@ public class GameFacade extends Observable {
         return true;
     }
 
-    //return false if the move was not legal
-    public boolean placeGameToken( GamePosition desitination) {
-        try {
-            int dest = positionMapping.get(desitination);
-            if(game.positionIsAvailable(dest)) {
-                game.placePieceOfPlayer(dest, getCurrentPlayer());
-                setNextPlayerPhase(dest, game);
-            }else{
-                return false;
-            }
-        } catch (GameException e) {
-            e.printStackTrace();
-        }
-
-        gameStateChanged();
-        return true;
-    }
-
     private void switchPlayer() {
         if(getCurrentPlayer() == Token.PLAYER_1) {
             setCurrentPlayer(Token.PLAYER_2);
@@ -225,12 +207,33 @@ public class GameFacade extends Observable {
     }
 
     //return false if the move was not legal
-    public boolean placeGameToken(GamePosition origion, GamePosition desitination) {
+    public boolean placeGameToken( GamePosition desitination) {
         try {
             int dest = positionMapping.get(desitination);
             if(game.positionIsAvailable(dest)) {
                 game.placePieceOfPlayer(dest, getCurrentPlayer());
-                game.madeAMill(dest, getCurrentPlayer());
+                if(game.madeAMill(dest, getCurrentPlayer())){
+                    if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                        setCurrentPhase(Phase.REMOVING_PLAYER1);
+                    }else{
+                        setCurrentPhase(Phase.REMOVING_PLAYER2);
+                    }
+                }else{
+                    //TODO getNumberOfPiecesOfPlayer
+                    if(game.getGameBoard().getNumberOfPiecesOfPlayer(getCurrentPlayer())< 9){
+                        if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                            setCurrentPhase(Phase.PLACING_PLAYER2);
+                        }else{
+                            setCurrentPhase(Phase.PLACING_PLAYER1);
+                        }
+                    }else{
+                        if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                            setCurrentPhase(Phase.MOVING_PLAYER2);
+                        }else{
+                            setCurrentPhase(Phase.MOVING_PLAYER1);
+                        }
+                    }
+                }
             }else{
                 return false;
             }
@@ -238,9 +241,6 @@ public class GameFacade extends Observable {
             e.printStackTrace();
         }
 
-        //Todo add logic that communications with the ninemorisfiles
-
-        //Todo: invoke gameStateChanged after the move was made
         gameStateChanged();
         return true;
     }
