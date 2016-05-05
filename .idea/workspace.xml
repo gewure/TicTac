@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77e5e519-8292-4211-8325-7323b696b3dc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Game/src/Gateway/BiMap.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Logic/Board.java" afterPath="$PROJECT_DIR$/Game/src/Logic/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/src/app/GameController.java" afterPath="$PROJECT_DIR$/Application/src/app/GameController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" afterPath="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" afterPath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" afterPath="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tictac.iws" />
@@ -32,19 +36,9 @@
         <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameFacade.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
+              <caret line="230" column="5" selection-start-line="230" selection-start-column="5" selection-end-line="230" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3458#3459#0" expanded="true" />
-                <element signature="e#3495#3496#0" expanded="true" />
-                <element signature="e#3544#3545#0" expanded="true" />
-                <element signature="e#3581#3582#0" expanded="true" />
-                <element signature="e#3891#3892#0" expanded="true" />
-                <element signature="e#3928#3929#0" expanded="true" />
-                <element signature="e#6386#6387#0" expanded="true" />
-                <element signature="e#6421#6422#0" expanded="true" />
-                <element signature="e#6475#6476#0" expanded="true" />
-                <element signature="e#6523#6524#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+              <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -76,17 +70,14 @@
         <entry file="file://$PROJECT_DIR$/Application/src/app/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#763#764#0" expanded="true" />
-                <element signature="e#813#814#0" expanded="true" />
-                <element signature="e#1369#1370#0" expanded="true" />
-                <element signature="e#1422#1423#0" expanded="true" />
-                <element signature="e#1475#1476#0" expanded="true" />
-                <element signature="e#1528#1529#0" expanded="true" />
-                <element signature="e#1581#1582#0" expanded="true" />
-                <element signature="e#1634#1635#0" expanded="true" />
+                <element signature="e#1444#1445#0" expanded="true" />
+                <element signature="e#1497#1498#0" expanded="true" />
+                <element signature="e#1550#1551#0" expanded="true" />
+                <element signature="e#1603#1604#0" expanded="true" />
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1709#1710#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,14 +106,26 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Game/src/Logic/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8039539">
+              <caret line="225" column="5" selection-start-line="225" selection-start-column="5" selection-end-line="225" selection-end-column="5" />
               <folding>
                 <element signature="e#2024#2025#0" expanded="true" />
                 <element signature="e#2074#2075#0" expanded="true" />
                 <element signature="e#9639#9640#0" expanded="true" />
                 <element signature="e#9687#9688#0" expanded="true" />
+                <element signature="e#9733#9734#0" expanded="true" />
+                <element signature="e#9770#9771#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameToken.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -194,13 +197,13 @@
         <option value="$PROJECT_DIR$/Game/src/Gateway/PlayerIdentifier.java" />
         <option value="$PROJECT_DIR$/Application/src/app/GameSetupController.java" />
         <option value="$PROJECT_DIR$/Game/src/Logic/Main.java" />
-        <option value="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" />
         <option value="$PROJECT_DIR$/Game/src/Gateway/BiMap.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputAction.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" />
         <option value="$PROJECT_DIR$/Application/src/app/GameController.java" />
         <option value="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
         <option value="$PROJECT_DIR$/Game/src/Gateway/GameFacade.java" />
+        <option value="$PROJECT_DIR$/Game/src/Gateway/GameToken.java" />
         <option value="$PROJECT_DIR$/Game/src/Logic/Board.java" />
       </list>
     </option>
@@ -964,7 +967,7 @@
       <workItem from="1462193423343" duration="9000" />
       <workItem from="1462429528286" duration="15919000" />
       <workItem from="1462454968528" duration="19000" />
-      <workItem from="1462455552392" duration="334000" />
+      <workItem from="1462455552392" duration="406000" />
     </task>
     <task id="LOCAL-00001" summary="fixed project structure">
       <created>1462000891923</created>
@@ -1042,7 +1045,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32948000" />
+    <option name="totallyTimeSpent" value="33020000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1115,16 +1118,6 @@
           <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3458#3459#0" expanded="true" />
-            <element signature="e#3495#3496#0" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3581#3582#0" expanded="true" />
-            <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#6386#6387#0" expanded="true" />
-            <element signature="e#6421#6422#0" expanded="true" />
-            <element signature="e#6475#6476#0" expanded="true" />
-            <element signature="e#6523#6524#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1134,15 +1127,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#1369#1370#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
-            <element signature="e#1581#1582#0" expanded="true" />
-            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1444#1445#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1603#1604#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1172,6 +1162,8 @@
             <element signature="e#2074#2075#0" expanded="true" />
             <element signature="e#9639#9640#0" expanded="true" />
             <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9733#9734#0" expanded="true" />
+            <element signature="e#9770#9771#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1198,16 +1190,6 @@
           <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3458#3459#0" expanded="true" />
-            <element signature="e#3495#3496#0" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3581#3582#0" expanded="true" />
-            <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#6386#6387#0" expanded="true" />
-            <element signature="e#6421#6422#0" expanded="true" />
-            <element signature="e#6475#6476#0" expanded="true" />
-            <element signature="e#6523#6524#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1217,15 +1199,12 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#1369#1370#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
-            <element signature="e#1581#1582#0" expanded="true" />
-            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1444#1445#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1603#1604#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1255,6 +1234,8 @@
             <element signature="e#2074#2075#0" expanded="true" />
             <element signature="e#9639#9640#0" expanded="true" />
             <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9733#9734#0" expanded="true" />
+            <element signature="e#9770#9771#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1409,13 +1390,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2800659">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/src/Logic/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14003295">
@@ -1458,17 +1432,14 @@
     <entry file="file://$PROJECT_DIR$/Application/src/app/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#813#814#0" expanded="true" />
-            <element signature="e#1369#1370#0" expanded="true" />
-            <element signature="e#1422#1423#0" expanded="true" />
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
-            <element signature="e#1581#1582#0" expanded="true" />
-            <element signature="e#1634#1635#0" expanded="true" />
+            <element signature="e#1444#1445#0" expanded="true" />
+            <element signature="e#1497#1498#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1603#1604#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1484,7 +1455,7 @@
     <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="39" selection-start-line="100" selection-start-column="39" selection-end-line="100" selection-end-column="39" />
+          <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="101" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1494,32 +1465,32 @@
     <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameFacade.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
+          <caret line="230" column="5" selection-start-line="230" selection-start-column="5" selection-end-line="230" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3458#3459#0" expanded="true" />
-            <element signature="e#3495#3496#0" expanded="true" />
-            <element signature="e#3544#3545#0" expanded="true" />
-            <element signature="e#3581#3582#0" expanded="true" />
-            <element signature="e#3891#3892#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#6386#6387#0" expanded="true" />
-            <element signature="e#6421#6422#0" expanded="true" />
-            <element signature="e#6475#6476#0" expanded="true" />
-            <element signature="e#6523#6524#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Game/src/Gateway/GameToken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Game/src/Logic/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8039539">
+          <caret line="225" column="5" selection-start-line="225" selection-start-column="5" selection-end-line="225" selection-end-column="5" />
           <folding>
             <element signature="e#2024#2025#0" expanded="true" />
             <element signature="e#2074#2075#0" expanded="true" />
             <element signature="e#9639#9640#0" expanded="true" />
             <element signature="e#9687#9688#0" expanded="true" />
+            <element signature="e#9733#9734#0" expanded="true" />
+            <element signature="e#9770#9771#0" expanded="true" />
           </folding>
         </state>
       </provider>

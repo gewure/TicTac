@@ -1,6 +1,7 @@
 package app;
 
 import Gateway.GameFacade;
+import Gateway.GamePosition;
 import Gateway.GameToken;
 import Logic.Token;
 import at.fhv.itb6.arp.ARFacade;
@@ -17,12 +18,7 @@ public class GameController extends Observable implements Runnable{
     public GameFacade _gameFacade;
 
     public GameController(Integer cameraID, GameType gameType) {
-        if(gameType == GameType.vsAI) {
-            _gameFacade = new GameFacade(Token.PLAYER_1, Token.NO_PLAYER);
-        } else {
-            _gameFacade = new GameFacade(Token.PLAYER_1, Token.PLAYER_2);
-        }
-
+        _gameFacade = new GameFacade();
         _gameFacade.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
@@ -33,6 +29,12 @@ public class GameController extends Observable implements Runnable{
         ARFacade.getInstance().init(cameraID, _gameFacade);
 
         start();
+
+        _gameFacade.placeGameToken(GamePosition.Center0);
+
+        _gameFacade.placeGameToken(GamePosition.Center1);
+
+        _gameFacade.placeGameToken(GamePosition.Center2);
     }
 
     private void start() {
@@ -45,6 +47,7 @@ public class GameController extends Observable implements Runnable{
     private boolean _running;
     @Override
     public void run() {
+        _running = false; //TODO: set to true
         while(_running) {
             //read cursor input
 

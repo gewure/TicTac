@@ -1,18 +1,20 @@
 package Gateway;
 
+import Logic.Token;
+
 /**
  * Created by simon_000 on 30/04/2016.
  */
 public class GameToken {
-    private PlayerIdentifier _playerIdentifier;
+    private Token _playerIdentifier;
     private GamePosition _gamePosition;
 
-    public GameToken(PlayerIdentifier playerIdentifier, GamePosition gamePosition) {
+    public GameToken(Token playerIdentifier, GamePosition gamePosition) {
         _playerIdentifier = playerIdentifier;
         _gamePosition = gamePosition;
     }
 
-    public PlayerIdentifier getPlayerIdentifier(){
+    public Token getPlayerIdentifier(){
         return _playerIdentifier;
     }
 

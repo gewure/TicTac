@@ -219,4 +219,9 @@ public class Board {
     public int getNumTotalPiecesPlaced() {
         return numberOfTotalPiecesPlaced;
     }
+
+
+    public Position[] getBoardPositions() {
+        return boardPositions;
+    }
 }
