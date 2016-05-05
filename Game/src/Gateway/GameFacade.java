@@ -188,20 +188,28 @@ public class GameFacade extends Observable {
     }
 
     private void setPartOfNextPlayerPhase(Game game) throws GameException{
-        //TODO getNumberOfPiecesOfPlayer
-            if(game.getGameBoard().getNumberOfPiecesOfPlayer(getCurrentPlayer())< 9){
-				if(getCurrentPlayer().equals(Token.PLAYER_1)){
-					setCurrentPhase(Phase.PLACING_PLAYER2);
-				}else{
-					setCurrentPhase(Phase.PLACING_PLAYER1);
-				}
-			}else{
-				if(getCurrentPlayer().equals(Token.PLAYER_1)){
-					setCurrentPhase(Phase.MOVING_PLAYER2);
-				}else{
-					setCurrentPhase(Phase.MOVING_PLAYER1);
-				}
-			}
+            if(getCurrentPlayer().equals(Token.PLAYER_1)){
+                if(game.getGameBoard().getUnplayedPiecesP1() > 0){
+                    if(getCurrentPlayer().equals(Token.PLAYER_1)) {
+                        setCurrentPhase(Phase.PLACING_PLAYER2);
+                    }
+                }else {
+                    if (getCurrentPlayer().equals(Token.PLAYER_1)) {
+                        setCurrentPhase(Phase.MOVING_PLAYER2);
+                    }
+                }
+            }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                    if(game.getGameBoard().getUnplayedPiecesP2() > 0){
+                        if(getCurrentPlayer().equals(Token.PLAYER_2)) {
+                            setCurrentPhase(Phase.PLACING_PLAYER1);
+                        }
+                    }else{
+                        if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                            setCurrentPhase(Phase.MOVING_PLAYER1);
+                        }
+                    }
+            }
+
         switchPlayer();
     }
 
