@@ -247,6 +247,7 @@ public class Board {
     public Position[] getBoardPositions() {
         return boardPositions;
     }
+
     /**
      * decrease unplayed pieces of a player
      *
