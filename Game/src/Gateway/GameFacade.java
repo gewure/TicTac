@@ -20,6 +20,7 @@ public class GameFacade extends Observable {
     private HashMap<GamePosition, Integer> positionMapping;
 
     public GameFacade(Token player1, Token player2) {
+        initializePositionMapping();
         _tokensPlayer1 = new ArrayList<>();
         _tokensPlayer2 = new ArrayList<>();
 
@@ -168,5 +169,36 @@ public class GameFacade extends Observable {
 
     public void setCurrentPhase(Phase currentPhase){
         this.currentPhase = currentPhase;
+    }
+    public void initializePositionMapping(){
+        positionMapping = new HashMap<>();
+
+        positionMapping.put(GamePosition.Out0, 0);
+        positionMapping.put(GamePosition.Out1, 9);
+        positionMapping.put(GamePosition.Out2, 21);
+        positionMapping.put(GamePosition.Out3, 22);
+        positionMapping.put(GamePosition.Out4, 23);
+        positionMapping.put(GamePosition.Out5, 14);
+        positionMapping.put(GamePosition.Out6, 2);
+        positionMapping.put(GamePosition.Out7, 1);
+
+        positionMapping.put(GamePosition.Middle0,3);
+        positionMapping.put(GamePosition.Middle1,10);
+        positionMapping.put(GamePosition.Middle2,18);
+        positionMapping.put(GamePosition.Middle3,19);
+        positionMapping.put(GamePosition.Middle4,20);
+        positionMapping.put(GamePosition.Middle5,13);
+        positionMapping.put(GamePosition.Middle6,5);
+        positionMapping.put(GamePosition.Middle7,4);
+
+        positionMapping.put(GamePosition.Center0,6);
+        positionMapping.put(GamePosition.Center0,11);
+        positionMapping.put(GamePosition.Center0,15);
+        positionMapping.put(GamePosition.Center0,16);
+        positionMapping.put(GamePosition.Center0,17);
+        positionMapping.put(GamePosition.Center0,12);
+        positionMapping.put(GamePosition.Center0,8);
+        positionMapping.put(GamePosition.Center0,7);
+
     }
 }
