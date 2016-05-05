@@ -1,7 +1,9 @@
 package at.fhv.itb6.arp.inputInterface;
 
 import at.fhv.itb6.arp.shapdetection.shapes.Polygon;
+import at.fhv.itb6.arp.shapdetection.shapes.Rectangle;
 import at.fhv.itb6.arp.shapdetection.shapes.Triangle;
+import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 
 /**
@@ -13,9 +15,14 @@ public class InputConfiguration {
     private int _interruptionTolerance = 3;
     private double _sensivityX = 0.015;
     private double _sensivityY = 0.015;
-    private Scalar _minCol = new Scalar(0, 180, 0);
-    private Scalar _maxCol = new Scalar(125, 255, 125);
+    private Scalar _minCol = new Scalar(0, 70, 0);
+    private Scalar _maxCol = new Scalar(60, 255, 60);
     private int _makerBufferSize = 30;
+    private int _cameraPosition = CameraPosition.TOP;
+    private boolean _gameboardDetected = false;
+    private Rectangle _gameboardRectangle;
+
+
 
     public int getHardwareId() {
         return _hardwareId;
@@ -79,5 +86,37 @@ public class InputConfiguration {
 
     public void setMakerBufferSize(int makerBufferSize) {
         _makerBufferSize = makerBufferSize;
+    }
+
+    public int getCameraPosition() {
+        return _cameraPosition;
+    }
+
+    public void setCameraPosition(int cameraPosition) {
+        _cameraPosition = cameraPosition;
+    }
+
+    public boolean isGameboardDetected() {
+        return _gameboardDetected;
+    }
+
+    public void setGameboardDetected(boolean gameboardDetected) {
+        _gameboardDetected = gameboardDetected;
+    }
+
+    public Rectangle getGameboardRectangle() {
+        return _gameboardRectangle;
+    }
+
+    public void setGameboardRectangle(Rectangle gameboardRectangle) {
+        _gameboardRectangle = gameboardRectangle;
+    }
+
+    public enum CameraPosition{
+        ;
+        public static int BOTTOM = 0;
+        public static int LEFT = 1;
+        public static int TOP = 2;
+        public static int RIGHT = 3;
     }
 }
