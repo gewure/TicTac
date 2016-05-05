@@ -1,5 +1,7 @@
 package Logic;
 
+import javafx.geometry.Pos;
+
 /**
  * Created by f00 on 23.03.16.
  */
