@@ -289,6 +289,7 @@ public class Board {
     public void setUnplayedPiecesP2(int unplayedPiecesP2) {
         this.unplayedPiecesP2 = unplayedPiecesP2;
     }
+
     public Position[] getBoardPositions() {
         return boardPositions;
     }
