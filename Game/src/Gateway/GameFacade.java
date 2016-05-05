@@ -1,7 +1,6 @@
 package Gateway;
 
 import Logic.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -17,6 +16,7 @@ public class GameFacade extends Observable {
     private Phase currentPhase;
     private Game game;
     private BiMap<GamePosition, Integer> positionMapping;
+
 
     public GameFacade() {
         initializePositionMapping();
@@ -35,6 +35,7 @@ public class GameFacade extends Observable {
         } catch (GameException e) {
             e.printStackTrace();
         }
+
         _currentPlayer = Token.PLAYER_1;
 
         localGame.setPlayers(humanPlayer1, humanPlayer2);
@@ -100,7 +101,6 @@ public class GameFacade extends Observable {
     public Token getCurrentPlayer() {
         return _currentPlayer;
     }
-
 
     public boolean removeGameToken(GamePosition position){
         int pos = positionMapping.get(position);
@@ -222,6 +222,27 @@ public class GameFacade extends Observable {
             }
 
         switchPlayer();
+    }
+
+    //return false if the move was not legal
+    public boolean placeGameToken(GamePosition origion, GamePosition desitination) {
+        try {
+            int dest = positionMapping.get(desitination);
+            if(game.positionIsAvailable(dest)) {
+                game.placePieceOfPlayer(dest, getCurrentPlayer());
+                game.madeAMill(dest, getCurrentPlayer());
+            }else{
+                return false;
+            }
+        } catch (GameException e) {
+            e.printStackTrace();
+        }
+
+        //Todo add logic that communications with the ninemorisfiles
+
+        //Todo: invoke gameStateChanged after the move was made
+        gameStateChanged();
+        return true;
     }
 
     public void gameStateChanged() {
