@@ -2,7 +2,6 @@ package app;
 
 import Gateway.GameFacade;
 import Gateway.GameToken;
-import Gateway.PlayerIdentifier;
 import Logic.Token;
 import at.fhv.itb6.arp.ARFacade;
 

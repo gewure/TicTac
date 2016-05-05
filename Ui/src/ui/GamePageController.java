@@ -2,7 +2,6 @@ package ui;
 
 import Gateway.GamePosition;
 import Gateway.GameToken;
-import Gateway.PlayerIdentifier;
 import app.GameController;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
