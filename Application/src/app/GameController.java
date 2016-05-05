@@ -68,6 +68,7 @@ public class GameController extends Observable implements Runnable{
     }
 
     private GamePosition readeInput(){
+        //TODO: read input from arfacade and parse to gamePositions
         return GamePosition.Center0;
     }
 

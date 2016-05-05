@@ -2,6 +2,7 @@ package at.fhv.itb6.arp;
 
 import Gateway.GameFacade;
 import at.fhv.itb6.arp.hardwareinterface.CameraInterface;
+import at.fhv.itb6.arp.inputInterface.CursorStatusListener;
 import at.fhv.itb6.arp.inputInterface.InputAction;
 import at.fhv.itb6.arp.inputInterface.InputConfiguration;
 import at.fhv.itb6.arp.inputInterface.InputDetection;
@@ -50,14 +51,13 @@ public class ARFacade {
         Thread readInputThread = new Thread(() -> {
             boolean cursorNotFound = true;
             while(cursorNotFound) {
-                try {
-                    InputAction inputAction = _inputDetection.getUserInput();
+                    InputAction inputAction = _inputDetection.getUserInput(new CursorStatusListener() {
+                        @Override
+                        public void cursorChangedEvent(double posX, double posY, double progress) {
+                            //ignore ask zopo
+                        }
+                    });
                     cursorNotFound = false;
-                } catch (GamebordersNotDetectedException e) {
-                    e.printStackTrace();
-                } catch (NoMarkerDetectedException e) {
-                    e.printStackTrace();
-                }
             }
         });
         readInputThread.start();
