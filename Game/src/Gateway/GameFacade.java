@@ -17,7 +17,7 @@ public class GameFacade extends Observable {
     private Game game;
     private BiMap<GamePosition, Integer> positionMapping;
 
-    public GameFacade(Token player1, Token player2) {
+    public GameFacade() {
         initializePositionMapping();
         _tokensPlayer1 = new ArrayList<>();
         _tokensPlayer2 = new ArrayList<>();
@@ -34,6 +34,7 @@ public class GameFacade extends Observable {
         } catch (GameException e) {
             e.printStackTrace();
         }
+        _currentPlayer = Token.PLAYER_1;
 
         _currentPlayer = Token.PLAYER_1;
 
@@ -232,6 +233,8 @@ public class GameFacade extends Observable {
                             setCurrentPhase(Phase.MOVING_PLAYER1);
                         }
                     }
+                    switchPlayer();
+
                 }
             }else{
                 return false;
