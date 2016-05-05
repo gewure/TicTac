@@ -1,6 +1,7 @@
 package Gateway;
 
 import Logic.*;
+import javafx.geometry.Pos;
 
 import java.util.HashMap;
 import java.util.Observable;
@@ -17,9 +18,9 @@ public class GameFacade extends Observable {
     private Token _currentPlayer;
     private Phase currentPhase;
     private Game game;
-    private HashMap<GamePosition, Integer> positionMapping;
+    private BiMap<GamePosition, Integer> positionMapping;
 
-    public GameFacade(Token player1, Token player2) {
+    public GameFacade() {
         initializePositionMapping();
         _tokensPlayer1 = new ArrayList<>();
         _tokensPlayer2 = new ArrayList<>();
@@ -36,6 +37,7 @@ public class GameFacade extends Observable {
         } catch (GameException e) {
             e.printStackTrace();
         }
+        _currentPlayer = Token.PLAYER_1;
 
         localGame.setPlayers(humanPlayer1, humanPlayer2);
 
@@ -119,6 +121,14 @@ public class GameFacade extends Observable {
         return false;
     }
 
+    private void switchPlayer() {
+        if(getCurrentPlayer() == Token.PLAYER_1) {
+            setCurrentPlayer(Token.PLAYER_2);
+        } else {
+            setCurrentPlayer(Token.PLAYER_1);
+        }
+    }
+
     //return false if the move was not legal
     public boolean placeGameToken( GamePosition desitination) {
         try {
@@ -146,6 +156,8 @@ public class GameFacade extends Observable {
                             setCurrentPhase(Phase.MOVING_PLAYER1);
                         }
                     }
+                    switchPlayer();
+
                 }
             }else{
                 return false;
@@ -159,6 +171,22 @@ public class GameFacade extends Observable {
     }
 
     public void gameStateChanged() {
+        _tokensPlayer1.clear();
+        _tokensPlayer2.clear();
+        for(Position pos : game.getGameBoard().getBoardPositions()) {
+            if(pos.isOccupied()) {
+                Token token = pos.getPlayerOccupyingIt();
+                GamePosition gamePosition = positionMapping.getKey(pos.getPositionIndex());
+                GameToken gameToken = new GameToken(token, gamePosition);
+
+                if(token.equals(Token.PLAYER_1)) {
+                    _tokensPlayer1.add(gameToken);
+                } else {
+                    _tokensPlayer2.add(gameToken);
+                }
+            }
+        }
+
         this.hasChanged();
         this.notifyObservers();
     }
@@ -172,7 +200,7 @@ public class GameFacade extends Observable {
     }
 
     public void initializePositionMapping(){
-        positionMapping = new HashMap<>();
+        positionMapping = new BiMap<>();
 
         positionMapping.put(GamePosition.Out0, 0);
         positionMapping.put(GamePosition.Out1, 9);
@@ -193,13 +221,13 @@ public class GameFacade extends Observable {
         positionMapping.put(GamePosition.Middle7,4);
 
         positionMapping.put(GamePosition.Center0,6);
-        positionMapping.put(GamePosition.Center0,11);
-        positionMapping.put(GamePosition.Center0,15);
-        positionMapping.put(GamePosition.Center0,16);
-        positionMapping.put(GamePosition.Center0,17);
-        positionMapping.put(GamePosition.Center0,12);
-        positionMapping.put(GamePosition.Center0,8);
-        positionMapping.put(GamePosition.Center0,7);
+        positionMapping.put(GamePosition.Center1,11);
+        positionMapping.put(GamePosition.Center2,15);
+        positionMapping.put(GamePosition.Center3,16);
+        positionMapping.put(GamePosition.Center4,17);
+        positionMapping.put(GamePosition.Center5,12);
+        positionMapping.put(GamePosition.Center6,8);
+        positionMapping.put(GamePosition.Center7,7);
 
     }
 
