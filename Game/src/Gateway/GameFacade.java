@@ -2,9 +2,9 @@ package Gateway;
 
 import Logic.*;
 
-import java.util.Observable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by simon_000 on 30/04/2016.
@@ -77,8 +77,18 @@ public class GameFacade extends Observable {
         return _tokensPlayer2;
     }
 
+    /**
+     * get the won player!
+     *
+     * @return
+     */
     public Token getWonPlayer() {
-        //TODO: returns the player that hase won if the game ends
+        if(currentPhase == Phase.REMOVING_PLAYER1 || currentPhase == Phase.REMOVING_PLAYER2) {
+            if(game.isTheGameOver()) {
+                System.out.println("WINNER: " + _currentPlayer);
+                return _currentPlayer; //TODO check this!
+            }
+        }
         return Token.NO_PLAYER;
     }
 
