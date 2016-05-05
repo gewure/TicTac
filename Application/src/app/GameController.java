@@ -1,8 +1,9 @@
 package app;
 
 import Gateway.GameFacade;
+import Gateway.GamePosition;
 import Gateway.GameToken;
-import Gateway.PlayerIdentifier;
+import Logic.Phase;
 import Logic.Token;
 import at.fhv.itb6.arp.ARFacade;
 
@@ -17,13 +18,9 @@ public class GameController extends Observable implements Runnable{
 
     public GameFacade _gameFacade;
 
+    private boolean _gameOver;
     public GameController(Integer cameraID, GameType gameType) {
-        if(gameType == GameType.vsAI) {
-            _gameFacade = new GameFacade(Token.PLAYER_1, Token.NO_PLAYER);
-        } else {
-            _gameFacade = new GameFacade(Token.PLAYER_1, Token.PLAYER_2);
-        }
-
+        _gameFacade = new GameFacade();
         _gameFacade.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
@@ -31,34 +28,56 @@ public class GameController extends Observable implements Runnable{
             }
         });
 
-        ARFacade.getInstance().init(cameraID, _gameFacade);
+        ARFacade.getInstance().init(cameraID);
 
         start();
     }
 
     private void start() {
-        //start thread that runs the game
         Thread gameLoopThread = new Thread(this);
-
         gameLoopThread.start();
     }
 
     private boolean _running;
     @Override
     public void run() {
+        _running = true;
         while(_running) {
-            //read cursor input
+            actOnPhase(_gameFacade.getCurrentPhase());
 
-            //write it into the gamegateway
+            if(_gameFacade.getWonPlayer() != Token.NO_PLAYER) {
+                _gameOver = true;
+            }
 
             gameStateChanged();
-
-            // if player won stop loop
         }
     }
 
-    public PlayerIdentifier getCurrentPlayer() {
+    private void actOnPhase(Phase phase) {
+        GamePosition src = readeInput();
+        if(phase == Phase.MOVING_PLAYER1 || phase == Phase.MOVING_PLAYER2) {
+            GamePosition dest = readeInput();
+            _gameFacade.moveGameToken(src, dest);
+
+        } else if(phase == Phase.REMOVING_PLAYER1 || phase == Phase.REMOVING_PLAYER2) {
+            _gameFacade.removeGameToken(src);
+
+        } else if(phase == Phase.PLACING_PLAYER1 || phase == Phase.PLACING_PLAYER2) {
+            _gameFacade.placeGameToken(src);
+        }
+    }
+
+    private GamePosition readeInput(){
+        //TODO: read input from arfacade and parse to gamePositions
+        return GamePosition.Center0;
+    }
+
+    public Token getCurrentPlayer() {
         return _gameFacade.getCurrentPlayer();
+    }
+
+    public boolean getGameOver() {
+        return _gameOver;
     }
 
     public List<GameToken> getPlayer1GameTokens() {
@@ -70,9 +89,7 @@ public class GameController extends Observable implements Runnable{
     }
 
     private void gameStateChanged() {
-        this.hasChanged();
+        this.setChanged();
         this.notifyObservers();
     }
-
-
 }

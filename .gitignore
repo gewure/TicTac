@@ -1,8 +1,9 @@
+/.idea
 /LICENSE
 *.class
 /target
-/.idea
 
 # Package Files #
 *.war
 *.ear
+
