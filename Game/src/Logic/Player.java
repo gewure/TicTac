@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> why intellij why
 package Logic;
 
 /**
@@ -50,6 +53,14 @@ public abstract class Player {
         return numPiecesOnBoard;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * strange method which is never called
+     *
+     * @return
+     */
+>>>>>>> why intellij why
     public int getNumPiecesLeftToPlace() {
         return (numPieces - numPiecesOnBoard);
     }
@@ -75,6 +86,7 @@ public abstract class Player {
     }
 
     public abstract boolean isAI();
+<<<<<<< HEAD
 =======
 package Logic;
 
@@ -158,4 +170,6 @@ public abstract class Player {
 
     public abstract boolean isAI();
 >>>>>>> public int getNumUnplayedPiecesOfPlayer(Token player) in class Board.java
+=======
+>>>>>>> why intellij why
 }

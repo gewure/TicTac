@@ -252,6 +252,7 @@ public class GameFacade extends Observable {
     public void setCurrentPhase(Phase currentPhase){
         this.currentPhase = currentPhase;
     }
+
     public void initializePositionMapping(){
         positionMapping = new BiMap<>();
 

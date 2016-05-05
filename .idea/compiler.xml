@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> why intellij why
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
@@ -29,6 +32,7 @@
       <module name="tictac" target="1.5" />
     </bytecodeTargetLevel>
   </component>
+<<<<<<< HEAD
 =======
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
@@ -61,4 +65,6 @@
     </bytecodeTargetLevel>
   </component>
 >>>>>>> made some changes in the gameFacade
+=======
+>>>>>>> why intellij why
 </project>
