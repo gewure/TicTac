@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-/.idea
-/LICENSE
-*.class
-/target
-
-# Package Files #
-*.war
-*.ear
-=======
 /.idea
 /LICENSE
 *.class
@@ -17,4 +7,3 @@
 *.war
 *.ear
 
->>>>>>> why intellij why
