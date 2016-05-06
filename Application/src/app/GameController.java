@@ -16,11 +16,13 @@ import java.util.Observer;
  */
 public class GameController extends Observable implements Runnable{
 
-    public GameFacade _gameFacade;
-
+    private  GameFacade _gameFacade;
+    private CursorPositionToGamePositionMapper _mapping;
     private boolean _gameOver;
     public GameController(Integer cameraID, GameType gameType) {
         _gameFacade = new GameFacade();
+        _mapping = new CursorPositionToGamePositionMapper();
+
         _gameFacade.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
@@ -68,8 +70,7 @@ public class GameController extends Observable implements Runnable{
     }
 
     private GamePosition readeInput(){
-        //TODO: read input from arfacade and parse to gamePositions
-        return GamePosition.Center0;
+        return _mapping.map(ARFacade.getInstance().getCursorPosition());
     }
 
     public Token getCurrentPlayer() {
