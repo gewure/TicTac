@@ -15,8 +15,8 @@ public class InputConfiguration {
     private int _interruptionTolerance = 3;
     private double _sensivityX = 0.015;
     private double _sensivityY = 0.015;
-    private Scalar _minCol = new Scalar(0, 70, 0);
-    private Scalar _maxCol = new Scalar(60, 255, 60);
+    private Scalar _minCol = new Scalar(0, 60, 0);
+    private Scalar _maxCol = new Scalar(55, 255, 55);
     private int _makerBufferSize = 30;
     private int _cameraPosition = CameraPosition.TOP;
     private boolean _gameboardDetected = false;

@@ -27,7 +27,7 @@ public class InputDetectionTest {
 
     public static void main(String[] args) {
         InputConfiguration ic = new InputConfiguration();
-        ic.setHardwareId(1);
+        ic.setHardwareId(0);
         ic.setCameraPosition(InputConfiguration.CameraPosition.BOTTOM);
         InputDetection id = new InputDetection(ic);
         id.detectGameboard();
@@ -56,9 +56,11 @@ public class InputDetectionTest {
 
                 colorOnly = new Mat();
                 Core.inRange(frame, minCol, maxCol, colorOnly);
-                Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(7,7)));
+                Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(4,4)));
                 //Imgproc.erode(colorOnly, colorOnly, Imgproc.getGaussianKernel(10, 1));
 
+
+                //Imgproc.filter2D(colorOnly, colorOnly, 0, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(100,100)));
 
                 //Detect marker position
                 Point markerPos = id.getMarkerPos(correctedImage);
@@ -71,7 +73,7 @@ public class InputDetectionTest {
             } catch (NoMarkerDetectedException e) {
             }
 
-            imshow.showImage(colorOnly);
+            imshow.showImage(correctedImage);
         }
 
     }
