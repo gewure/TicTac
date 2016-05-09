@@ -157,8 +157,6 @@ public class InputDetection {
         Point midPoint = new Point(src.cols()/2, src.rows()/2);
         Mat rotationM = Imgproc.getRotationMatrix2D(midPoint, 90, 1);
         Imgproc.warpAffine(src, dst, rotationM, new Size(src.rows(), src.cols()));
-        dst.release();
-        src.release();
         return dst;
     }
 
