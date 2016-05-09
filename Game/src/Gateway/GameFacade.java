@@ -36,6 +36,7 @@ public class GameFacade extends Observable {
             e.printStackTrace();
         }
         _currentPlayer = Token.PLAYER_1;
+        setCurrentPhase(Phase.PLACING_PLAYER1);
 
         localGame.setPlayers(humanPlayer1, humanPlayer2);
 
@@ -103,6 +104,10 @@ public class GameFacade extends Observable {
 
 
     public boolean removeGameToken(GamePosition position){
+        if (position == GamePosition.None){
+            return false;
+        }
+
         int pos = positionMapping.get(position);
         if(getCurrentPlayer().equals(Token.PLAYER_1)){
             try {
@@ -134,6 +139,10 @@ public class GameFacade extends Observable {
 
     //return false if the move was not legal
     public boolean moveGameToken(GamePosition origion, GamePosition desitination) {
+        if (desitination == GamePosition.None || origion == GamePosition.None){
+            return false;
+        }
+
         int dest = positionMapping.get(desitination);
         int orig = positionMapping.get(origion);
 
@@ -141,7 +150,7 @@ public class GameFacade extends Observable {
             if(game.positionHasPieceOfPlayer(orig, getCurrentPlayer())) {
                 if (game.positionIsAvailable(dest)) {
                     game.movePieceFromTo(orig, dest, getCurrentPlayer());
-                    setPartOfNextPlayerPhase(game);
+                    setNextPlayerPhase(dest, game);
                 } else {
                     return false;
                 }
@@ -159,6 +168,9 @@ public class GameFacade extends Observable {
     //return false if the move was not legal
     public boolean placeGameToken( GamePosition desitination) {
         try {
+            if (desitination == null || desitination == GamePosition.None){
+                return false;
+            }
             int dest = positionMapping.get(desitination);
             if(game.positionIsAvailable(dest)) {
                 game.placePieceOfPlayer(dest, getCurrentPlayer());
@@ -205,8 +217,10 @@ public class GameFacade extends Observable {
                         setCurrentPhase(Phase.PLACING_PLAYER2);
                     }
                 }else {
-                    if (getCurrentPlayer().equals(Token.PLAYER_1)) {
+                    if (getCurrentPlayer().equals(Token.PLAYER_1) && game.getGameBoard().getUnplayedPiecesP2()==0) {
                         setCurrentPhase(Phase.MOVING_PLAYER2);
+                    }else{
+                        setCurrentPhase(Phase.PLACING_PLAYER2);
                     }
                 }
             }else if(getCurrentPlayer().equals(Token.PLAYER_2)){
@@ -215,8 +229,10 @@ public class GameFacade extends Observable {
                             setCurrentPhase(Phase.PLACING_PLAYER1);
                         }
                     }else{
-                        if(getCurrentPlayer().equals(Token.PLAYER_2)){
+                        if(getCurrentPlayer().equals(Token.PLAYER_2)&& game.getGameBoard().getUnplayedPiecesP1()==0){
                             setCurrentPhase(Phase.MOVING_PLAYER1);
+                        }else{
+                            setCurrentPhase(Phase.PLACING_PLAYER1);
                         }
                     }
             }
@@ -241,7 +257,7 @@ public class GameFacade extends Observable {
             }
         }
 
-        this.hasChanged();
+        this.setChanged();
         this.notifyObservers();
     }
 

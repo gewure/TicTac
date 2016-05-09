@@ -9,6 +9,7 @@ import at.fhv.itb6.arp.inputInterface.InputDetection;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by simon_000 on 30/04/2016.
@@ -38,28 +39,30 @@ public class ARFacade {
 
     private GameFacade _gameFacade;
 
-    public void init(int cameraID) {
-        InputConfiguration config = new InputConfiguration();
-        config.setHardwareId(cameraID);
-        _inputDetection = new InputDetection(config);
+    public void init(InputConfiguration inputConfiguration) {
+        _inputDetection = new InputDetection(inputConfiguration);
+        inputActions = new LinkedBlockingQueue<>();
     }
 
     public InputAction getCursorPosition() {
+        InputAction inputAction = null;
+
         Thread readInputThread = new Thread(() -> {
-            boolean cursorNotFound = true;
-            while(cursorNotFound) {
-                    InputAction inputAction = _inputDetection.getUserInput(new CursorStatusListener() {
-                        @Override
-                        public void cursorChangedEvent(double posX, double posY, double progress) {
-                            //ignore ask zopo
-                        }
-                    });
-                    cursorNotFound = false;
+            try {
+                inputActions.put(_inputDetection.getUserInput(new CursorStatusListener() {
+                   @Override
+                   public void cursorChangedEvent(double posX, double posY, double progress) {
+                       CursorStatus cursorStatus = CursorStatus.getInstance();
+                       cursorStatus.cursorChangedEvent(posX, posY, progress);
+                       //ignore ask zopo
+                   }
+               }));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
         readInputThread.start();
 
-        InputAction inputAction = null;
         try {
              inputAction = inputActions.take(); // will block until the readInputThread has detected the cursor
             inputActions.clear();
@@ -67,6 +70,7 @@ public class ARFacade {
             e.printStackTrace();
         }
 
+        System.out.println("Input Action found");
         return inputAction;
     }
 }

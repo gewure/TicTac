@@ -3,12 +3,19 @@ package ui;
 import Gateway.GamePosition;
 import Gateway.GameToken;
 import Logic.Token;
+import app.CursorPositionToGamePositionMapper;
 import app.GameController;
+import at.fhv.itb6.arp.CursorStatus;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.*;
@@ -18,75 +25,145 @@ import java.util.List;
  * Created by simon_000 on 06/04/2016.
  */
 public class GamePageController {
+    private Stage _parent;
+    private String _gamephase;
 
     @FXML Canvas canvis;
 
     private GameController _gameGameController;
     private HashMap<GamePosition, Point> _gamePositionMappings;
 
-    public GamePageController(GameController gameController) {
+    private Point calcRelativePoint(org.opencv.core.Point point) {
+        return new Point((int)(point.x * canvis.getWidth()), (int)(point.y * canvis.getHeight()));
+    }
+
+    public GamePageController(GameController gameController, Stage parent) {
+        _parent = parent;
+        _parent.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvis.setWidth(newValue.doubleValue());
+                remap();
+                //drawBackground(canvis.getGraphicsContext2D());
+                redraw(canvis.getGraphicsContext2D());
+            }
+        });
+
+        _parent.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvis.setHeight(newValue.doubleValue());
+                remap();
+                //drawBackground(canvis.getGraphicsContext2D());
+                redraw(canvis.getGraphicsContext2D());
+            }
+        });
+
         _gameGameController = gameController;
 
         _gamePositionMappings = new HashMap<>();
-        _gamePositionMappings.put(GamePosition.Out0, new Point(0, 0));
-        _gamePositionMappings.put(GamePosition.Out1, new Point(275, 0));
-        _gamePositionMappings.put(GamePosition.Out2, new Point(550, 0));
-        _gamePositionMappings.put(GamePosition.Out3, new Point(550, 275));
-        _gamePositionMappings.put(GamePosition.Out4, new Point(550, 550));
-        _gamePositionMappings.put(GamePosition.Out5, new Point(275, 550));
-        _gamePositionMappings.put(GamePosition.Out6, new Point(0, 550));
-        _gamePositionMappings.put(GamePosition.Out7, new Point(0, 275));
-
-        _gamePositionMappings.put(GamePosition.Middle0, new Point(85, 85));
-        _gamePositionMappings.put(GamePosition.Middle1, new Point(275, 85));
-        _gamePositionMappings.put(GamePosition.Middle2, new Point(465, 85));
-        _gamePositionMappings.put(GamePosition.Middle3, new Point(465, 275));
-        _gamePositionMappings.put(GamePosition.Middle4, new Point(465, 465));
-        _gamePositionMappings.put(GamePosition.Middle5, new Point(275, 465));
-        _gamePositionMappings.put(GamePosition.Middle6, new Point(85, 465));
-        _gamePositionMappings.put(GamePosition.Middle7, new Point(85, 275));
-
-        _gamePositionMappings.put(GamePosition.Center0, new Point(170, 170));
-        _gamePositionMappings.put(GamePosition.Center1, new Point(275, 170));
-        _gamePositionMappings.put(GamePosition.Center2, new Point(380, 170));
-        _gamePositionMappings.put(GamePosition.Center3, new Point(380, 275));
-        _gamePositionMappings.put(GamePosition.Center4, new Point(380, 380));
-        _gamePositionMappings.put(GamePosition.Center5, new Point(275, 380));
-        _gamePositionMappings.put(GamePosition.Center6, new Point(170, 380));
-        _gamePositionMappings.put(GamePosition.Center7, new Point(170, 275));
 
         _gameGameController.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
+                setGamephase(_gameGameController.getGamephase().toString());
+                System.out.println("Move detected - Updating gamefield");
                 GraphicsContext context = canvis.getGraphicsContext2D();
-                drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
-
+                //drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
+                redraw(context);
             }
         });
+    }
+
+    private void redraw(GraphicsContext context){
+        drawBackground(context);
+        drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
+        CursorStatus cursorStatus = CursorStatus.getInstance();
+        drawCircle(context, Color.BEIGE, 3, (int)((cursorStatus.getPosX()) * canvis.getWidth()), (int)((cursorStatus.getPosY()) * canvis.getHeight()));
+        drawGamephase(context);
+    }
+
+    private void remap(){
+        _gamePositionMappings.clear();
+
+        CursorPositionToGamePositionMapper mapper = new CursorPositionToGamePositionMapper();
+        _gamePositionMappings.put(GamePosition.Out0, calcRelativePoint(mapper.getMapping(GamePosition.Out0).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out1, calcRelativePoint(mapper.getMapping(GamePosition.Out1).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out2, calcRelativePoint(mapper.getMapping(GamePosition.Out2).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out3, calcRelativePoint(mapper.getMapping(GamePosition.Out3).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out4, calcRelativePoint(mapper.getMapping(GamePosition.Out4).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out5, calcRelativePoint(mapper.getMapping(GamePosition.Out5).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out6, calcRelativePoint(mapper.getMapping(GamePosition.Out6).getPosition()));
+        _gamePositionMappings.put(GamePosition.Out7, calcRelativePoint(mapper.getMapping(GamePosition.Out7).getPosition()));
+
+
+        _gamePositionMappings.put(GamePosition.Middle0, calcRelativePoint(mapper.getMapping(GamePosition.Middle0).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle1, calcRelativePoint(mapper.getMapping(GamePosition.Middle1).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle2, calcRelativePoint(mapper.getMapping(GamePosition.Middle2).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle3, calcRelativePoint(mapper.getMapping(GamePosition.Middle3).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle4, calcRelativePoint(mapper.getMapping(GamePosition.Middle4).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle5, calcRelativePoint(mapper.getMapping(GamePosition.Middle5).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle6, calcRelativePoint(mapper.getMapping(GamePosition.Middle6).getPosition()));
+        _gamePositionMappings.put(GamePosition.Middle7, calcRelativePoint(mapper.getMapping(GamePosition.Middle7).getPosition()));
+
+
+        _gamePositionMappings.put(GamePosition.Center0, calcRelativePoint(mapper.getMapping(GamePosition.Center0).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center1, calcRelativePoint(mapper.getMapping(GamePosition.Center1).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center2, calcRelativePoint(mapper.getMapping(GamePosition.Center2).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center3, calcRelativePoint(mapper.getMapping(GamePosition.Center3).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center4, calcRelativePoint(mapper.getMapping(GamePosition.Center4).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center5, calcRelativePoint(mapper.getMapping(GamePosition.Center5).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center6, calcRelativePoint(mapper.getMapping(GamePosition.Center6).getPosition()));
+        _gamePositionMappings.put(GamePosition.Center7, calcRelativePoint(mapper.getMapping(GamePosition.Center7).getPosition()));
+
     }
 
     private void drawBackground(GraphicsContext context) {
         context.clearRect(0, 0, canvis.getWidth(), canvis.getHeight());
 
+        context.setFill(Color.BLACK);
+        context.fillRect(0,0, canvis.getWidth(), canvis.getHeight());
         Image image = new Image("/ui/gameboard.png");
 
-        context.drawImage(image, 100, 0);
+        context.drawImage(image, canvis.getWidth()/2 - image.getWidth()/2, canvis.getHeight()/2 - image.getHeight()/2);
+
+        /*context.setFill(Color.BLUE);
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                context.strokeLine(i/10, 0, i/10, canvis.getHeight());
+            }
+        }
+        */
+
         context.save();
     }
 
     @FXML
     public void initialize() {
+        remap();
+
         GraphicsContext context=  canvis.getGraphicsContext2D();
         drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
     }
 
     private void drawGameField(GraphicsContext context, List<GameToken> player1Token, List<GameToken> player2Token) {
-        drawBackground(context);
-        player1Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
-        player2Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
+        player1Token.forEach((gameToken) -> drawGameToken(context, gameToken));
+        player2Token.forEach((gameToken) -> drawGameToken(context, gameToken));
+        drawActivePosition(context, CursorStatus.getInstance().getActivePosition());
     }
 
-    private void drawGameToken(GraphicsContext context, GameToken gameToken, int xOffset) {
+    private void drawActivePosition(GraphicsContext context, GamePosition gamePosition){
+        float radius = 25;
+        Point point = _gamePositionMappings.get(gamePosition);
+
+        if (point == null){
+            return;
+        }
+
+        drawCircle(context, Color.BLACK, radius, point.x, point.y);
+    }
+
+    private void drawGameToken(GraphicsContext context, GameToken gameToken) {
         float radius = 50;
         Point point = _gamePositionMappings.get(gameToken.getGamePosition());
 
@@ -96,15 +173,26 @@ public class GamePageController {
         }
 
         if(gameToken.getPlayerIdentifier() == Token.PLAYER_1) {
-            drawCircle(context, Color.RED, radius, point.x + xOffset, point.y);
+            drawCircle(context, Color.RED, radius, point.x, point.y);
         }
         else {
-            drawCircle(context, Color.BLUE, radius, point.x + xOffset, point.y);
+            drawCircle(context, Color.BLUE, radius, point.x, point.y);
         }
     }
 
     private void drawCircle(GraphicsContext context, Color color, float radius, int x, int y) {
+        int fixedX = (int)(x - radius/2);
+        int fixedY = (int)(y - radius/2);
         context.setFill(color);
-        context.fillOval(x, y, radius, radius);
+        context.fillOval(fixedX, fixedY, radius, radius);
+    }
+
+    private void drawGamephase(GraphicsContext context){
+        context.setFill(Color.WHITE);
+        context.fillText(_gamephase, 20, 20, 150);
+    }
+
+    public void setGamephase(String gamephase){
+        _gamephase = gamephase;
     }
 }

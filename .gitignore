@@ -1,9 +1,9 @@
-/.idea
 /LICENSE
 *.class
 /target
+.idea/workspace.xml
+/classes
 
 # Package Files #
 *.war
 *.ear
-

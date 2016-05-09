@@ -23,10 +23,12 @@ import java.util.Map;
  */
 public class InputDetection {
     private InputConfiguration _inputConfiguration;
+    private InputMedianFilter _inputMedianFilter;
     private List<Mat> _markerFrameBuffer = new LinkedList<>();
 
     public InputDetection(InputConfiguration inputConfiguration){
         _inputConfiguration = inputConfiguration;
+        _inputMedianFilter = new InputMedianFilter(_inputConfiguration);
     }
 
     /**
@@ -35,7 +37,7 @@ public class InputDetection {
      * @throws NoMarkerDetectedException
      */
     public InputAction getUserInput(CursorStatusListener callback) {
-        if (_inputConfiguration.isGameboardDetected()) {
+        if (!_inputConfiguration.isGameboardDetected()) {
             detectGameboard();
         }
 
@@ -49,9 +51,10 @@ public class InputDetection {
 
             //Get camera image
             Mat frame = cam.readImage();
+            Mat correctedImage = new Mat();
 
             try {
-                Mat correctedImage = ShapeUtil.perspectiveCorrection(frame, _inputConfiguration.getGameboardRectangle(), new Size(1000, 1000));
+                correctedImage = ShapeUtil.perspectiveCorrection(frame, _inputConfiguration.getGameboardRectangle(), new Size(1000, 1000));
                 for (int i = 0; i < _inputConfiguration.getCameraPosition(); i++) {
                     correctedImage = rotateRight(correctedImage);
                 }
@@ -61,6 +64,12 @@ public class InputDetection {
 
                 //Calculate relative marker position
                 Point relativeMarkerPos = calculateRelativeMarkerPos(correctedImage.size(), markerPos);
+
+                _inputMedianFilter.insertPoint(relativeMarkerPos);
+                relativeMarkerPos = _inputMedianFilter.getMedian();
+
+                System.out.println(relativeMarkerPos.x + "|" + relativeMarkerPos.y + "\t" + currentFrame);
+
                 //Check if the marker has moved
                 if (isMarkerMoved(setMarkerPos, relativeMarkerPos)) {
                     interruptionCount++;
@@ -71,12 +80,17 @@ public class InputDetection {
                 }
                 callback.cursorChangedEvent(setMarkerPos.x, setMarkerPos.y, (double) currentFrame / (double) _inputConfiguration.getConfirmationTime());
             } catch (NoMarkerDetectedException e) {
-                System.out.println("Marker not detected");
                 interruptionCount++;
                 if (interruptionCount > _inputConfiguration.getInterruptionTolerance()) {
                     currentFrame = 0;
                 }
             }
+            frame.release();
+        }
+        try {
+            cam.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return new InputAction(setMarkerPos);
     }
@@ -106,7 +120,7 @@ public class InputDetection {
 
         Mat colorOnly = new Mat();
         Core.inRange(frame, minCol, maxCol, colorOnly);
-        Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(7,7)));
+        Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(4,4)));
 
         Moments mu = Imgproc.moments(colorOnly);
         Point center = new Point(mu.get_m10() / mu.get_m00(), mu.get_m01() / mu.get_m00());
@@ -115,6 +129,7 @@ public class InputDetection {
             throw new NoMarkerDetectedException();
         }
 
+        colorOnly.release();
         return center;
     }
 
@@ -146,22 +161,25 @@ public class InputDetection {
 
     public void detectGameboard(){
         CameraInterface cam = new CameraInterface(_inputConfiguration.getHardwareId());
-        Mat frame = cam.readImage();
         _inputConfiguration.setGameboardDetected(false);
 
         Rectangle borderRect = null;
 
         while (!_inputConfiguration.isGameboardDetected()){
             try {
+                Mat frame = cam.readImage();
                 ShapeDetection.detect(frame);
                 Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
+                frame.release();
                 borderRect = getBorderRect(detectedPolygons.get(Rectangle.class));
 
                 _inputConfiguration.setGameboardRectangle(borderRect);
                 _inputConfiguration.setGameboardDetected(true);
             } catch (GamebordersNotDetectedException e) {
+                e.printStackTrace();
             }
         }
+
         try {
             cam.close();
         } catch (IOException e) {

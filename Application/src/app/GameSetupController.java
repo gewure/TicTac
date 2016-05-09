@@ -1,6 +1,8 @@
 package app;
 
 import at.fhv.itb6.arp.ARFacade;
+import at.fhv.itb6.arp.inputInterface.InputConfiguration;
+import jdk.internal.util.xml.impl.Input;
 
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class GameSetupController {
     }
 
     //Todo return game controller
-    public GameController start(Integer cameraID, GameType gameMode) {
+    public GameController start(InputConfiguration inputConfiguration, GameType gameMode) {
 
-        return new GameController(cameraID, gameMode);
+        return new GameController(inputConfiguration, gameMode);
     }
 }

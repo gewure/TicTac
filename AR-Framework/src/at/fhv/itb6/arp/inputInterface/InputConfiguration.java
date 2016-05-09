@@ -11,14 +11,15 @@ import org.opencv.core.Scalar;
  */
 public class InputConfiguration {
     private int _hardwareId = 1;
-    private int _confirmationTime = 120;
-    private int _interruptionTolerance = 3;
-    private double _sensivityX = 0.015;
-    private double _sensivityY = 0.015;
-    private Scalar _minCol = new Scalar(0, 70, 0);
-    private Scalar _maxCol = new Scalar(60, 255, 60);
+    private int _confirmationTime = 4;
+    private int _interruptionTolerance = 2;
+    private int _medianRange = 6;
+    private double _sensivityX = 0.03;
+    private double _sensivityY = 0.03;
+    private Scalar _minCol = new Scalar(0, 50, 0);
+    private Scalar _maxCol = new Scalar(55, 255, 55);
     private int _makerBufferSize = 30;
-    private int _cameraPosition = CameraPosition.TOP;
+    private int _cameraPosition = CameraPosition.BOTTOM;
     private boolean _gameboardDetected = false;
     private Rectangle _gameboardRectangle;
 
@@ -110,6 +111,14 @@ public class InputConfiguration {
 
     public void setGameboardRectangle(Rectangle gameboardRectangle) {
         _gameboardRectangle = gameboardRectangle;
+    }
+
+    public int getMedianRange() {
+        return _medianRange;
+    }
+
+    public void setMedianRange(int medianRange) {
+        _medianRange = medianRange;
     }
 
     public enum CameraPosition{
