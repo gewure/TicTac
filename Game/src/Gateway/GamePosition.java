@@ -4,6 +4,8 @@ package Gateway;
  * Created by simon_000 on 30/04/2016.
  */
 public enum GamePosition {
+    None,
+
     Out0,
     Out1,
     Out2,

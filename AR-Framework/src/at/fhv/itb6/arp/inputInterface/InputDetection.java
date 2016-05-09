@@ -35,16 +35,16 @@ public class InputDetection {
      * @throws NoMarkerDetectedException
      */
     public InputAction getUserInput(CursorStatusListener callback) {
-        if (_inputConfiguration.isGameboardDetected()){
+        if (_inputConfiguration.isGameboardDetected()) {
             detectGameboard();
         }
 
         int currentFrame = 0;
         int interruptionCount = 0;
-        Point setMarkerPos = new Point(0,0);
+        Point setMarkerPos = new Point(0, 0);
         CameraInterface cam = new CameraInterface(_inputConfiguration.getHardwareId());
 
-        while (currentFrame < _inputConfiguration.getConfirmationTime()){
+        while (currentFrame < _inputConfiguration.getConfirmationTime()) {
             currentFrame++;
 
             //Get camera image
@@ -52,7 +52,7 @@ public class InputDetection {
 
             try {
                 Mat correctedImage = ShapeUtil.perspectiveCorrection(frame, _inputConfiguration.getGameboardRectangle(), new Size(1000, 1000));
-                for (int i = 0; i < _inputConfiguration.getCameraPosition(); i++){
+                for (int i = 0; i < _inputConfiguration.getCameraPosition(); i++) {
                     correctedImage = rotateRight(correctedImage);
                 }
 
@@ -62,9 +62,9 @@ public class InputDetection {
                 //Calculate relative marker position
                 Point relativeMarkerPos = calculateRelativeMarkerPos(correctedImage.size(), markerPos);
                 //Check if the marker has moved
-                if (isMarkerMoved(setMarkerPos, relativeMarkerPos)){
+                if (isMarkerMoved(setMarkerPos, relativeMarkerPos)) {
                     interruptionCount++;
-                    if (interruptionCount > _inputConfiguration.getInterruptionTolerance()){
+                    if (interruptionCount > _inputConfiguration.getInterruptionTolerance()) {
                         currentFrame = 0;
                         setMarkerPos = relativeMarkerPos;
                     }
@@ -73,7 +73,7 @@ public class InputDetection {
             } catch (NoMarkerDetectedException e) {
                 System.out.println("Marker not detected");
                 interruptionCount++;
-                if (interruptionCount > _inputConfiguration.getInterruptionTolerance()){
+                if (interruptionCount > _inputConfiguration.getInterruptionTolerance()) {
                     currentFrame = 0;
                 }
             }
