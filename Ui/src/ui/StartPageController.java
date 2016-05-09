@@ -94,7 +94,9 @@ public class StartPageController implements IPanelClosable{
         System.out.println("Start meeeeeeeeeeeeeeee!");
 
         GameController gameController = _gameSetupController.start(_inputConfiguration, _gameType);
-        _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), new GamePageController(gameController));
+        GamePageController pageController = new GamePageController(gameController);
+        _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), pageController);
+
     }
 
     @FXML

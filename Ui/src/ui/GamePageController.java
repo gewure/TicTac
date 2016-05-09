@@ -68,6 +68,8 @@ public class GamePageController {
     private void drawBackground(GraphicsContext context) {
         context.clearRect(0, 0, canvis.getWidth(), canvis.getHeight());
 
+        context.setFill(Color.BLACK);
+        context.fill();
         Image image = new Image("/ui/gameboard.png");
 
         context.drawImage(image, 100, 0);
