@@ -36,6 +36,10 @@ public class CursorPositionToGamePositionMapper {
             ++i;
         }
 
+        if(gamePosition == GamePosition.None) {
+            System.out.println("No appropiate mapping found!");
+        }
+
         return gamePosition;
     }
 
