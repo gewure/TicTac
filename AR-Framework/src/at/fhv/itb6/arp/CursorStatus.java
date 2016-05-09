@@ -1,5 +1,6 @@
 package at.fhv.itb6.arp;
 
+import Gateway.GamePosition;
 import at.fhv.itb6.arp.inputInterface.CursorStatusListener;
 
 import java.util.Observable;
@@ -13,6 +14,7 @@ public class CursorStatus extends Observable implements CursorStatusListener {
     private double posX = 0;
     private double posY = 0;
     private double progress = 0;
+    private GamePosition activePosition = GamePosition.None;
 
 
     private CursorStatus(){
@@ -45,5 +47,15 @@ public class CursorStatus extends Observable implements CursorStatusListener {
 
     public double getProgress() {
         return progress;
+    }
+
+    public GamePosition getActivePosition() {
+        return activePosition;
+    }
+
+    public void setGamePosition(GamePosition position){
+        activePosition = position;
+        setChanged();
+        notifyObservers();
     }
 }

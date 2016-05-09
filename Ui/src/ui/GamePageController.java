@@ -14,6 +14,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 public class GamePageController {
     private Stage _parent;
+    private String _gamephase;
 
     @FXML Canvas canvis;
 
@@ -64,6 +66,7 @@ public class GamePageController {
         _gameGameController.addObserver(new Observer() {
             @Override
             public void update(Observable o, Object arg) {
+                setGamephase(_gameGameController.getGamephase().toString());
                 System.out.println("Move detected - Updating gamefield");
                 GraphicsContext context = canvis.getGraphicsContext2D();
                 //drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
@@ -77,6 +80,7 @@ public class GamePageController {
         drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
         CursorStatus cursorStatus = CursorStatus.getInstance();
         drawCircle(context, Color.BEIGE, 3, (int)((cursorStatus.getPosX()) * canvis.getWidth()), (int)((cursorStatus.getPosY()) * canvis.getHeight()));
+        drawGamephase(context);
     }
 
     private void remap(){
@@ -145,10 +149,21 @@ public class GamePageController {
     private void drawGameField(GraphicsContext context, List<GameToken> player1Token, List<GameToken> player2Token) {
         player1Token.forEach((gameToken) -> drawGameToken(context, gameToken));
         player2Token.forEach((gameToken) -> drawGameToken(context, gameToken));
+        drawActivePosition(context, CursorStatus.getInstance().getActivePosition());
+    }
+
+    private void drawActivePosition(GraphicsContext context, GamePosition gamePosition){
+        float radius = 25;
+        Point point = _gamePositionMappings.get(gamePosition);
+
+        if (point == null){
+            return;
+        }
+
+        drawCircle(context, Color.BLACK, radius, point.x, point.y);
     }
 
     private void drawGameToken(GraphicsContext context, GameToken gameToken) {
-        System.out.println("Drawing game token...");
         float radius = 50;
         Point point = _gamePositionMappings.get(gameToken.getGamePosition());
 
@@ -170,5 +185,14 @@ public class GamePageController {
         int fixedY = (int)(y - radius/2);
         context.setFill(color);
         context.fillOval(fixedX, fixedY, radius, radius);
+    }
+
+    private void drawGamephase(GraphicsContext context){
+        context.setFill(Color.WHITE);
+        context.fillText(_gamephase, 20, 20, 150);
+    }
+
+    public void setGamephase(String gamephase){
+        _gamephase = gamephase;
     }
 }

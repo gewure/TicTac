@@ -80,7 +80,6 @@ public class InputDetection {
                 }
                 callback.cursorChangedEvent(setMarkerPos.x, setMarkerPos.y, (double) currentFrame / (double) _inputConfiguration.getConfirmationTime());
             } catch (NoMarkerDetectedException e) {
-                System.out.println("Marker not detected");
                 interruptionCount++;
                 if (interruptionCount > _inputConfiguration.getInterruptionTolerance()) {
                     currentFrame = 0;

@@ -150,7 +150,7 @@ public class GameFacade extends Observable {
             if(game.positionHasPieceOfPlayer(orig, getCurrentPlayer())) {
                 if (game.positionIsAvailable(dest)) {
                     game.movePieceFromTo(orig, dest, getCurrentPlayer());
-                    setPartOfNextPlayerPhase(game);
+                    setNextPlayerPhase(dest, game);
                 } else {
                     return false;
                 }
