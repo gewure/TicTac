@@ -4,11 +4,15 @@ import Gateway.GamePosition;
 import Gateway.GameToken;
 import Logic.Token;
 import app.GameController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.*;
@@ -18,13 +22,31 @@ import java.util.List;
  * Created by simon_000 on 06/04/2016.
  */
 public class GamePageController {
+    private Stage _parent;
 
     @FXML Canvas canvis;
 
     private GameController _gameGameController;
     private HashMap<GamePosition, Point> _gamePositionMappings;
 
-    public GamePageController(GameController gameController) {
+    public GamePageController(GameController gameController, Stage parent) {
+        _parent = parent;
+        _parent.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvis.setWidth(newValue.doubleValue());
+                drawBackground(canvis.getGraphicsContext2D());
+            }
+        });
+
+        _parent.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                canvis.setHeight(newValue.doubleValue());
+                drawBackground(canvis.getGraphicsContext2D());
+            }
+        });
+
         _gameGameController = gameController;
 
         _gamePositionMappings = new HashMap<>();
@@ -69,10 +91,10 @@ public class GamePageController {
         context.clearRect(0, 0, canvis.getWidth(), canvis.getHeight());
 
         context.setFill(Color.BLACK);
-        context.fill();
+        context.fillRect(0,0, canvis.getWidth(), canvis.getHeight());
         Image image = new Image("/ui/gameboard.png");
 
-        context.drawImage(image, 100, 0);
+        context.drawImage(image, canvis.getWidth()/2 - image.getWidth()/2, canvis.getHeight()/2 - image.getHeight()/2);
         context.save();
     }
 

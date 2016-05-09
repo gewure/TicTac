@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77e5e519-8292-4211-8325-7323b696b3dc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/gameboard.png" afterPath="$PROJECT_DIR$/Ui/src/ui/gameboard.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/GamePage.fxml" afterPath="$PROJECT_DIR$/Ui/src/ui/GamePage.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" afterPath="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/Main.java" afterPath="$PROJECT_DIR$/Ui/src/ui/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" afterPath="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" />
     </list>
     <ignored path="tictac.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,7 +26,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="C:\Users\Zopo\Dropbox\IdeaProjects\TicTac" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -66,33 +70,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShapeUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/shapdetection/shapes/ShapeUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InputDetection.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="InputDetection.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37960956">
+            <state vertical-scroll-proportion="0.0">
               <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GamePageController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GamePageController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
           <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.26681128">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Ui/src/ui/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+              <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -128,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/Ui/src/ui/StartPageController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+              <caret line="98" column="90" selection-start-line="98" selection-start-column="90" selection-end-line="98" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -179,7 +181,6 @@
         <option value="$PROJECT_DIR$/Ui/src/StartPageController.java" />
         <option value="$PROJECT_DIR$/HarwareInterface/src/at/fhv/itb6/arp/hardwareinterface/CameraInterface.java" />
         <option value="$PROJECT_DIR$/Ui/src/Main.java" />
-        <option value="$PROJECT_DIR$/Ui/src/ui/Main.java" />
         <option value="$PROJECT_DIR$/Game/src/GameGateway.java" />
         <option value="$PROJECT_DIR$/Application/src/app/GameType.java" />
         <option value="$PROJECT_DIR$/Game/src/PlayerIdentifier.java" />
@@ -207,9 +208,10 @@
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetectionTest.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputMedianFilter.java" />
-        <option value="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
-        <option value="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" />
+        <option value="$PROJECT_DIR$/Ui/src/ui/Main.java" />
+        <option value="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" />
+        <option value="$PROJECT_DIR$/Ui/src/ui/GamePageController.java" />
       </list>
     </option>
   </component>
@@ -1124,7 +1126,7 @@
       <workItem from="1462455552392" duration="4780000" />
       <workItem from="1462514363226" duration="1794000" />
       <workItem from="1462783985124" duration="153000" />
-      <workItem from="1462796192609" duration="3308000" />
+      <workItem from="1462796192609" duration="5478000" />
     </task>
     <task id="LOCAL-00001" summary="fixed project structure">
       <created>1462000891923</created>
@@ -1204,15 +1206,21 @@
       <option name="project" value="LOCAL" />
       <updated>1462799142705</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="RIP RAM">
+      <created>1462799531685</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1462799531685</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44944000" />
+    <option name="totallyTimeSpent" value="47114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1726" height="928" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1221,7 +1229,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943925" sideWeight="0.5021436" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15625" sideWeight="0.49375" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32880434" sideWeight="0.49785638" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32880434" sideWeight="0.49785638" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2738815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1267,11 +1275,12 @@
     <MESSAGE value="added biderectional mapping for gamtoken&#10;" />
     <MESSAGE value="finished game loop. transformation from input detection to GamePositions still missing" />
     <MESSAGE value="Sorry Simon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sorry Simon" />
+    <MESSAGE value="RIP RAM" />
+    <option name="LAST_COMMIT_MESSAGE" value="RIP RAM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1511,13 +1520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ui/src/ui/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70016474">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game/src/Logic/HumanPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39209226">
@@ -1666,18 +1668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
-          <folding>
-            <element signature="e#2897#2898#0" expanded="true" />
-            <element signature="e#2948#2949#0" expanded="true" />
-            <element signature="e#2990#2991#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputMedianFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1690,11 +1680,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
+    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="115" column="33" selection-start-line="115" selection-start-column="33" selection-end-line="115" selection-end-column="33" />
+          <folding>
+            <element signature="e#2897#2898#0" expanded="true" />
+            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2990#2991#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1711,25 +1723,23 @@
     <entry file="file://$PROJECT_DIR$/Ui/src/ui/StartPageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <caret line="98" column="90" selection-start-line="98" selection-start-column="90" selection-end-line="98" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java">
+    <entry file="file://$PROJECT_DIR$/Ui/src/ui/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java">
+    <entry file="file://$PROJECT_DIR$/Ui/src/ui/GamePageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37960956">
-          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.26681128">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>

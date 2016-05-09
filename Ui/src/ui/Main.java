@@ -23,7 +23,7 @@ public class Main extends Application implements IPanelCloseHandler {
 
 			FXMLLoader loader = new FXMLLoader();
 
-			StartPageController controller = new StartPageController();
+			StartPageController controller = new StartPageController(primaryStage);
 			controller.setPanelCloseHandler(this);
 
 			loader.setController(controller);

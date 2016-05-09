@@ -36,6 +36,7 @@ import java.io.IOException;
 public class StartPageController implements IPanelClosable{
 
     private IPanelCloseHandler _panelCloseHandler;
+    private Stage _parent;
 
     @FXML
     private ToggleGroup GameMode;
@@ -55,7 +56,8 @@ public class StartPageController implements IPanelClosable{
     private Integer _cameraID;
     private InputConfiguration _inputConfiguration;
 
-    public StartPageController() {
+    public StartPageController(Stage parent) {
+        _parent = parent;
         _gameSetupController = new GameSetupController();
     }
 
@@ -94,7 +96,7 @@ public class StartPageController implements IPanelClosable{
         System.out.println("Start meeeeeeeeeeeeeeee!");
 
         GameController gameController = _gameSetupController.start(_inputConfiguration, _gameType);
-        GamePageController pageController = new GamePageController(gameController);
+        GamePageController pageController = new GamePageController(gameController, _parent);
         _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), pageController);
 
     }
