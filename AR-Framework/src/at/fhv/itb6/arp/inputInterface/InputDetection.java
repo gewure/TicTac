@@ -35,7 +35,7 @@ public class InputDetection {
      * @throws NoMarkerDetectedException
      */
     public InputAction getUserInput(CursorStatusListener callback) {
-        if (_inputConfiguration.isGameboardDetected()) {
+        if (!_inputConfiguration.isGameboardDetected()) {
             detectGameboard();
         }
 

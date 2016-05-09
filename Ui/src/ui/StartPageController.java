@@ -28,6 +28,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -92,7 +93,7 @@ public class StartPageController implements IPanelClosable{
     void startGameEventHandler(ActionEvent event) throws IOException {
         System.out.println("Start meeeeeeeeeeeeeeee!");
 
-        GameController gameController = _gameSetupController.start(_cameraID, _gameType);
+        GameController gameController = _gameSetupController.start(_inputConfiguration, _gameType);
         _panelCloseHandler.closeNext(getClass().getResource("GamePage.fxml"), new GamePageController(gameController));
     }
 
@@ -126,7 +127,15 @@ public class StartPageController implements IPanelClosable{
 
                 CameraInterface ic = new CameraInterface(_cameraID);
                 Mat image = ic.readImage();
-                Mat gameboard = ShapeUtil.perspectiveCorrection(image, _inputConfiguration.getGameboardRectangle(), new Size(200,150));
+                Mat gameboard = ShapeUtil.perspectiveCorrection(image, _inputConfiguration.getGameboardRectangle(), new Size(imageCanvas.getWidth(),imageCanvas.getHeight()));
+
+                Imgproc.resize(image, image, new Size(rawImageCanvas.getWidth(), rawImageCanvas.getHeight()));
+
+                try {
+                    ic.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 MatOfByte byteMat = new MatOfByte();
                 Imgcodecs.imencode(".bmp", gameboard, byteMat);

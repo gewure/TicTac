@@ -9,6 +9,7 @@ import at.fhv.itb6.arp.inputInterface.InputDetection;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by simon_000 on 30/04/2016.
@@ -38,10 +39,9 @@ public class ARFacade {
 
     private GameFacade _gameFacade;
 
-    public void init(int cameraID) {
-        InputConfiguration config = new InputConfiguration();
-        config.setHardwareId(cameraID);
-        _inputDetection = new InputDetection(config);
+    public void init(InputConfiguration inputConfiguration) {
+        _inputDetection = new InputDetection(inputConfiguration);
+        inputActions = new LinkedBlockingQueue<>();
     }
 
     public InputAction getCursorPosition() {
@@ -67,6 +67,7 @@ public class ARFacade {
             e.printStackTrace();
         }
 
+        System.out.println("Input Action found");
         return inputAction;
     }
 }

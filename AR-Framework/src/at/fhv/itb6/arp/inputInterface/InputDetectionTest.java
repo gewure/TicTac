@@ -51,14 +51,14 @@ public class InputDetectionTest {
                     correctedImage = id.rotateRight(correctedImage);
                 }
 
-                /*Scalar minCol = ic.getMinCol();
+                Scalar minCol = ic.getMinCol();
                 Scalar maxCol = ic.getMaxCol();
 
                 colorOnly = new Mat();
-                Core.inRange(correctedImage, minCol, maxCol, colorOnly);
+                Core.inRange(frame, minCol, maxCol, colorOnly);
                 Imgproc.erode(colorOnly, colorOnly, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(7,7)));
                 //Imgproc.erode(colorOnly, colorOnly, Imgproc.getGaussianKernel(10, 1));
-                */
+
 
                 //Detect marker position
                 Point markerPos = id.getMarkerPos(correctedImage);
@@ -71,7 +71,7 @@ public class InputDetectionTest {
             } catch (NoMarkerDetectedException e) {
             }
 
-            imshow.showImage(correctedImage);
+            imshow.showImage(colorOnly);
         }
 
     }

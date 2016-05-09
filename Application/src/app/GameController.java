@@ -6,6 +6,7 @@ import Gateway.GameToken;
 import Logic.Phase;
 import Logic.Token;
 import at.fhv.itb6.arp.ARFacade;
+import at.fhv.itb6.arp.inputInterface.InputConfiguration;
 
 import java.util.List;
 import java.util.Observable;
@@ -19,7 +20,7 @@ public class GameController extends Observable implements Runnable{
     private  GameFacade _gameFacade;
     private CursorPositionToGamePositionMapper _mapping;
     private boolean _gameOver;
-    public GameController(Integer cameraID, GameType gameType) {
+    public GameController(InputConfiguration inputConfiguration, GameType gameType) {
         _gameFacade = new GameFacade();
         _mapping = new CursorPositionToGamePositionMapper();
 
@@ -30,7 +31,7 @@ public class GameController extends Observable implements Runnable{
             }
         });
 
-        ARFacade.getInstance().init(cameraID);
+        ARFacade.getInstance().init(inputConfiguration);
 
         start();
     }

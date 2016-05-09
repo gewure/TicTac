@@ -48,8 +48,8 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Canvas fx:id="rawImageCanvas" height="300.0" width="400.0" />
-                  <Canvas fx:id="imageCanvas" height="150.0" width="200.0" />
+                  <Canvas fx:id="rawImageCanvas" height="300.0" width="360.0" />
+                  <Canvas fx:id="imageCanvas" height="250.0" width="300.0" />
                </children>
             </HBox>
          </children>
