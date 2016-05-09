@@ -6,12 +6,9 @@ import at.fhv.itb6.arp.inputInterface.CursorStatusListener;
 import at.fhv.itb6.arp.inputInterface.InputAction;
 import at.fhv.itb6.arp.inputInterface.InputConfiguration;
 import at.fhv.itb6.arp.inputInterface.InputDetection;
-import at.fhv.itb6.arp.inputInterface.exceptions.GamebordersNotDetectedException;
-import at.fhv.itb6.arp.inputInterface.exceptions.NoMarkerDetectedException;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
-import java.util.function.IntUnaryOperator;
 
 /**
  * Created by simon_000 on 30/04/2016.
