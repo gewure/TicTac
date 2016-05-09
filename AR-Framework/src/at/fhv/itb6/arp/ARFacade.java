@@ -2,10 +2,7 @@ package at.fhv.itb6.arp;
 
 import Gateway.GameFacade;
 import at.fhv.itb6.arp.hardwareinterface.CameraInterface;
-import at.fhv.itb6.arp.inputInterface.CursorStatusListener;
-import at.fhv.itb6.arp.inputInterface.InputAction;
-import at.fhv.itb6.arp.inputInterface.InputConfiguration;
-import at.fhv.itb6.arp.inputInterface.InputDetection;
+import at.fhv.itb6.arp.inputInterface.*;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -40,7 +37,13 @@ public class ARFacade {
     private GameFacade _gameFacade;
 
     public void init(InputConfiguration inputConfiguration) {
-        _inputDetection = new InputDetection(inputConfiguration);
+        if (inputConfiguration.isUseMouseSimulation()){
+            _inputDetection = new MouseInputSimulation(inputConfiguration);
+            inputConfiguration.setConfirmationTime(30000);
+        } else {
+            _inputDetection = new InputDetection(inputConfiguration);
+
+        }
         inputActions = new LinkedBlockingQueue<>();
     }
 

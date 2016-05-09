@@ -186,4 +186,8 @@ public class InputDetection {
             e.printStackTrace();
         }
     }
+
+    public InputConfiguration getInputConfiguration() {
+        return _inputConfiguration;
+    }
 }

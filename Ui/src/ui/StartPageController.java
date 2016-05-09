@@ -7,7 +7,6 @@ import app.GameSetupController;
 import app.GameType;
 import at.fhv.itb6.arp.hardwareinterface.CameraInterface;
 import at.fhv.itb6.arp.inputInterface.InputConfiguration;
-import at.fhv.itb6.arp.inputInterface.InputDetection;
 import at.fhv.itb6.arp.shapdetection.shapes.Rectangle;
 import at.fhv.itb6.arp.shapdetection.shapes.ShapeUtil;
 import javafx.application.Platform;
@@ -37,6 +36,9 @@ public class StartPageController implements IPanelClosable{
 
     private IPanelCloseHandler _panelCloseHandler;
     private Stage _parent;
+
+    @FXML
+    private CheckBox chkMouse;
 
     @FXML
     private ToggleGroup GameMode;
@@ -94,6 +96,8 @@ public class StartPageController implements IPanelClosable{
     @FXML
     void startGameEventHandler(ActionEvent event) throws IOException {
         System.out.println("Start meeeeeeeeeeeeeeee!");
+
+        _inputConfiguration.setUseMouseSimulation(chkMouse.isSelected());
 
         GameController gameController = _gameSetupController.start(_inputConfiguration, _gameType);
         GamePageController pageController = new GamePageController(gameController, _parent);
