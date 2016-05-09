@@ -19,7 +19,7 @@ public class CursorPositionToGamePositionMapper {
         regions = new ArrayList<>();
 
         //add mapping for stuff with function addMapping
-        addMapping(0.275, 0.097, 0.03, GamePosition.Out0);
+        addMapping(0.275, 0.097, 0.05, GamePosition.Out0);
     }
 
     public GamePosition map(InputAction inputAction){
@@ -40,6 +40,7 @@ public class CursorPositionToGamePositionMapper {
             System.out.println("No appropiate mapping found!");
         }
 
+        System.out.println(gamePosition.toString());
         return gamePosition;
     }
 
@@ -63,7 +64,7 @@ public class CursorPositionToGamePositionMapper {
         }
 
         public boolean inRange(Point point2) {
-            return calcDistance(point2) >= distance;
+            return calcDistance(point2) <= distance;
         }
 
         private double calcDistance(Point point2) {

@@ -4,6 +4,7 @@ import Gateway.GamePosition;
 import Gateway.GameToken;
 import Logic.Token;
 import app.GameController;
+import at.fhv.itb6.arp.CursorStatus;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -35,7 +36,8 @@ public class GamePageController {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 canvis.setWidth(newValue.doubleValue());
-                drawBackground(canvis.getGraphicsContext2D());
+                //drawBackground(canvis.getGraphicsContext2D());
+                redraw(canvis.getGraphicsContext2D());
             }
         });
 
@@ -43,7 +45,8 @@ public class GamePageController {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 canvis.setHeight(newValue.doubleValue());
-                drawBackground(canvis.getGraphicsContext2D());
+                //drawBackground(canvis.getGraphicsContext2D());
+                redraw(canvis.getGraphicsContext2D());
             }
         });
 
@@ -81,10 +84,17 @@ public class GamePageController {
             @Override
             public void update(Observable o, Object arg) {
                 GraphicsContext context = canvis.getGraphicsContext2D();
-                drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
-
+                //drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
+                redraw(context);
             }
         });
+    }
+
+    private void redraw(GraphicsContext context){
+        drawBackground(context);
+        drawGameField(context, _gameGameController.getPlayer1GameTokens(), _gameGameController.getPlayer2GameTokens());
+        CursorStatus cursorStatus = CursorStatus.getInstance();
+        drawCircle(context, Color.BEIGE, 3, (int)(cursorStatus.getPosX() * canvis.getWidth()), (int)(cursorStatus.getPosY() * canvis.getHeight()));
     }
 
     private void drawBackground(GraphicsContext context) {
@@ -95,6 +105,15 @@ public class GamePageController {
         Image image = new Image("/ui/gameboard.png");
 
         context.drawImage(image, canvis.getWidth()/2 - image.getWidth()/2, canvis.getHeight()/2 - image.getHeight()/2);
+
+        /*context.setFill(Color.BLUE);
+        for (int i = 0; i < 10; i++){
+            for (int j = 0; j < 10; j++){
+                context.strokeLine(i/10, 0, i/10, canvis.getHeight());
+            }
+        }
+        */
+
         context.save();
     }
 
@@ -105,7 +124,6 @@ public class GamePageController {
     }
 
     private void drawGameField(GraphicsContext context, List<GameToken> player1Token, List<GameToken> player2Token) {
-        drawBackground(context);
         player1Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
         player2Token.forEach((gameToken) -> drawGameToken(context, gameToken, 100));
     }

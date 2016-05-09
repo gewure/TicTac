@@ -45,21 +45,24 @@ public class ARFacade {
     }
 
     public InputAction getCursorPosition() {
+        InputAction inputAction = null;
+
         Thread readInputThread = new Thread(() -> {
-            boolean cursorNotFound = true;
-            while(cursorNotFound) {
-                    InputAction inputAction = _inputDetection.getUserInput(new CursorStatusListener() {
-                        @Override
-                        public void cursorChangedEvent(double posX, double posY, double progress) {
-                            //ignore ask zopo
-                        }
-                    });
-                    cursorNotFound = false;
+            try {
+                inputActions.put(_inputDetection.getUserInput(new CursorStatusListener() {
+                   @Override
+                   public void cursorChangedEvent(double posX, double posY, double progress) {
+                       CursorStatus cursorStatus = CursorStatus.getInstance();
+                       cursorStatus.cursorChangedEvent(posX, posY, progress);
+                       //ignore ask zopo
+                   }
+               }));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
         readInputThread.start();
 
-        InputAction inputAction = null;
         try {
              inputAction = inputActions.take(); // will block until the readInputThread has detected the cursor
             inputActions.clear();

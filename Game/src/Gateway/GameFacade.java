@@ -241,7 +241,7 @@ public class GameFacade extends Observable {
             }
         }
 
-        this.hasChanged();
+        this.setChanged();
         this.notifyObservers();
     }
 

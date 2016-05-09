@@ -85,6 +85,7 @@ public class StartPageController implements IPanelClosable{
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
                 _cameraID = newValue;
                 _inputConfiguration.setHardwareId(_cameraID);
+                _inputConfiguration.setCameraPosition(InputConfiguration.CameraPosition.TOP);
             }
         });
 
@@ -110,8 +111,10 @@ public class StartPageController implements IPanelClosable{
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                final Stage popup = new Stage();
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("BorderDetection.fxml"));
-                BorderDetectionController bdc = new BorderDetectionController(_inputConfiguration);
+                BorderDetectionController bdc = new BorderDetectionController(_inputConfiguration, popup);
                 loader.setController(bdc);
                 Parent root = null;
                 try {
@@ -120,7 +123,6 @@ public class StartPageController implements IPanelClosable{
                     e.printStackTrace();
                 }
                 bdc.initialize();
-                final Stage popup = new Stage();
                 popup.setFullScreen(true);
                 Scene borderDetectionScene = new Scene(root);
                 popup.setScene(borderDetectionScene);

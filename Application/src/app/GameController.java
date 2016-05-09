@@ -71,6 +71,8 @@ public class GameController extends Observable implements Runnable{
         } else if(phase == Phase.PLACING_PLAYER1 || phase == Phase.PLACING_PLAYER2) {
             _gameFacade.placeGameToken(src);
         }
+
+        gameStateChanged();
     }
 
     private GamePosition readeInput(){
