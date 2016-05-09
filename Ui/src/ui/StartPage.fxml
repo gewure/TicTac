@@ -46,7 +46,12 @@
                      </HBox.margin></Button>
                </children>
             </HBox>
-            <Canvas fx:id="imageCanvas" height="254.0" width="336.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Canvas fx:id="rawImageCanvas" height="300.0" width="400.0" />
+                  <Canvas fx:id="imageCanvas" height="150.0" width="200.0" />
+               </children>
+            </HBox>
          </children>
          <HBox.margin>
             <Insets />

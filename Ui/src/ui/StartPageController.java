@@ -45,6 +45,9 @@ public class StartPageController implements IPanelClosable{
     @FXML
     private Canvas imageCanvas;
 
+    @FXML
+    private Canvas rawImageCanvas;
+
 
     private GameSetupController _gameSetupController;
     private GameType _gameType;
@@ -123,16 +126,21 @@ public class StartPageController implements IPanelClosable{
 
                 CameraInterface ic = new CameraInterface(_cameraID);
                 Mat image = ic.readImage();
-                Mat gameboard = ShapeUtil.perspectiveCorrection(image, _inputConfiguration.getGameboardRectangle(), new Size(400,400));
+                Mat gameboard = ShapeUtil.perspectiveCorrection(image, _inputConfiguration.getGameboardRectangle(), new Size(200,150));
 
                 MatOfByte byteMat = new MatOfByte();
                 Imgcodecs.imencode(".bmp", gameboard, byteMat);
                 Image asImage = new Image(new ByteArrayInputStream(byteMat.toArray()));
 
+                MatOfByte byteMatRaw = new MatOfByte();
+                Imgcodecs.imencode(".bmp", image, byteMat);
+                Image rawAsImage = new Image(new ByteArrayInputStream(byteMat.toArray()));
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
                         imageCanvas.getGraphicsContext2D().drawImage(asImage, 0, 0);
+                        rawImageCanvas.getGraphicsContext2D().drawImage(rawAsImage, 0, 0);
                     }
                 });
             }

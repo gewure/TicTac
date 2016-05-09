@@ -146,13 +146,13 @@ public class InputDetection {
 
     public void detectGameboard(){
         CameraInterface cam = new CameraInterface(_inputConfiguration.getHardwareId());
-        Mat frame = cam.readImage();
         _inputConfiguration.setGameboardDetected(false);
 
         Rectangle borderRect = null;
 
         while (!_inputConfiguration.isGameboardDetected()){
             try {
+                Mat frame = cam.readImage();
                 ShapeDetection.detect(frame);
                 Map<Class, List<Polygon>> detectedPolygons = ShapeDetection.detect(frame);
                 borderRect = getBorderRect(detectedPolygons.get(Rectangle.class));
@@ -160,8 +160,10 @@ public class InputDetection {
                 _inputConfiguration.setGameboardRectangle(borderRect);
                 _inputConfiguration.setGameboardDetected(true);
             } catch (GamebordersNotDetectedException e) {
+                e.printStackTrace();
             }
         }
+
         try {
             cam.close();
         } catch (IOException e) {
