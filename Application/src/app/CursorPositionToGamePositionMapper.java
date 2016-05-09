@@ -19,6 +19,7 @@ public class CursorPositionToGamePositionMapper {
         regions = new ArrayList<>();
 
         //add mapping for stuff with function addMapping
+        addMapping(0.275, 0.097, 0.03, GamePosition.Out0);
     }
 
     public GamePosition map(InputAction inputAction){
@@ -38,7 +39,7 @@ public class CursorPositionToGamePositionMapper {
         return gamePosition;
     }
 
-    public void addMapping(double xPos, double yPos, int distance, GamePosition gamePosition) {
+    public void addMapping(double xPos, double yPos, double distance, GamePosition gamePosition) {
         Point p = new Point();
         p.x = xPos;
         p.y = yPos;
