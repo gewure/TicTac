@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AR-Framework/AR-Framework.iml" filepath="$PROJECT_DIR$/AR-Framework/AR-Framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Application/Application.iml" filepath="$PROJECT_DIR$/Application/Application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Examples/Examples.iml" filepath="$PROJECT_DIR$/Examples/Examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Game/Game.iml" filepath="$PROJECT_DIR$/Game/Game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" filepath="$PROJECT_DIR$/HarwareInterface/HarwareInterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Ui/Ui.iml" filepath="$PROJECT_DIR$/Ui/Ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tictac.iml" filepath="$PROJECT_DIR$/tictac.iml" />
+    </modules>
+  </component>
+</project>
