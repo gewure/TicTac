@@ -73,7 +73,7 @@ public class InputDetectionTest {
             } catch (NoMarkerDetectedException e) {
             }
 
-            imshow.showImage(correctedImage);
+            imshow.showImage(colorOnly);
         }
 
     }

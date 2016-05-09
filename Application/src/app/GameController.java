@@ -59,7 +59,7 @@ public class GameController extends Observable implements Runnable{
     private void actOnPhase(Phase phase) {
         GamePosition src = readeInput();
 
-        System.out.println("Input received");
+        System.out.println("Input received: " + phase.toString());
 
         if(phase == Phase.MOVING_PLAYER1 || phase == Phase.MOVING_PLAYER2) {
             GamePosition dest = readeInput();

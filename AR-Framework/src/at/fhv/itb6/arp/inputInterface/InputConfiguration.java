@@ -11,15 +11,15 @@ import org.opencv.core.Scalar;
  */
 public class InputConfiguration {
     private int _hardwareId = 1;
-    private int _confirmationTime = 60;
+    private int _confirmationTime = 4;
     private int _interruptionTolerance = 2;
     private int _medianRange = 6;
     private double _sensivityX = 0.03;
     private double _sensivityY = 0.03;
-    private Scalar _minCol = new Scalar(0, 60, 0);
+    private Scalar _minCol = new Scalar(0, 50, 0);
     private Scalar _maxCol = new Scalar(55, 255, 55);
     private int _makerBufferSize = 30;
-    private int _cameraPosition = CameraPosition.TOP;
+    private int _cameraPosition = CameraPosition.BOTTOM;
     private boolean _gameboardDetected = false;
     private Rectangle _gameboardRectangle;
 

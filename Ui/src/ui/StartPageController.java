@@ -85,7 +85,6 @@ public class StartPageController implements IPanelClosable{
             public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
                 _cameraID = newValue;
                 _inputConfiguration.setHardwareId(_cameraID);
-                _inputConfiguration.setCameraPosition(InputConfiguration.CameraPosition.TOP);
             }
         });
 
