@@ -22,6 +22,7 @@ public class InputConfiguration {
     private int _cameraPosition = CameraPosition.BOTTOM;
     private boolean _gameboardDetected = false;
     private Rectangle _gameboardRectangle;
+    private boolean _useMouseSimulation = false;
 
 
 
@@ -127,5 +128,13 @@ public class InputConfiguration {
         public static int LEFT = 1;
         public static int TOP = 2;
         public static int RIGHT = 3;
+    }
+
+    public boolean isUseMouseSimulation() {
+        return _useMouseSimulation;
+    }
+
+    public void setUseMouseSimulation(boolean useMouseSimulation) {
+        _useMouseSimulation = useMouseSimulation;
     }
 }

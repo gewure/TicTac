@@ -17,6 +17,7 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton mnemonicParsing="false" text="PVC" toggleGroup="$GameMode" />
+            <CheckBox fx:id="chkMouse" mnemonicParsing="false" text="Use mouse" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
