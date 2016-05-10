@@ -81,7 +81,6 @@ public class GameController extends Observable implements Runnable{
 
         } else if(phase == Phase.REMOVING_PLAYER1 || phase == Phase.REMOVING_PLAYER2) {
             _gameFacade.removeGameToken(src);
-            _gameFacade.getWonPlayer();
 
         } else if(phase == Phase.PLACING_PLAYER1 || phase == Phase.PLACING_PLAYER2) {
             _gameFacade.placeGameToken(src);
