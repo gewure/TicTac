@@ -303,4 +303,11 @@ public class GameFacade extends Observable {
         }
     }
 
+    public int getUnusedTokensPlayer1(){
+        return game.getGameBoard().getUnplayedPiecesP1();
+    }
+
+    public int getUnusedTokensPlayer2(){
+        return game.getGameBoard().getUnplayedPiecesP2();
+    }
 }

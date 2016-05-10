@@ -150,6 +150,28 @@ public class GamePageController {
         player1Token.forEach((gameToken) -> drawGameToken(context, gameToken));
         player2Token.forEach((gameToken) -> drawGameToken(context, gameToken));
         drawActivePosition(context, CursorStatus.getInstance().getActivePosition());
+
+        drawUnusedTokens(context);
+    }
+
+    private void drawUnusedTokens(GraphicsContext context){
+        float radius = 50;
+
+        int p1 = _gameGameController.getUnusedTokensPlayer1();
+        int p2 = _gameGameController.getUnusedTokensPlayer2();
+
+        Point startP1 = new Point(45, 60);
+        Point startP2 = new Point((int)(canvis.getWidth() - 45), 60);
+
+        for (int i = 0; i < p1; i++){
+            drawCircle(context, Color.RED, radius, startP1.x, startP1.y);
+            startP1.y += radius + 5;
+        }
+
+        for (int i = 0; i < p2; i++){
+            drawCircle(context, Color.BLUE, radius, startP2.x, startP2.y);
+            startP2.y += radius + 5;
+        }
     }
 
     private void drawActivePosition(GraphicsContext context, GamePosition gamePosition){

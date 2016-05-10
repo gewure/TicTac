@@ -142,4 +142,12 @@ public class GameController extends Observable implements Runnable{
     public Phase getGamephase(){
         return _gameFacade.getCurrentPhase();
     }
+
+    public int getUnusedTokensPlayer1(){
+        return _gameFacade.getUnusedTokensPlayer1();
+    }
+
+    public int getUnusedTokensPlayer2(){
+        return _gameFacade.getUnusedTokensPlayer2();
+    }
 }
