@@ -70,10 +70,13 @@ public class GameController extends Observable implements Runnable{
     private void actOnPhase(Phase phase) {
         if (!_isPvp && (phase == Phase.MOVING_PLAYER2 || phase == Phase.PLACING_PLAYER2 || phase == Phase.REMOVING_PLAYER2)){
             try {
+                Thread.sleep(1500);
                 _gameFacade.makeAiMove();
             } catch (GameException e) {
                 e.printStackTrace();
                 return;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             gameStateChanged();
             return;

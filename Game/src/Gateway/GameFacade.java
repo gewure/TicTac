@@ -38,7 +38,7 @@ public class GameFacade extends Observable {
             if (isPvp){
                 player2 = new HumanPlayer("Player2", Token.PLAYER_2, 9);
             } else {
-                player2 = new MinimaxAIPlayer(Token.PLAYER_2, 9, 4);
+                player2 = new MinimaxAIPlayer(Token.PLAYER_2, 9, 7);
                 _aiPlayer = (AIPlayer) player2;
             }
         } catch (GameException e) {
