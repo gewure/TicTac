@@ -87,6 +87,11 @@ public class GameFacade extends Observable {
         if(currentPhase == Phase.REMOVING_PLAYER1 || currentPhase == Phase.REMOVING_PLAYER2) {
             if(game.isTheGameOver()) {
                 System.out.println("WINNER: " + _currentPlayer);
+                if(_currentPlayer == Token.PLAYER_1 ){
+                    setCurrentPhase(Phase.WON_PLAYER1);
+                } else{
+                    setCurrentPhase(Phase.WON_PLAYER2);
+                }
                 return _currentPlayer; //TODO check this!
             }
         }
