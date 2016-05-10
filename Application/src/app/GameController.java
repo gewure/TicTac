@@ -20,7 +20,6 @@ public class GameController extends Observable implements Runnable{
 
     private  GameFacade _gameFacade;
     private CursorPositionToGamePositionMapper _mapping;
-    private GamePosition _activePosition = GamePosition.None;
     private boolean _gameOver;
     public GameController(InputConfiguration inputConfiguration, GameType gameType) {
         _gameFacade = new GameFacade();
@@ -50,9 +49,9 @@ public class GameController extends Observable implements Runnable{
         while(_running) {
             actOnPhase(_gameFacade.getCurrentPhase());
 
-            if(_gameFacade.getWonPlayer() != Token.NO_PLAYER) {
-                _gameOver = true;
-            }
+//            if(_gameFacade.getWonPlayer() != Token.NO_PLAYER) {
+//                _gameOver = true;
+//            }
 
             gameStateChanged();
         }
@@ -60,18 +59,19 @@ public class GameController extends Observable implements Runnable{
 
     private void actOnPhase(Phase phase) {
         GamePosition src = readeInput();
-        _activePosition = src;
-        CursorStatus.getInstance().setGamePosition(src);
         gameStateChanged();
 
         System.out.println("Input received: " + phase.toString());
 
         if(phase == Phase.MOVING_PLAYER1 || phase == Phase.MOVING_PLAYER2) {
-            while (src == GamePosition.None){
+            while (src == GamePosition.None || !_gameFacade.isPositionOccupiedByCurrentPlayer(src)){
                 src = readeInput();
-                CursorStatus.getInstance().setGamePosition(src);
                 gameStateChanged();
+                System.out.println("Invalid position");
             }
+            CursorStatus.getInstance().setGamePosition(src);
+            gameStateChanged();
+
             GamePosition dest = readeInput();
             while (src == dest && dest == GamePosition.None){
                 dest = readeInput();
@@ -86,7 +86,6 @@ public class GameController extends Observable implements Runnable{
             _gameFacade.placeGameToken(src);
         }
 
-        _activePosition = GamePosition.None;
         CursorStatus.getInstance().setGamePosition(GamePosition.None);
         gameStateChanged();
     }
@@ -118,9 +117,5 @@ public class GameController extends Observable implements Runnable{
 
     public Phase getGamephase(){
         return _gameFacade.getCurrentPhase();
-    }
-
-    public GamePosition getActivePosition(){
-        return _activePosition;
     }
 }

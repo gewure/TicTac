@@ -52,9 +52,9 @@ public class GameFacade extends Observable {
     public void getWonPlayer() throws GameException {
         if(game.getGameBoard().getNumberOfPiecesOfPlayer(_currentPlayer) < 3){
             if (_currentPlayer == Token.PLAYER_1 && game.getGameBoard().getUnplayedPiecesP1() == 0) {
-                setCurrentPhase(Phase.WON_PLAYER1);
-            } else if (_currentPlayer == Token.PLAYER_2 && game.getGameBoard().getUnplayedPiecesP2() == 0) {
                 setCurrentPhase(Phase.WON_PLAYER2);
+            } else if (_currentPlayer == Token.PLAYER_2 && game.getGameBoard().getUnplayedPiecesP2() == 0) {
+                setCurrentPhase(Phase.WON_PLAYER1);
             }
         }
     }
@@ -271,6 +271,14 @@ public class GameFacade extends Observable {
         positionMapping.put(GamePosition.Center6,8);
         positionMapping.put(GamePosition.Center7,7);
 
+    }
+
+    public boolean isPositionOccupiedByCurrentPlayer(GamePosition position){
+        try {
+            return game.positionHasPieceOfPlayer(positionMapping.get(position), _currentPlayer);
+        } catch (GameException e) {
+            return false;
+        }
     }
 
 }

@@ -189,7 +189,7 @@ public class GamePageController {
 
     private void drawGamephase(GraphicsContext context){
         context.setFill(Color.WHITE);
-        context.fillText(_gamephase, 20, 20, 150);
+        context.fillText(_gamephase, 20, 20, 400);
     }
 
     public void setGamephase(String gamephase){

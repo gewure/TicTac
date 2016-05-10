@@ -68,8 +68,6 @@ public class InputDetection {
                 _inputMedianFilter.insertPoint(relativeMarkerPos);
                 relativeMarkerPos = _inputMedianFilter.getMedian();
 
-                System.out.println(relativeMarkerPos.x + "|" + relativeMarkerPos.y + "\t" + currentFrame);
-
                 //Check if the marker has moved
                 if (isMarkerMoved(setMarkerPos, relativeMarkerPos)) {
                     interruptionCount++;
