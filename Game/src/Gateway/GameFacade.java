@@ -17,28 +17,37 @@ public class GameFacade extends Observable {
     private Phase currentPhase;
     private Game game;
     private BiMap<GamePosition, Integer> positionMapping;
+    private boolean _isPvp;
+    private AIPlayer _aiPlayer;
 
-    public GameFacade() {
+    public GameFacade(boolean isPvp) {
         initializePositionMapping();
         _tokensPlayer1 = new ArrayList<>();
         _tokensPlayer2 = new ArrayList<>();
 
         game = new Game();
         LocalGame localGame = new LocalGame();
+        _isPvp = isPvp;
 
-        HumanPlayer humanPlayer1 = null;
-        HumanPlayer humanPlayer2 = null;
+
+        Player player1 = null;
+        Player player2 = null;
 
         try {
-            humanPlayer1 = new HumanPlayer("Player1", Token.PLAYER_1, 9);
-            humanPlayer2 = new HumanPlayer("Player2", Token.PLAYER_2, 9);
+            player1 = new HumanPlayer("Player1", Token.PLAYER_1, 9);
+            if (isPvp){
+                player2 = new HumanPlayer("Player2", Token.PLAYER_2, 9);
+            } else {
+                player2 = new MinimaxAIPlayer(Token.PLAYER_2, 9, 4);
+                _aiPlayer = (AIPlayer) player2;
+            }
         } catch (GameException e) {
             e.printStackTrace();
         }
         _currentPlayer = Token.PLAYER_1;
         setCurrentPhase(Phase.PLACING_PLAYER1);
 
-        localGame.setPlayers(humanPlayer1, humanPlayer2);
+        localGame.setPlayers(player1, player2);
     }
 
     public List<GameToken> getTokensPlayer1() {
@@ -278,6 +287,19 @@ public class GameFacade extends Observable {
             return game.positionHasPieceOfPlayer(positionMapping.get(position), _currentPlayer);
         } catch (GameException e) {
             return false;
+        }
+    }
+
+    public void makeAiMove() throws GameException {
+        if (getCurrentPhase() == Phase.MOVING_PLAYER2){
+            Move m = _aiPlayer.getPieceMove(game.getGameBoard(), game.getCurrentGamePhase());
+            moveGameToken(positionMapping.getKey(m.srcIndex), positionMapping.getKey(m.destIndex));
+        } else if (getCurrentPhase() == Phase.PLACING_PLAYER2){
+            int placeIndex = _aiPlayer.getIndexToPlacePiece(game.getGameBoard());
+            placeGameToken(positionMapping.getKey(placeIndex));
+        } else if (getCurrentPhase() == Phase.REMOVING_PLAYER2){
+            int removeIndex = _aiPlayer.getIndexToRemovePieceOfOpponent(game.getGameBoard());
+            removeGameToken(positionMapping.getKey(removeIndex));
         }
     }
 

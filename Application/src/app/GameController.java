@@ -3,6 +3,7 @@ package app;
 import Gateway.GameFacade;
 import Gateway.GamePosition;
 import Gateway.GameToken;
+import Logic.GameException;
 import Logic.Phase;
 import Logic.Token;
 import at.fhv.itb6.arp.ARFacade;
@@ -21,8 +22,17 @@ public class GameController extends Observable implements Runnable{
     private  GameFacade _gameFacade;
     private CursorPositionToGamePositionMapper _mapping;
     private boolean _gameOver;
+    private boolean _isPvp;
+
     public GameController(InputConfiguration inputConfiguration, GameType gameType) {
-        _gameFacade = new GameFacade();
+
+        if (gameType == GameType.vsPlayer){
+            _isPvp = true;
+        } else {
+            _isPvp = false;
+        }
+
+        _gameFacade = new GameFacade(_isPvp);
         _mapping = new CursorPositionToGamePositionMapper();
 
         _gameFacade.addObserver(new Observer() {
@@ -58,6 +68,17 @@ public class GameController extends Observable implements Runnable{
     }
 
     private void actOnPhase(Phase phase) {
+        if (!_isPvp && (phase == Phase.MOVING_PLAYER2 || phase == Phase.PLACING_PLAYER2 || phase == Phase.REMOVING_PLAYER2)){
+            try {
+                _gameFacade.makeAiMove();
+            } catch (GameException e) {
+                e.printStackTrace();
+                return;
+            }
+            gameStateChanged();
+            return;
+        }
+
         GamePosition src = readeInput();
         gameStateChanged();
 
