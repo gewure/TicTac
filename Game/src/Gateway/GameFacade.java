@@ -29,7 +29,6 @@ public class GameFacade extends Observable {
         LocalGame localGame = new LocalGame();
         _isPvp = isPvp;
 
-
         Player player1 = null;
         Player player2 = null;
 

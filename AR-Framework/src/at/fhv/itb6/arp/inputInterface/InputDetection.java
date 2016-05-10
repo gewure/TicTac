@@ -174,7 +174,6 @@ public class InputDetection {
                 _inputConfiguration.setGameboardRectangle(borderRect);
                 _inputConfiguration.setGameboardDetected(true);
             } catch (GamebordersNotDetectedException e) {
-                e.printStackTrace();
             }
         }
 

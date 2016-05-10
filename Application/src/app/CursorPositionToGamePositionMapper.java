@@ -52,6 +52,10 @@ public class CursorPositionToGamePositionMapper {
 
     }
 
+    public GamePosition map(Point point){
+        return map(new InputAction(point));
+    }
+
     public GamePosition map(InputAction inputAction){
 
         GamePosition gamePosition = GamePosition.None;

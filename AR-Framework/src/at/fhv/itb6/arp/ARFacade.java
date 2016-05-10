@@ -5,6 +5,8 @@ import at.fhv.itb6.arp.hardwareinterface.CameraInterface;
 import at.fhv.itb6.arp.inputInterface.*;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -16,7 +18,6 @@ public class ARFacade {
     private static ARFacade _instance;
 
     private  ARFacade() {
-
     }
 
     public static ARFacade getInstance() {
@@ -39,7 +40,7 @@ public class ARFacade {
     public void init(InputConfiguration inputConfiguration) {
         if (inputConfiguration.isUseMouseSimulation()){
             _inputDetection = new MouseInputSimulation(inputConfiguration);
-            inputConfiguration.setConfirmationTime(100000);
+            inputConfiguration.setConfirmationTime(90);
             inputConfiguration.setSensivityX(0.001);
             inputConfiguration.setSensivityY(0.001);
         } else {

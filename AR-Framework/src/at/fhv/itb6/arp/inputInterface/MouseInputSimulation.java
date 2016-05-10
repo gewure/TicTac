@@ -36,6 +36,11 @@ public class MouseInputSimulation extends InputDetection {
             currentFrame++;
 
             //Get pointer info
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             PointerInfo pi = MouseInfo.getPointerInfo();
 
 
