@@ -39,35 +39,6 @@ public class GameFacade extends Observable {
         setCurrentPhase(Phase.PLACING_PLAYER1);
 
         localGame.setPlayers(humanPlayer1, humanPlayer2);
-
-        //Todo: dummy values remove
-       /* _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out0));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out1));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out2));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out3));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out4));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out5));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out6));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Out7));
-
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle0));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle1));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle2));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle3));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle4));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle5));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle6));
-        _tokensPlayer2.add(new GameToken(PlayerIdentifier.Player2, GamePosition.Middle7));
-
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center0));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center1));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center2));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center2));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center3));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center4));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center5));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center6));
-        _tokensPlayer1.add(new GameToken(PlayerIdentifier.Player1, GamePosition.Center7));*/
     }
 
     public List<GameToken> getTokensPlayer1() {
@@ -78,24 +49,14 @@ public class GameFacade extends Observable {
         return _tokensPlayer2;
     }
 
-    /**
-     * get the won player!
-     *
-     * @return
-     */
-    public Token getWonPlayer() {
-        if(currentPhase == Phase.REMOVING_PLAYER1 || currentPhase == Phase.REMOVING_PLAYER2) {
-            if(game.isTheGameOver()) {
-                System.out.println("WINNER: " + _currentPlayer);
-                if(_currentPlayer == Token.PLAYER_1 && game.getGameBoard().getUnplayedPiecesP1() == 0){
-                    setCurrentPhase(Phase.WON_PLAYER1);
-                } else if(_currentPlayer == Token.PLAYER_2 && game.getGameBoard().getUnplayedPiecesP2() == 0){
-                    setCurrentPhase(Phase.WON_PLAYER2);
-                }
-                return _currentPlayer; //TODO check this!
+    public void getWonPlayer() throws GameException {
+        if(game.getGameBoard().getNumberOfPiecesOfPlayer(_currentPlayer) < 3){
+            if (_currentPlayer == Token.PLAYER_1 && game.getGameBoard().getUnplayedPiecesP1() == 0) {
+                setCurrentPhase(Phase.WON_PLAYER1);
+            } else if (_currentPlayer == Token.PLAYER_2 && game.getGameBoard().getUnplayedPiecesP2() == 0) {
+                setCurrentPhase(Phase.WON_PLAYER2);
             }
         }
-        return Token.NO_PLAYER;
     }
 
     private void setCurrentPlayer(Token currentPlayer) {
@@ -106,7 +67,6 @@ public class GameFacade extends Observable {
     public Token getCurrentPlayer() {
         return _currentPlayer;
     }
-
 
     public boolean removeGameToken(GamePosition position){
         if (position == GamePosition.None){
@@ -137,7 +97,11 @@ public class GameFacade extends Observable {
                 e.printStackTrace();
             }
         }
-        getWonPlayer();
+        try {
+            getWonPlayer();
+        } catch (GameException e) {
+            e.printStackTrace();
+        }
 
         gameStateChanged();
         return true;
@@ -155,8 +119,10 @@ public class GameFacade extends Observable {
         try {
             if(game.positionHasPieceOfPlayer(orig, getCurrentPlayer())) {
                 if (game.positionIsAvailable(dest)) {
-                    game.movePieceFromTo(orig, dest, getCurrentPlayer());
-                    setNextPlayerPhase(dest, game);
+                    int move = game.movePieceFromTo(orig, dest, getCurrentPlayer());
+                    if(move == 0) {
+                        setNextPlayerPhase(dest, game);
+                    }
                 } else {
                     return false;
                 }
