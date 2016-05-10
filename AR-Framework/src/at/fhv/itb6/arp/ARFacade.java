@@ -39,7 +39,9 @@ public class ARFacade {
     public void init(InputConfiguration inputConfiguration) {
         if (inputConfiguration.isUseMouseSimulation()){
             _inputDetection = new MouseInputSimulation(inputConfiguration);
-            inputConfiguration.setConfirmationTime(30000);
+            inputConfiguration.setConfirmationTime(100000);
+            inputConfiguration.setSensivityX(0.001);
+            inputConfiguration.setSensivityY(0.001);
         } else {
             _inputDetection = new InputDetection(inputConfiguration);
 

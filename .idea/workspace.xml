@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77e5e519-8292-4211-8325-7323b696b3dc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/MouseInputSimulation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" afterPath="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/StartPage.fxml" afterPath="$PROJECT_DIR$/Ui/src/ui/StartPage.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" afterPath="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" />
     </list>
     <ignored path="tictac.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ARFacade.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ARFacade.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.6320755">
+              <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StartPageController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StartPageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ui/src/ui/StartPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.31132075">
+            <state vertical-scroll-proportion="0.0">
               <caret line="99" column="71" selection-start-line="99" selection-start-column="71" selection-end-line="99" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -206,9 +201,9 @@
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputDetection.java" />
         <option value="$PROJECT_DIR$/Ui/src/MouseInputSimulation.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/InputConfiguration.java" />
-        <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" />
         <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/MouseInputSimulation.java" />
         <option value="$PROJECT_DIR$/Ui/src/ui/StartPageController.java" />
+        <option value="$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java" />
       </list>
     </option>
   </component>
@@ -1038,7 +1033,7 @@
       <workItem from="1462514363226" duration="1794000" />
       <workItem from="1462783985124" duration="153000" />
       <workItem from="1462796192609" duration="23418000" />
-      <workItem from="1462826692347" duration="6261000" />
+      <workItem from="1462826692347" duration="6840000" />
     </task>
     <task id="LOCAL-00001" summary="fixed project structure">
       <created>1462000891923</created>
@@ -1148,11 +1143,17 @@
       <option name="project" value="LOCAL" />
       <updated>1462826787587</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added mouse support">
+      <created>1462833097302</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1462833097302</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71315000" />
+    <option name="totallyTimeSpent" value="71894000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1726" height="928" extended-state="6" />
@@ -1216,7 +1217,8 @@
     <MESSAGE value="Updating Marker Position&#10;Improved Gameborder detection" />
     <MESSAGE value="Completed Mapping" />
     <MESSAGE value="A few dozen fixes 'n shit" />
-    <option name="LAST_COMMIT_MESSAGE" value="A few dozen fixes 'n shit" />
+    <MESSAGE value="Added mouse support" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added mouse support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1639,16 +1641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="52" selection-start-line="41" selection-start-column="52" selection-end-line="41" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/inputInterface/MouseInputSimulation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1663,8 +1655,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Ui/src/ui/StartPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31132075">
+        <state vertical-scroll-proportion="0.0">
           <caret line="99" column="71" selection-start-line="99" selection-start-column="71" selection-end-line="99" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AR-Framework/src/at/fhv/itb6/arp/ARFacade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6320755">
+          <caret line="41" column="53" selection-start-line="41" selection-start-column="53" selection-end-line="41" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
