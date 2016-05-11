@@ -135,7 +135,12 @@ public class GamePageController {
     private void remap(){
         _gamePositionMappings.clear();
 
-        _mapper = new CursorPositionToGamePositionMapper();
+        double standardRatio = 1366.0/768.0;
+        double actualRatio = canvis.getWidth()/canvis.getHeight();
+
+        double xScaling = actualRatio/standardRatio;
+
+        _mapper = new CursorPositionToGamePositionMapper(xScaling, 1);
         _gamePositionMappings.put(GamePosition.Out0, calcRelativePoint(_mapper.getMapping(GamePosition.Out0).getPosition()));
         _gamePositionMappings.put(GamePosition.Out1, calcRelativePoint(_mapper.getMapping(GamePosition.Out1).getPosition()));
         _gamePositionMappings.put(GamePosition.Out2, calcRelativePoint(_mapper.getMapping(GamePosition.Out2).getPosition()));
@@ -165,6 +170,7 @@ public class GamePageController {
         _gamePositionMappings.put(GamePosition.Center6, calcRelativePoint(_mapper.getMapping(GamePosition.Center6).getPosition()));
         _gamePositionMappings.put(GamePosition.Center7, calcRelativePoint(_mapper.getMapping(GamePosition.Center7).getPosition()));
 
+        _gameGameController.setMapping(_mapper);
     }
 
     private void drawBackground(GraphicsContext context) {

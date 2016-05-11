@@ -16,36 +16,44 @@ public class CursorPositionToGamePositionMapper {
 
     public List<Region> regions;
 
-    public CursorPositionToGamePositionMapper() {
+    public CursorPositionToGamePositionMapper(double xScale, double yScale) {
         regions = new ArrayList<>();
+        double outX = 0.29 * xScale;
+        double outY = 0.125 * yScale;
+        
+        double middleX = 0.35 * xScale;
+        double middleY = 0.25 * yScale;
+        
+        double centerX = 0.42 * xScale;
+        double centerY = 0.35 * yScale;
 
         //add mapping for stuff with function addMapping
-        addMapping(0.29, 0.125, 0.05, GamePosition.Out0);
-        addMapping(0.5, 0.125, 0.05, GamePosition.Out1);
-        addMapping(0.71, 0.125, 0.05, GamePosition.Out2);
-        addMapping(0.71, 0.5, 0.05, GamePosition.Out3);
-        addMapping(0.71, 0.875, 0.05, GamePosition.Out4);
-        addMapping(0.5, 0.875, 0.05, GamePosition.Out5);
-        addMapping(0.29, 0.875, 0.05, GamePosition.Out6);
-        addMapping(0.29, 0.5, 0.05, GamePosition.Out7);
+        addMapping(outX, outY, 0.05, GamePosition.Out0);
+        addMapping(0.5, outY, 0.05, GamePosition.Out1);
+        addMapping(1 - outX, outY, 0.05, GamePosition.Out2);
+        addMapping(1 - outX, 0.5, 0.05, GamePosition.Out3);
+        addMapping(1 - outX, 1 - outY, 0.05, GamePosition.Out4);
+        addMapping(0.5, 1 - outY, 0.05, GamePosition.Out5);
+        addMapping(outX, 1 - outY, 0.05, GamePosition.Out6);
+        addMapping(outX, 0.5, 0.05, GamePosition.Out7);
 
-        addMapping(0.35, 0.25, 0.05, GamePosition.Middle0);
-        addMapping(0.5, 0.25, 0.05, GamePosition.Middle1);
-        addMapping(0.65, 0.25, 0.05, GamePosition.Middle2);
-        addMapping(0.65, 0.5, 0.05, GamePosition.Middle3);
-        addMapping(0.65, 0.75, 0.05, GamePosition.Middle4);
-        addMapping(0.5, 0.75, 0.05, GamePosition.Middle5);
-        addMapping(0.35, 0.75, 0.05, GamePosition.Middle6);
-        addMapping(0.35, 0.5, 0.05, GamePosition.Middle7);
+        addMapping(middleX, middleY, 0.05, GamePosition.Middle0);
+        addMapping(0.5, middleY, 0.05, GamePosition.Middle1);
+        addMapping(1-middleX, middleY, 0.05, GamePosition.Middle2);
+        addMapping(1-middleX, 0.5, 0.05, GamePosition.Middle3);
+        addMapping(1-middleX, 1-middleY, 0.05, GamePosition.Middle4);
+        addMapping(0.5, 1-middleY, 0.05, GamePosition.Middle5);
+        addMapping(middleX, 1-middleY, 0.05, GamePosition.Middle6);
+        addMapping(middleX, 0.5, 0.05, GamePosition.Middle7);
 
-        addMapping(0.42, 0.35, 0.05, GamePosition.Center0);
-        addMapping(0.5, 0.35, 0.05, GamePosition.Center1);
-        addMapping(0.58, 0.35, 0.05, GamePosition.Center2);
-        addMapping(0.58, 0.5, 0.05, GamePosition.Center3);
-        addMapping(0.58, 0.65, 0.05, GamePosition.Center4);
-        addMapping(0.5, 0.65, 0.05, GamePosition.Center5);
-        addMapping(0.42, 0.65, 0.05, GamePosition.Center6);
-        addMapping(0.42, 0.5, 0.05, GamePosition.Center7);
+        addMapping(centerX, centerY, 0.05, GamePosition.Center0);
+        addMapping(0.5, centerY, 0.05, GamePosition.Center1);
+        addMapping(1-centerX, centerY, 0.05, GamePosition.Center2);
+        addMapping(1-centerX, 0.5, 0.05, GamePosition.Center3);
+        addMapping(1-centerX, 1-centerY, 0.05, GamePosition.Center4);
+        addMapping(0.5, 1-centerY, 0.05, GamePosition.Center5);
+        addMapping(centerX, 1-centerY, 0.05, GamePosition.Center6);
+        addMapping(centerX, 0.5, 0.05, GamePosition.Center7);
 
 
 

@@ -10,6 +10,7 @@ import at.fhv.itb6.arp.ARFacade;
 import at.fhv.itb6.arp.CursorStatus;
 import at.fhv.itb6.arp.inputInterface.InputConfiguration;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,7 +34,8 @@ public class GameController extends Observable implements Runnable{
         }
 
         _gameFacade = new GameFacade(_isPvp);
-        _mapping = new CursorPositionToGamePositionMapper();
+
+        _mapping = new CursorPositionToGamePositionMapper(1, 1);
 
         _gameFacade.addObserver(new Observer() {
             @Override
@@ -149,5 +151,13 @@ public class GameController extends Observable implements Runnable{
 
     public int getUnusedTokensPlayer2(){
         return _gameFacade.getUnusedTokensPlayer2();
+    }
+
+    public CursorPositionToGamePositionMapper getMapping() {
+        return _mapping;
+    }
+
+    public void setMapping(CursorPositionToGamePositionMapper mapping) {
+        _mapping = mapping;
     }
 }
