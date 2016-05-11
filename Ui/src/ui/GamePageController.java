@@ -42,6 +42,8 @@ public class GamePageController {
     Canvas buffer1;
     Canvas buffer2;
 
+    private Image _boardImage;
+
     private GameController _gameGameController;
     private HashMap<GamePosition, Point> _gamePositionMappings;
 
@@ -170,9 +172,17 @@ public class GamePageController {
 
         context.setFill(Color.BLACK);
         context.fillRect(0,0, canvis.getWidth(), canvis.getHeight());
-        Image image = new Image("/ui/gameboard.png");
 
-        context.drawImage(image, canvis.getWidth()/2 - image.getWidth()/2, canvis.getHeight()/2 - image.getHeight()/2);
+        if (_boardImage == null){
+            _boardImage = new Image ("ui/gameboard.png");
+
+        }
+
+        double scaling = canvis.getHeight()/_boardImage.getHeight() * 0.81;
+        double finalWidth = _boardImage.getWidth() * scaling;
+        double finalHeight = _boardImage.getHeight() * scaling;
+
+        context.drawImage(_boardImage, canvis.getWidth()/2 - finalWidth/2, canvis.getHeight()/2 - finalHeight/2, finalWidth, finalHeight);
 
         /*context.setFill(Color.BLUE);
         for (int i = 0; i < 10; i++){

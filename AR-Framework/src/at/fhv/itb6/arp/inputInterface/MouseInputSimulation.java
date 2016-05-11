@@ -37,7 +37,7 @@ public class MouseInputSimulation extends InputDetection {
 
             //Get pointer info
             try {
-                Thread.sleep(2);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
