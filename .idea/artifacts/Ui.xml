@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Ui">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Ui</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="ui.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Ui.jar">
+        <element id="module-output" name="Ui" />
+        <element id="module-output" name="Application" />
+        <element id="module-output" name="Game" />
+        <element id="module-output" name="AR-Framework" />
+        <element id="module-output" name="HarwareInterface" />
+        <element id="file-copy" path="$PROJECT_DIR$/lib/opencv3.1/opencv/build/java/opencv-310.jar" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -154,6 +154,9 @@ public class StartPageController implements IPanelClosable{
                 Imgcodecs.imencode(".bmp", image, byteMat);
                 Image rawAsImage = new Image(new ByteArrayInputStream(byteMat.toArray()));
 
+                image.release();
+                gameboard.release();
+
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {

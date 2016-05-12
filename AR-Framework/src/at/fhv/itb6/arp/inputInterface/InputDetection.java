@@ -24,7 +24,6 @@ import java.util.Map;
 public class InputDetection {
     private InputConfiguration _inputConfiguration;
     private InputMedianFilter _inputMedianFilter;
-    private List<Mat> _markerFrameBuffer = new LinkedList<>();
 
     public InputDetection(InputConfiguration inputConfiguration){
         _inputConfiguration = inputConfiguration;
@@ -55,8 +54,11 @@ public class InputDetection {
 
             try {
                 correctedImage = ShapeUtil.perspectiveCorrection(frame, _inputConfiguration.getGameboardRectangle(), new Size(1000, 1000));
+                Mat rotation = new Mat();
                 for (int i = 0; i < _inputConfiguration.getCameraPosition(); i++) {
-                    correctedImage = rotateRight(correctedImage);
+                    rotation = rotateRight(correctedImage);
+                    correctedImage.release();
+                    correctedImage = rotation;
                 }
 
                 //Detect marker position
@@ -84,6 +86,7 @@ public class InputDetection {
                 }
             }
             frame.release();
+            correctedImage.release();
         }
         try {
             cam.close();
